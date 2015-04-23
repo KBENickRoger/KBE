@@ -1,0 +1,78 @@
+
+        
+Code mirror tool (monitor.exe)
+=============================
+
+The code mirror tool is a small dropbox-like utility that monitors lisp files 
+and uploads them to the server when they are changed. Simply put it in the root 
+folder that contains the project code and run/double-click it. 
+
+To stop it again, right-click the icon in the system tray, in the bottom right 
+corner of your desktop, and choose "Quit".
+
+
+Frequently Asked Questions
+--------------------------
+        
+* Do I risk loosing my code?
+
+	No. By design, monitor.exe doesn't change your local files. 
+        
+    This is a choice deeply embedded in the concept. The system doesn't try to 
+    merge design changes in your code; instead, you see a list of inconsistencies 
+    detected. If the code needs to change, you can copy-paste code snippets.
+
+* Does it install anything?
+
+	No. It is a simple executable which cleans up itself when you quit it.
+
+* How do I remove it from my computer when I no longer need it?
+
+	Simply quit the monitor and remove monitor.exe. That's all.
+
+* Can I start it automatically at system startup?
+
+	To make it start when you log in to your computer, simply make a shortcut
+    to monitor.exe and place it in your startup folder. Where that folder is
+    depends on your Windows version. It could be something like:
+        
+        C:\Users\(User-Name)\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
+
+* What files will be uploaded?
+
+	Only *.lisp files are uploaded.
+
+* Will files in subfolders be uploaded?
+
+	Yes. You can e.g. place your code in a subfolder source/.
+
+* Do you support Mac or Linux?
+
+	Yes, but obviously monitor.exe won't cut it. If you happened to be a Mac or 
+    Linux user, contact me, and I'll provide you with the necessary files and 
+    support to run it on your computer.
+
+* Can I upload confidential code safely?
+
+	I wouldn't do that. Instead, ask me for a local installation of GendlDesign 
+    on your system, so that no files leave your computer.
+     
+    Your code is password-protected on the server, so that other users cannot access 
+    it. So there is some level of security. Still, a lot of people are able to access 
+    your files:
+        - Me
+        - Google (the hosting provider)
+        - The US government (The data is probably stored in the US)
+        - People who hacked your wifi network, and other parties between you and 
+          the Google servers
+    
+    So in short: I wouldn't do that.
+
+* Where can I get more information?
+
+	Support & feedback:
+        https://gendldesign.uservoice.com/
+        Give feedback or ask for help (on the right: contact support or give feedback)
+        
+    Email:
+        pj.dewitte@gmail.com
