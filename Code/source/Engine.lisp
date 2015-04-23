@@ -1,17 +1,19 @@
-(in-package :kbe)
+(in-package :gdl-user)
 
-(define-object Engine ()
+(define-object Engine (cylinder)
   
   :documentation
-  (:author "<name> (<username>@<organization>.com)"
-   :description "")
+  (:author "Nick"
+   :description "23-4 Nick: made a simple cylider engine")
   
   :input-slots
-  ()
+  (engineLength engineDiameter)
   
   
   :computed-slots
-  ()
+  ((length (the engineLength))
+   (radius (half (the engineDiameter)))
+  )
   
   
   :objects
