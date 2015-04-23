@@ -1,4 +1,4 @@
-(in-package :kbe)
+(in-package :gdl-user)
 
 (define-object WingAssy ()
   
@@ -7,7 +7,14 @@
    :description "")
   
   :input-slots
-  ()
+  ((""
+    wingSpan)
+   
+   (""
+    wingKinkPos)
+   
+   (""
+    wingRootChord))
   
   
   :computed-slots
