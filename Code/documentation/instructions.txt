@@ -1,0 +1,5 @@
+In this folder you can put documentation that concerns the whole project, as well as relevant reports, presentations, book extracts, notes, etc. Documentation about specific parts of the code should be written in the code: there it is more likely to be read and updated.
+
+This folder also contains the gendl-design folder. This folder is supposed to be read-only, and will be updated by the code mirror tool. It contains a web page to browse design documentation off-line (index.html) and an xml file which can be used to restore the design in the on-line project to an earlier version, if this documentation folder is under version control together with the rest of the code (it should be).
+
+You can safely remove this "instructions.txt" file.

@@ -1,0 +1,13 @@
+[
+    {
+        "methods": [], 
+        "package": "kbe", 
+        "description": "", 
+        "mixins": [], 
+        "ownedAttributes": [], 
+        "_id": "1429791784433-1", 
+        "type": "idea:UserClass", 
+        "children": [], 
+        "name": "Aircraft"
+    }
+]
