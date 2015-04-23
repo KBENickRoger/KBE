@@ -15,7 +15,23 @@
   
   
   :objects
-  ()
+  ((""
+    tail :type 'ConTail)
+   
+   (""
+    tail :type 'VTail)
+   
+   (""
+    fuselage :type 'Fuselage)
+   
+   (""
+    tail :type 'CTail)
+   
+   (""
+    engine :type 'Engine)
+   
+   (""
+    wing :type 'WingAssy))
   
   
   :functions
