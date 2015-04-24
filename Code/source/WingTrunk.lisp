@@ -1,13 +1,20 @@
 (in-package :gdl-user)
 
-(define-object WingTrunk (box)
+(define-object WingTrunk (geom-base:box)
   
   :documentation
   (:author "Nick"
    :description "23-4 Nick: Made a simple box")
   
   :input-slots
-  (chordRoot thickness span)
+  ((""
+  chordRoot) 
+  
+  (""
+  thickness) 
+  
+  (""
+  span)
   
   
   :computed-slots

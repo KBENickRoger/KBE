@@ -1,6 +1,6 @@
 (in-package :gdl-user)
 
-(define-object Aerodynamics(cap) ()
+(define-object Aerodynamics ()
   
   :documentation
   (:author "Roger"
@@ -66,7 +66,7 @@
     wingArea nil #|todo|# )
    
    (""
-    wingSpanNet (- (the wingSpan) (the fuselageRadius)) )
+    wingSpanNet (- (the wingSpan) (the fuselageRadius)) ))
   
   
   :objects

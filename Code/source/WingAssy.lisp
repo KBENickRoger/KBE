@@ -8,17 +8,24 @@
   
   :input-slots
   ((""
-    wingSpan)
+    wingSpan nil #|todo: default value|#)
    
    (""
-    wingKinkPos)
+    wingKinkPos nil #|todo: default value|#)
    
    (""
-    wingRootChord))
+    wingRootChord nil #|todo: default value|#)
+   
+   (""
+    wingTaper nil #|todo: default value|#)
+   
+   (""
+    wingDihedral nil #|todo: default value|#))
   
   
   :computed-slots
-  ()
+  ((""
+    wingTipChord (* (the wingRootChord) (the wingTaper))))
   
   
   :objects
@@ -28,4 +35,5 @@
   
   :functions
   ())
+
 
