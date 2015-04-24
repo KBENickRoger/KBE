@@ -1,19 +1,18 @@
 (in-package :gdl-user)
 
-(define-object WingTrunk (box)
+(define-object Wing ()
   
   :documentation
   (:author "Nick"
-   :description "23-4 Nick: Made a simple box")
+   :description "23-4 Nick: Copied from wingtrunk 
+                 24-4 Nick: Made into wing")
   
   :input-slots
-  (chordRoot thickness span)
+  (span)
   
   
   :computed-slots
-  ((height (the thickness))
-   (width (the chordRoot))
-   (length (the span)))
+  ()
   
   
   :objects
