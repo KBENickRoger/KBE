@@ -1,4 +1,15 @@
-; test comment
+; Inputdata input file
+;  
+
+; Wing parameters
 wingSpan 10
-rootChord 5
-test 10
+wingChordRoot 1 
+
+; Tail parameters
+tailType 1
+
+; Fuselage parameters
+fuselageLength 100
+fuselageDiameter 5
+
+; Engine parameters

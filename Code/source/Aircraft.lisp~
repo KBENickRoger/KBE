@@ -6,24 +6,23 @@
   
   :documentation
   (:author "Nick&Roger"
-   :description "24/4 Nick: added global (**) parameter for dataFolder, function for reading data files")
+   :description "-")
   
   :input-slots
   ((dataFolder *dataFolder*)
-   (inputDataFile (merge-pathnames "inputData.txt" (the dataFolder))))
-  
+   (inputDataFilename "inputData.dat")
+  )
   
   :computed-slots
-  ()
-  
+  (
+  (inputDataFilePath (merge-pathnames (the inputDataFilename) (the dataFolder)))
+  (inputData (basicDataReader (the inputDataFilePath)))
+  )
   
   :objects
   ((""
-    tail :type 'ConTail)
-   
-   (""
-    tail :type 'VTail)
-   
+    tail :type 'TailAssy)
+ 
    (""
     fuselage :type 'Fuselage)
    
@@ -38,7 +37,9 @@
   
   
   :functions
-  ())
+  ()
+
+)
 
 (defparameter *dataFolder*
   (make-pathname :name nil

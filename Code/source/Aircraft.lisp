@@ -25,16 +25,17 @@
  
    (""
     fuselage :type 'Fuselage)
-   
-   (""
-    tail :type 'CTail)
-   
    (""
     engine :type 'Engine)
    
    (""
-    wing :type 'WingAssy))
-  
+    wing :type 'WingAssy)
+
+   (""
+    input :type 'InputData
+              :parameters (the inputData))
+)
+
   
   :functions
   ()
