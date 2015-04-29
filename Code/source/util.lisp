@@ -16,5 +16,23 @@
 	(push line result))
 )))
 
+;; split data - input string data list from readStringData - output same list, but with lines split in two strings
 (defun splitData (dataList)
- (mapcan 'split dataList))
+ (mapcar 'split dataList))
+
+;; transData - transcribes a list of two strings into a keyword property pair e.g.: "wingspan" "10" to :wingspan 10
+(defun transData (inputList)
+  (list (make-keyword (first inputList)) (parser (first (last inputList)))
+))
+
+;; parser - reads from string while suppressing evaluation
+(defun parser (string) 
+ (let ((*read-eval* nil)) (with-input-from-string (stream string) (read stream)))
+)
+
+;; basicDataReader - input file location - output property list plist of data file 
+(defun basicDataReader (filename)
+  (mapcan 'transData (splitData (readStringData filename)))
+)
+
+
