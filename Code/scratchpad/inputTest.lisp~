@@ -17,6 +17,9 @@
 	(push line result))
 )))
 
+(defun splitData (dataList)
+ (mapcan 'split dataList))
+
 (define-object inputTest ()
 
   :input-slots
@@ -26,7 +29,8 @@
   :computed-slots
   ((dataFilePath (merge-pathnames (the dataFileName)
 				  (the dataFolder)))
-  (data (readData(the dataFilePath))))
+  (data (readData(the dataFilePath)))
+  (dataSplit (splitData(the data))))
 
 )
 

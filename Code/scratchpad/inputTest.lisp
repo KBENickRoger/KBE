@@ -18,7 +18,15 @@
 )))
 
 (defun splitData (dataList)
- (mapcan 'split dataList))
+ (mapcar 'split dataList))
+
+(defun transData (inputList)
+  (list (make-keyword (first inputList)) (parser (first (last inputList)))
+))
+
+(defun plistCreator (dataList)
+  (mapcan 'transData dataList)
+)
 
 (define-object inputTest ()
 
@@ -30,9 +38,17 @@
   ((dataFilePath (merge-pathnames (the dataFileName)
 				  (the dataFolder)))
   (data (readData(the dataFilePath)))
-  (dataSplit (splitData(the data))))
+  (dataSplit (splitData(the data)))
+   (dataTest (first (the dataSplit)))
+   (dataTest2 (first (the dataTest)))
+   (dataTest3 (first (rest (the dataTest))))
+   (dataKeyTest (make-keyword (the dataTest2)))
+   (dataReadTest (parser (the dataTest3)))
+  (dataTrans (plistCreator(the dataSplit)))
+  (wingspan (getf (the dataTrans) :wingspan)))
 
 )
 
-
-  
+(defun parser (string) 
+ (let ((*read-eval* nil)) (with-input-from-string (stream string) (read stream)))
+)
