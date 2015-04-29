@@ -13,7 +13,7 @@
     (let (result)
       (do ((line (read-line in nil nil) (read-line in nil nil)))
 	  ((or (null line)(string-equal line ""))(nreverse result))
-	(unless ((char-equal (char line 0) ";") push line result))
+	(unless (char-equal (char line 0) #\;) (push line result)))
 )))
 
 ;; split data - input string data list from readStringData - output same list, but with lines split in two strings
