@@ -9,6 +9,14 @@
 ;; in future: (glisp:source-pathname)
 )))
 
+(defun readStringData (fileName)
+  (with-open-file (in fileName)
+    (let (result)
+      (do ((line (read-line in nil nil) (read-line in nil nil)))
+	  ((or (null line)(string-equal line ""))(nreverse result))
+	(unless (char-equal (char line 0) #\;) (push line result)))
+)))
+
 (defun readData (fileName)
   (with-open-file (in fileName)
     (let (result)
@@ -37,8 +45,11 @@
   :computed-slots
   ((dataFilePath (merge-pathnames (the dataFileName)
 				  (the dataFolder)))
-  (data (readData(the dataFilePath)))
+  (data (readStringData(the dataFilePath)))
   (dataSplit (splitData(the data)))
+   (dataFirstCharacter (char (first (the data)) 0))
+   (dataCompareTest (char-equal (the dataFirstCharacter) #\;))
+   (dataUnlessTest (unless (the dataCompareTest) "No comment"))
    (dataTest (first (the dataSplit)))
    (dataTest2 (first (the dataTest)))
    (dataTest3 (first (rest (the dataTest))))
