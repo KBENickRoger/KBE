@@ -35,4 +35,13 @@
   (mapcan 'transData (splitData (readStringData filename)))
 )
 
-
+;; basicNumberReader - input file location - output list of numbers 
+(defun basicNumberReader (filename)
+	(with-open-file (in fileName)
+    (let (result)
+      (do ((line (read-line in nil nil) (read-line in nil nil)))
+	  ((or (null line)(string-equal line ""))(nreverse result))
+		(unless (char-equal (char line 0) #\;) 
+			(let (xyz-list (read-from-string line)))
+			(push xyz-list result))
+	))))

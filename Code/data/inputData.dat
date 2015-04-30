@@ -11,6 +11,6 @@ tailType 1
 ; Fuselage parameters
 fuselageLength 100
 fuselageSlenderness 5
-fuselageCrossSectionPercents (0 10 50 20 100 10)
+
 
 ; Engine parameters
