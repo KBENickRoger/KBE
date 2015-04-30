@@ -25,7 +25,6 @@
   (list (make-keyword (first inputList)) (parser (first (last inputList)))
 ))
 
-
 ;; parser - reads from string while suppressing evaluation
 (defun parser (string) 
  (let ((*read-eval* nil)) (with-input-from-string (stream string) (read stream)))
