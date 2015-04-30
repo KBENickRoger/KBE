@@ -26,6 +26,7 @@
 )))
 
 (defun splitData (dataList)
+<<<<<<< HEAD
  (mapcar 'split dataList))
 
 (defun transData (inputList)
@@ -39,6 +40,9 @@
 (defun plistCreator (dataList)
   (mapcan 'transData dataList)
 )
+=======
+ (mapcan 'split dataList))
+>>>>>>> origin/master
 
 (define-object inputTest ()
 
@@ -51,6 +55,7 @@
   :computed-slots
   ((dataFilePath (merge-pathnames (the dataFileName)
 				  (the dataFolder)))
+<<<<<<< HEAD
    (fuselageFilePath (merge-pathnames (the fuselageFileName)
 				      (the dataFolder)))
   (data (readStringData (the dataFilePath)))
@@ -73,6 +78,10 @@
 (defun parser (string) 
  (let ((*read-eval* nil)) (with-input-from-string (stream string) (read stream)))
 )
+=======
+  (data (readData(the dataFilePath)))
+  (dataSplit (splitData(the data))))
+>>>>>>> origin/master
 
 ;; basicNumberReader - input file location - output list of numbers (only one number per line)
 (defun basicNumberReader (filename)
