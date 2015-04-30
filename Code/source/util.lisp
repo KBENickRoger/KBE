@@ -25,6 +25,7 @@
   (list (make-keyword (first inputList)) (parser (first (last inputList)))
 ))
 
+
 ;; parser - reads from string while suppressing evaluation
 (defun parser (string) 
  (let ((*read-eval* nil)) (with-input-from-string (stream string) (read stream)))
@@ -35,13 +36,7 @@
   (mapcan 'transData (splitData (readStringData filename)))
 )
 
-;; basicNumberReader - input file location - output list of numbers 
+;; basicNumberReader - input file location - output list of parsed numbers
 (defun basicNumberReader (filename)
-	(with-open-file (in fileName)
-    (let (result)
-      (do ((line (read-line in nil nil) (read-line in nil nil)))
-	  ((or (null line)(string-equal line ""))(nreverse result))
-		(unless (char-equal (char line 0) #\;) 
-			(let (xyz-list (read-from-string line)))
-			(push xyz-list result))
-	))))
+	(mapcar 'parser (mapcan 'split (readStringData filename)))
+)

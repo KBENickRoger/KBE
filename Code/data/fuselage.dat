@@ -1,7 +1,6 @@
 ; Fuselage input file
-; list of cross-section percentages along length of fuselage and diameter of fuselage
-
-0 10 
-20 15
-80 15
-100 10
+;
+0 15
+20 20
+80 20
+100 15

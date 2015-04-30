@@ -1,16 +1,14 @@
 ; Inputdata input file
-;  
-
+;
 ; Wing parameters
 wingSpan 10
 wingChordRoot 1 
-
+;
 ; Tail parameters
 tailType 1
-
+;
 ; Fuselage parameters
 fuselageLength 100
 fuselageSlenderness 5
-
-
+;
 ; Engine parameters
