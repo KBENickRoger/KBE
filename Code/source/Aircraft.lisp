@@ -1,5 +1,10 @@
 (in-package :gdl-user)
 
+(defparameter *dataFolder* (merge-pathnames "../data/"
+					     (make-pathname :name nil
+							    :type nil
+							    :defaults excl:*source-pathname*))
+)
 
 
 (define-object Aircraft ()
@@ -41,12 +46,4 @@
 
 )
 
-(defparameter *dataFolder*
-  (make-pathname :name nil
-:type nil
-:defaults (merge-pathnames "../data/"
-#+allegro excl:*source-pathname*
-#+lispworks dspec:*source-pathname*
-;; in future: (glisp:source-pathname)
-)))
 
