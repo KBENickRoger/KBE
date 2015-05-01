@@ -1,13 +1,13 @@
 (in-package :gdl-user)
 
-(define-object Wing ()
+(define-object Wing (base-object)
   
   :documentation
   (:author ""
    :description "")
   
   :input-slots
-  (span)
+  (span chordRoot)
   
   
   :computed-slots

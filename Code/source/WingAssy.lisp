@@ -1,36 +1,51 @@
 (in-package :gdl-user)
 
-(define-object WingAssy ()
+(define-object WingAssy (base-object)
   
   :documentation
-  (:author "<name> (<username>@<organization>.com)"
+  (:author ""
    :description "")
   
   :input-slots
-  ((""
-    wingSpan nil #|todo: default value|#)
+  (("Total wingspan in [m]"
+    span 10)
    
-   (""
-    wingKinkPos nil #|todo: default value|#)
+   ("Position of the kink in the wing [%]"
+    kinkPos 0.3)
    
-   (""
-    wingRootChord nil #|todo: default value|#)
+   ("Length of the chord at the root of the wing [m]"
+    chordRoot 2)
    
-   (""
-    wingTaper nil #|todo: default value|#)
+   ("Taper ratio []"
+    taper 0.5)
    
-   (""
-    wingDihedral nil #|todo: default value|#))
+   ("Dihedral angle []"
+    dihedral 5)
+   
+   ("Wing configuration 1 low 2 mid 3 heigh"
+    configuration 1)
+)
   
   
   :computed-slots
-  ((""
-    wingTipChord (* (the wingRootChord) (the wingTaper))))
+  (
+)
   
   
   :objects
-  ((""
-    wingTrunk :type 'WingTrunk))
+  (("base-object box om positie van vleugel te laten zien"
+    assyBox 
+    :type 'box
+    :length (the chordRoot)
+    :width (the Span)
+    :height 0)
+
+   ("wing left (bakboord)"
+    lWing :type 'MainWing)
+
+   ("wing right (stuurboord"
+    rWing :type 'MainWing)
+)
   
   
   :functions
