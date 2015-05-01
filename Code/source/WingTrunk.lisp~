@@ -4,7 +4,7 @@
   
   :documentation
   (:author "Nick"
-   :description "")
+   :description "23-4 Nick: Made a simple box")
   
   :input-slots
   ((""
@@ -15,11 +15,12 @@
   
   (""
   span)
-   )
   
   
   :computed-slots
-  ()
+  ((height (the thickness))
+   (width (the chordRoot))
+   (length (the span)))
   
   
   :objects
