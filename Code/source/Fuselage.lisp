@@ -11,10 +11,10 @@
     lengthTotal 10)
    
    (""
-    finenessRatio 2)
+    finenessRatio 4)
 	
    (""
-	lengthCenter 5)
+	lengthCenter 8)
 	
 	(""
 	lengthNose 2)
@@ -28,12 +28,29 @@
   
 
   :objects 
-  ((fuselageCenter 	:type 'cylinder
-					:length (the lengthCenter)
-					:radius (half (the diameter))
-					:center (translate (the center)
-						:rear (- (+ (the lengthNose) (half (the lengthCenter)))))
+  ((fuselageNose
+    :type 'cylinder
+    :length (the lengthNose)
+    :radius (half (the diameter))
+    :center (translate (the center)
+		       :rear (-(half (the lengthNose))))
+    )
+   
+   (fuselageCenter 	
+    :type 'cylinder
+    :length (the lengthCenter)
+    :radius (half (the diameter))
+    :center (translate (the center)
+			:rear (- (+ (the lengthNose) (half (the lengthCenter)))))
 	)
+   
+   (fuselageTail
+    :type 'cylinder
+    :length (the lengthTail)
+    :radius (half (the diameter))
+    :center (translate (the center)
+		       :rear (- (+ (the lengthNose)(the lengthCenter)(half (the lengthTail)))))
+    )
 
   )
 
