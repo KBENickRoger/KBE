@@ -34,7 +34,16 @@
     engine :type 'Engine)
    
    (""
-    wing :type 'WingAssy)
+    wings 
+    :type 'WingAssy
+    :span 10
+    :kinkPos 0.3
+    :chordRoot 2
+    :taper 0.5
+    :dihedral 5
+    :configuration 1
+    :wingFromNose 5
+)
 
    (""
     input :type 'InputData

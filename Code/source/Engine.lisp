@@ -1,19 +1,19 @@
 (in-package :gdl-user)
 
-(define-object Engine (cylinder)
+(define-object Engine (base-object)
   
   :documentation
   (:author "Nick"
    :description "")
   
   :input-slots
-  (engineLength engineDiameter)
+  ((engineLength 1) 
+   (engineDiameter 1)
+   )
   
   
   :computed-slots
-  ((length (the engineLength))
-   (radius (half (the engineDiameter)))
-  )
+  ()
   
   
   :objects

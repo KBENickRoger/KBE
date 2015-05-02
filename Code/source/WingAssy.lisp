@@ -24,6 +24,9 @@
    
    ("Wing configuration 1 low 2 mid 3 heigh"
     configuration 1)
+
+   (""
+    wingFromNose 5)
 )
   
   
@@ -38,8 +41,11 @@
     :type 'box
     :length (the chordRoot)
     :width (the Span)
-    :height 0)
-
+    :height 0
+    :center (translate (the center) 
+		       :rear (the wingFromNose))
+    )
+   
    ("wing left (bakboord)"
     lWing :type 'MainWing)
 

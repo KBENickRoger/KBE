@@ -33,7 +33,7 @@
     :length (the lengthNose)
     :radius (half (the diameter))
     :center (translate (the center)
-		       :rear (-(half (the lengthNose))))
+		       :rear (half (the lengthNose)))
     )
    
    (fuselageCenter 	
@@ -41,7 +41,7 @@
     :length (the lengthCenter)
     :radius (half (the diameter))
     :center (translate (the center)
-			:rear (- (+ (the lengthNose) (half (the lengthCenter)))))
+			:rear (+ (the lengthNose) (half (the lengthCenter))))
 	)
    
    (fuselageTail
@@ -49,7 +49,7 @@
     :length (the lengthTail)
     :radius (half (the diameter))
     :center (translate (the center)
-		       :rear (- (+ (the lengthNose)(the lengthCenter)(half (the lengthTail)))))
+		       :rear (+ (the lengthNose)(the lengthCenter)(half (the lengthTail))))
     )
 
   )
