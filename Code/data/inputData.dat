@@ -1,14 +1,24 @@
 ; Inputdata input file
 ;
 ; Wing parameters
-wingSpan 10
-wingChordRoot 1 
+wingSpan 50
+wingChordRoot 20 
+wingKinkPos 0.3
+wingTaper 0.5
+wingDihedral 5
+wingConfiguration 1
 ;
 ; Tail parameters
 tailType 1
 ;
 ; Fuselage parameters
-fuselageLength 100
-fuselageSlenderness 5
+fuselageLength 75
+finenessRatio 4
+fuselageLengthCenter 40
+fuselageLengthNose 20
 ;
 ; Engine parameters
+engineMounting 1
+engineNumber 4
+engineDiameter 1
+engineLength 1

@@ -29,19 +29,26 @@
     tail :type 'TailAssy)
  
    (""
-    fuselage :type 'Fuselage)
+    fuselage 
+	:type 'Fuselage
+	:lengthTotal (the input fuselageLength)
+	:finenessRatio (the input finenessRatio)
+	:lengthCenter (the input fuselageLengthCenter)
+	:lengthNose	(the input fuselageLengthNose)
+	)
+		
    (""
     engine :type 'Engine)
    
    (""
-    wings 
+    wing 
     :type 'WingAssy
-    :span 10
-    :kinkPos 0.3
-    :chordRoot 2
-    :taper 0.5
-    :dihedral 5
-    :configuration 1
+    :span (the input wingSpan)
+    :kinkPos (the input wingKinkPos)
+    :chordRoot (the input wingChordRoot)
+    :taper (the input wingTaper)
+    :dihedral (the input wingDihedral)
+    :configuration (the input wingConfiguration)
     :wingFromNose 5
 )
 
