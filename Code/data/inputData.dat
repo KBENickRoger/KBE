@@ -13,7 +13,7 @@ tailType 1
 ;
 ; Fuselage parameters
 fuselageLength 75
-finenessRatio 4
+finenessRatio 8
 fuselageLengthCenter 40
 fuselageLengthNose 20
 ;

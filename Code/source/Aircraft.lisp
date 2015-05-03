@@ -38,7 +38,19 @@
 	)
 		
    (""
-    engine :type 'Engine)
+    engines 
+	:type 'EngineAssy
+	:engineNumber (the input engineNumber)
+	:position (ecase (the input engineMounting) 
+				( 1 (the wing wingFromNose)) ( 2 (the fuselage lengthTotal)))
+	:offsetSweep (ecase (the input engineMounting)
+				( 1 1) ( 2 0))
+	:offsetSpan (ecase (the input engineMounting)
+				( 1 (/ (- (the wing span) (the fuselage diameter)) (the engines engineNumber))) ( 2 0))
+	:offsetFuselage (half (the fuselage diameter))
+	:length (the input engineLength)
+	:diameter (the input engineDiameter)
+	)
    
    (""
     wing 

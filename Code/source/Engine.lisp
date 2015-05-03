@@ -1,6 +1,6 @@
 (in-package :gdl-user)
 
-(define-object Engine (base-object)
+(define-object Engine (cylinder)
   
   :documentation
   (:author "Nick"
