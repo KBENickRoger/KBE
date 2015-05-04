@@ -1,0 +1,40 @@
+(in-package :gdl-user)
+
+(define-object EngineAssy (base-object)
+  
+  :documentation
+  (:author "Nick"
+   :description "")
+  
+  :input-slots
+  (engineNumber position offsetSweep offsetSpan offsetFuselage length diameter)
+  
+  
+  :computed-slots
+  ((center (make-point 0 0 0)))
+  
+  
+  :objects
+  ((leftEngines
+	:type 'cylinder
+	:sequence (:size (half (the engineNumber)))
+	:length (the length)
+	:radius (half (the diameter))
+	:center (translate (the position)
+		:left (+ (the offsetFuselage)(* (+ (the-child index) 1) (the offsetSpan)))))
+		
+	(rightEngines
+	:type 'cylinder
+	:sequence (:size (half (the engineNumber)))
+	:length (the length)
+	:radius (half (the diameter))
+	:center (translate (the position)
+			   :right (+ (the offsetFuselage)(* (+ (the-child index) 1) (the offsetSpan)))))	
+	)
+  
+  
+  :functions
+  ()
+  
+  )
+

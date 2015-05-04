@@ -15,11 +15,11 @@ wingConfiguration
 ;; Tail parameters
 tailType
 
-;; Fuselage parameters 
+;; Fuselage parameters
+fuselageLength 
 finenessRatio
 fuselageLengthCenter
 fuselageLengthNose
-fuselageLengthTail
 
 ;; Propulsion system
 engineMounting

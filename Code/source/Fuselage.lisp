@@ -7,23 +7,23 @@
    :description "")
   
   :input-slots
-  ((""
-    lengthTotal 10)
-   
+  (
    (""
     finenessRatio 4)
 	
    (""
-	lengthCenter 8)
+    lengthCenter 8)
 	
-	(""
-	lengthNose 2)
+   (""
+    lengthNose 2)
+
+   (""
+    lenghtTail 2)
   )
   
   :computed-slots
   ((diameter (/ (the lengthTotal) (the finenessRatio)))
-   (lengthTail (- (the lengthTotal) (the lengthCenter)))
-  
+   (lengthTotal (+ (the lengthCenter) (the lengthNose) (the lengthTail)))
   )
   
 
@@ -31,9 +31,9 @@
   ((fuselageNose
     :type 'cylinder
     :length (the lengthNose)
-    :radius (half (the diameter))
+    :radius (* 0.75 (half (the diameter)))
     :center (translate (the center)
-		       :rear (-(half (the lengthNose))))
+		       :rear (half (the lengthNose)))
     )
    
    (fuselageCenter 	
@@ -41,15 +41,15 @@
     :length (the lengthCenter)
     :radius (half (the diameter))
     :center (translate (the center)
-			:rear (- (+ (the lengthNose) (half (the lengthCenter)))))
+			:rear (+ (the lengthNose) (half (the lengthCenter))))
 	)
    
    (fuselageTail
     :type 'cylinder
     :length (the lengthTail)
-    :radius (half (the diameter))
+    :radius (half (half (the diameter)))
     :center (translate (the center)
-		       :rear (- (+ (the lengthNose)(the lengthCenter)(half (the lengthTail)))))
+		       :rear (+ (the lengthNose)(the lengthCenter)(half (the lengthTail))))
     )
 
   )

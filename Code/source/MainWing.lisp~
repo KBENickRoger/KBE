@@ -1,15 +1,13 @@
 (in-package :gdl-user)
 
-(define-object Engine (cylinder)
+(define-object Wing (base-object)
   
   :documentation
-  (:author "Nick"
+  (:author ""
    :description "")
   
   :input-slots
-  ((engineLength 1) 
-   (engineDiameter 1)
-   )
+  (span chordRoot)
   
   
   :computed-slots

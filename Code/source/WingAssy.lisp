@@ -24,11 +24,14 @@
    
    ("Wing configuration 1 low 2 mid 3 heigh"
     configuration 1)
+
+   (""
+    wingPositioning (make-point 0 0 0))
 )
   
   
   :computed-slots
-  (
+  (( center (the wingpositioning))
 )
   
   
@@ -38,8 +41,10 @@
     :type 'box
     :length (the chordRoot)
     :width (the Span)
-    :height 0)
-
+    :height 0
+    :center (the center)
+	)
+   
    ("wing left (bakboord)"
     lWing :type 'MainWing)
 

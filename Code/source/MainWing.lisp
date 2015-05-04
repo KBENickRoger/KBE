@@ -1,6 +1,6 @@
 (in-package :gdl-user)
 
-(define-object Wing (base-object)
+(define-object MainWing (base-object)
   
   :documentation
   (:author ""
