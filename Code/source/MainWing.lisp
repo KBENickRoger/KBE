@@ -22,6 +22,7 @@
 			(half (the span))))
 	(spanInner (* (the span)(the kinkPos)))
 	(spanOuter (- (the span)(the spanInner)))
+	(sweepLERad (degtorad (the sweepLE)))
 	(chordKink (- (the chordRoot)(* (the spanInner)(tan (the sweepLERad)))))
 	)
   
