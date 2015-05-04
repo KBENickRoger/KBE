@@ -20,8 +20,7 @@
 	:sequence (:size (half (the engineNumber)))
 	:length (the length)
 	:radius (half (the diameter))
-	:center (translate (the center)
-		:rear (the position)
+	:center (translate (the position)
 		:left (+ (the offsetFuselage)(* (+ (the-child index) 1) (the offsetSpan)))))
 		
 	(rightEngines
@@ -29,9 +28,8 @@
 	:sequence (:size (half (the engineNumber)))
 	:length (the length)
 	:radius (half (the diameter))
-	:center (translate (the center)
-		:rear (the position)
-		:left (+ (the offsetFuselage)(* (+ (the-child index) 1) (the offsetSpan)))))	
+	:center (translate (the position)
+		:right (+ (the offsetFuselage)(* (+ (the-child index) 1) (the offsetSpan)))))	
 	)
   
   

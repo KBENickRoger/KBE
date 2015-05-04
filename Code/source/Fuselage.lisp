@@ -31,7 +31,7 @@
   ((fuselageNose
     :type 'cylinder
     :length (the lengthNose)
-    :radius (half (the diameter))
+    :radius (* 0.75 (half (the diameter)))
     :center (translate (the center)
 		       :rear (half (the lengthNose)))
     )
@@ -47,7 +47,7 @@
    (fuselageTail
     :type 'cylinder
     :length (the lengthTail)
-    :radius (half (the diameter))
+    :radius (half (half (the diameter)))
     :center (translate (the center)
 		       :rear (+ (the lengthNose)(the lengthCenter)(half (the lengthTail))))
     )

@@ -26,12 +26,12 @@
     configuration 1)
 
    (""
-    wingFromNose 5)
+    wingPositioning (make-point 0 0 0))
 )
   
   
   :computed-slots
-  (
+  (( center (the wingpositioning))
 )
   
   
@@ -42,9 +42,8 @@
     :length (the chordRoot)
     :width (the Span)
     :height 0
-    :center (translate (the center) 
-		       :rear (the wingFromNose))
-    )
+    :center (the center)
+	)
    
    ("wing left (bakboord)"
     lWing :type 'MainWing)

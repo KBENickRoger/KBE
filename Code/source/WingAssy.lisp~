@@ -24,6 +24,9 @@
    
    ("Wing configuration 1 low 2 mid 3 heigh"
     configuration 1)
+
+   (""
+    wingPositioning (make-point 0 0 0))
 )
   
   
@@ -39,8 +42,8 @@
     :length (the chordRoot)
     :width (the Span)
     :height 0
-    :center (the fuselageCenter center)
-    )
+    :center (the wingPositioning)
+	)
    
    ("wing left (bakboord)"
     lWing :type 'MainWing)
