@@ -12,22 +12,42 @@
 	(chordRoot 10)
 	(chordTip 5)
 	(kinkPos 0.3)
-	(rootPoint (make-point 0 0 0)))
+	(rootPoint (make-point 0 0 0))
+	(sweepLE 10))
   
   
   :computed-slots
   ((center (translate-along-vector (the rootPoint)
 			(the (face-normal-vector :right))
-			(half (the span)))))
+			(half (the span))))
+	(spanInner (* (the span)(the kinkPos)))
+	(spanOuter (- (the span)(the spanInner)))
+	(chordKink (- (the chordRoot)(* (the spanInner)(tan (the sweepLERad)))))
+	)
   
   
   :objects
-  ((box
+  ((innerWing
 	:type 'box
 	:length (the chordRoot)
-	:width (the span)
+	:width (the spanInner)
 	:height 1
-	:orientation (the orientation)))
+	:orientation (the orientation)
+	:center (translate-along-vector (the rootPoint)
+			(the (face-normal-vector :right))
+			(half (the spanInner))))
+			
+	(outerWing
+	:type 'box
+	:length (the chordKink)
+	:width (the spanOuter)
+	:height 1
+	:orientation (the orientation)
+	:center (translate-along-vector(the innerWing center)
+			(the (face-normal-vector :right))
+			(+ (half (the spanInner))(half (the spanOuter)))))
+	
+	)
   
   
   :functions
