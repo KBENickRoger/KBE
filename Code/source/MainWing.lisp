@@ -29,9 +29,10 @@
   
   :objects
   ((innerWing
-	:type 'box
-	:length (the chordRoot)
-	:width (the spanInner)
+	:type 'WingTrunk
+	:chordRoot (the chordRoot)
+	:chordTip (the chordKink)
+	:span (the spanInner)
 	:height 1
 	:orientation (the orientation)
 	:center (translate-along-vector (the rootPoint)
@@ -39,9 +40,10 @@
 			(half (the spanInner))))
 			
 	(outerWing
-	:type 'box
-	:length (the chordKink)
-	:width (the spanOuter)
+	:type 'WingTrunk
+	:chordRoot (the chordKink)
+	:chordTip (the chordTip)
+	:span (the spanOuter)
 	:height 1
 	:orientation (the orientation)
 	:center (translate-along-vector(the innerWing center)

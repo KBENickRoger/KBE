@@ -8,22 +8,26 @@
   
   :input-slots
   ((""
-  chordRoot) 
+  chordRoot 1) 
   
   (""
-  thickness) 
+  chordTip 1) 
   
   (""
-  span)
+  span 1)
    )
   
   
   :computed-slots
-  ()
+  ((length (the chordRoot))
+	(width (the span))
+	(height 1)
+	)
   
   
   :objects
-  ()
+  ((box
+	:type 'box))
   
   
   :functions
