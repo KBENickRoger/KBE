@@ -32,6 +32,7 @@
   
   :computed-slots
   (( center (the wingpositioning))
+	(chordTip (* (the taper)(the chordRoot)))
 )
   
   
@@ -45,11 +46,29 @@
     :center (the center)
 	)
    
-   ("wing left (bakboord)"
-    lWing :type 'MainWing)
-
-   ("wing right (stuurboord"
-    rWing :type 'MainWing)
+   ("Wings!"
+    wing 
+	:type 'MainWing
+	:sequence (:size 2)
+	:side (ecase (the-child index) (0 :right) (1 :left))
+	:span (half (the span))
+	:chordRoot (the chordRoot)
+	:chordTip (the chordTip)
+	:kinkPos (the kinkPos)
+	:rootPoint (the center)
+	
+	;;
+	;; Left wing will get a left-handed coordinate system and be a mirror of the right.
+	;;
+	:orientation (let* ((hinge (the (face-normal-vector (ecase (the-child side)
+	(:right :front)
+	(:left :rear)))))
+	(right (rotate-vector-d (the (face-normal-vector (the-child side)))
+	(the dihedral)
+	hinge)))
+	(alignment :right right
+				:top (cross-vectors hinge right)
+				:front (the (face-normal-vector :front)))))
 )
   
   
