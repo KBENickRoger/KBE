@@ -7,23 +7,23 @@
    :description "")
   
   :input-slots
-  ((""
-    lengthTotal 10)
-   
+  (
    (""
     finenessRatio 4)
 	
    (""
-	lengthCenter 8)
+    lengthCenter 8)
 	
-	(""
-	lengthNose 2)
+   (""
+    lengthNose 2)
+
+   (""
+    lenghtTail 2)
   )
   
   :computed-slots
   ((diameter (/ (the lengthTotal) (the finenessRatio)))
-   (lengthTail (- (the lengthTotal) (the lengthCenter)))
-  
+   (lengthTotal (+ (the lengthCenter) (the lengthNose) (the lengthTail)))
   )
   
 

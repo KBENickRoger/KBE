@@ -12,10 +12,10 @@ wingConfiguration 1
 tailType 1
 ;
 ; Fuselage parameters
-fuselageLength 75
 finenessRatio 8
 fuselageLengthCenter 50
-fuselageLengthNose 20
+fuselageLengthNose 10
+fuselageLengthTail 20
 ;
 ; Engine parameters
 engineMounting 1

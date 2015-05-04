@@ -31,10 +31,10 @@
    (""
     fuselage 
 	:type 'Fuselage
-	:lengthTotal (the input fuselageLength)
 	:finenessRatio (the input finenessRatio)
 	:lengthCenter (the input fuselageLengthCenter)
 	:lengthNose	(the input fuselageLengthNose)
+	:lengthTail (the input fuselageLengthTail)
 	)
 		
    (""
