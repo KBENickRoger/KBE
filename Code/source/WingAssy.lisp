@@ -26,6 +26,9 @@
    
    (""
     wingPositioning (make-point 0 0 0))
+	
+	(""
+	airfoil)
 )
   
   
@@ -56,6 +59,7 @@
 	:chordTip (the chordTip)
 	:kinkPos (the kinkPos)
 	:rootPoint (the center)
+	:airfoil (the airfoil)
 	
 	;;
 	;; Left wing will get a left-handed coordinate system and be a mirror of the right.

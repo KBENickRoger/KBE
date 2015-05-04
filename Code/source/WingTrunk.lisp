@@ -15,6 +15,11 @@
   
   (""
   span 1)
+  
+  (""
+  airfoil)
+  
+  (dataFolder *dataFolder*)
    )
   
   
@@ -22,6 +27,8 @@
   ((length (the chordRoot))
 	(width (the span))
 	(height 1)
+	(airfoilFile (merge-pathnames (the airfoil) (the dataFolder)))
+	(pointsData (with-open-file (in (the airfoilFile)) (read in)))
 	)
   
   

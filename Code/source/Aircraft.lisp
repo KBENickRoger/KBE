@@ -16,6 +16,7 @@
   :input-slots
   ((dataFolder *dataFolder*)
    (inputDataFilename "inputData.dat")
+   (wingAirfoil "NACA_0012_xyz.dat")
   )
   
   :computed-slots
@@ -70,6 +71,7 @@
     :wingPositioning (ecase (the input engineMounting)
 						(1 (the fuselage fuselageCenter center)) 
 						(2 (make-point 0 (+ (the fuselage lengthNose) (* 0.6 (the fuselage lengthCenter))) 0)))
+	:airfoil(the wingAirfoil)
    )
 
    (""

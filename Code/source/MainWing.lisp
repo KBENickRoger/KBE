@@ -13,7 +13,8 @@
 	(chordTip 5)
 	(kinkPos 0.3)
 	(rootPoint (make-point 0 0 0))
-	(sweepLE 10))
+	(sweepLE 10)
+	(airfoil))
   
   
   :computed-slots
@@ -37,7 +38,8 @@
 	:orientation (the orientation)
 	:center (translate-along-vector (the rootPoint)
 			(the (face-normal-vector :right))
-			(half (the spanInner))))
+			(half (the spanInner)))
+	:airfoil (the airfoil))
 			
 	(outerWing
 	:type 'WingTrunk
@@ -48,7 +50,8 @@
 	:orientation (the orientation)
 	:center (translate-along-vector(the innerWing center)
 			(the (face-normal-vector :right))
-			(+ (half (the spanInner))(half (the spanOuter)))))
+			(+ (half (the spanInner))(half (the spanOuter))))
+	:airfoil (the airfoil))
 	
 	)
   
