@@ -22,16 +22,16 @@
    ("Dihedral angle []"
     dihedral 5)
    
-   ("Wing configuration 1 low 2 mid 3 heigh"
-    configuration 1)
-
+   (wingVerticalShift 0)
+   
    (""
     wingPositioning (make-point 0 0 0))
 )
   
   
   :computed-slots
-  (( center (the wingpositioning))
+  ( 
+	(center (translate (the wingPositioning) :up (the wingVerticalShift)))
 	(chordTip (* (the taper)(the chordRoot)))
 )
   
