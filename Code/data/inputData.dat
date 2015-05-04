@@ -7,6 +7,7 @@ wingKinkPos 0.3
 wingTaper 0.5
 wingDihedral 5
 wingConfiguration 1
+wingAirfoil NACA_0012_xyz.dat
 ;
 ; Tail parameters
 tailType 1
