@@ -47,6 +47,7 @@
     :width (the Span)
     :height 0
     :center (the center)
+	:hidden? t
 	)
    
    ("Wings!"
