@@ -7,7 +7,7 @@
 )
 
 
-(define-object Aircraft ()
+(define-object Aircraft (base-object)
   
   :documentation
   (:author "Nick&Roger"
@@ -27,7 +27,10 @@
   
   :objects
   ((""
-    tail :type 'TailAssy)
+    tail :type 'TailAssy
+	:tailType (the input tailType)
+	:center (translate (the center) :rear (the fuselage lengthTotal))
+	)
  
    (""
     fuselage 

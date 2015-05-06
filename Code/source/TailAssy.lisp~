@@ -1,0 +1,20 @@
+(in-package :gdl-user)
+
+(define-object TailAssy (base-object)
+  
+  :input-slots
+  ()
+  
+  
+  :computed-slots
+  ()
+  
+  
+  :objects
+  ()
+  
+  
+  :functions
+  ())
+
+
