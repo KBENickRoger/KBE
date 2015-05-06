@@ -34,24 +34,22 @@
 	:chordRoot (the chordRoot)
 	:chordTip (the chordKink)
 	:span (the spanInner)
-	:height 1
 	:orientation (the orientation)
-	:center (translate-along-vector (the rootPoint)
-			(the (face-normal-vector :right))
-			(half (the spanInner)))
-	:airfoil (the airfoil))
+	:rootPoint (the rootPoint)
+	:airfoil (the airfoil)
+	)
 			
 	(outerWing
 	:type 'WingTrunk
 	:chordRoot (the chordKink)
 	:chordTip (the chordTip)
 	:span (the spanOuter)
-	:height 1
 	:orientation (the orientation)
-	:center (translate-along-vector(the innerWing center)
+	:rootPoint (translate-along-vector(the rootPoint)
 			(the (face-normal-vector :right))
-			(+ (half (the spanInner))(half (the spanOuter))))
-	:airfoil (the airfoil))
+			(the spanInner))
+	:airfoil (the airfoil)
+	)
 	
 	)
   
