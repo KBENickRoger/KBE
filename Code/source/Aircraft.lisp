@@ -72,6 +72,7 @@
 						(1 (the fuselage fuselageCenter center)) 
 						(2 (make-point 0 (+ (the fuselage lengthNose) (* 0.6 (the fuselage lengthCenter))) 0)))
 	:airfoil(the wingAirfoil)
+	:sweepLE (the input wingSweepLE)
    )
 
    (""

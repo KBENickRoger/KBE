@@ -29,6 +29,9 @@
 	
 	(""
 	airfoil)
+	
+	(""
+	sweepLE)
 )
   
   
@@ -61,6 +64,7 @@
 	:kinkPos (the kinkPos)
 	:rootPoint (the center)
 	:airfoil (the airfoil)
+	:sweepLE (the sweepLE)
 	
 	;;
 	;; Left wing will get a left-handed coordinate system and be a mirror of the right.

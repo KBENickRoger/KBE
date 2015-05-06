@@ -12,6 +12,7 @@ wingTaper
 wingDihedral
 wingConfiguration
 wingAirfoil
+wingSweepLE
 
 ;; Tail parameters
 tailType
