@@ -37,6 +37,7 @@
 	:orientation (the orientation)
 	:rootPoint (the rootPoint)
 	:airfoil (the airfoil)
+	:sweepLE (the sweepLE)
 	)
 			
 	(outerWing
@@ -45,10 +46,11 @@
 	:chordTip (the chordTip)
 	:span (the spanOuter)
 	:orientation (the orientation)
-	:rootPoint (translate-along-vector(the rootPoint)
-			(the (face-normal-vector :right))
-			(the spanInner))
+	:rootPoint (translate (the rootPoint)
+			:right (the spanInner)
+			:rear (half (the innerWing sweepOffset)))
 	:airfoil (the airfoil)
+	:sweepLE (the sweepLE)
 	)
 	
 	)

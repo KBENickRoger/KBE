@@ -21,6 +21,7 @@
   
   (dataFolder *dataFolder*)
   (rootPoint)
+  (sweepLE)
    )
   
   
@@ -34,17 +35,20 @@
 	(center (translate-along-vector (the rootPoint)
 			(the (face-normal-vector :right))
 			(half (the span))))
+	(sweepOffset (* (the span)(tan (degtorad (the sweepLE)))))
 	)
   
   
   :objects
   ((box
-	:type 'box)
+	:type 'box
+	:hidden? t
+	)
 	
 	(profile 
 	:type 'profile-curve
 	:points-data (the pointsData)
-	:hidden? nil
+	:hidden? t
 	)
 	
 	(root-profile :type 'boxed-curve
@@ -55,7 +59,7 @@
 	:scale-y (/ (the thickness) (the profile max-thickness))
 	:scale-x (/ (the chordRoot) (the profile chord))
 	:center (the (edge-center :left :front))
-	:hidden? nil
+	:hidden? t
 	:display-controls (list :color :orange :transparency 0.7)
 	)
 
@@ -66,8 +70,8 @@
 			:right (the (face-normal-vector :rear)))
 	:scale-y (/ (the thickness) (the profile max-thickness))
 	:scale-x (/ (the chordTip) (the profile chord))
-	:center  (the (edge-center :right :front))
-	:hidden? nil
+	:center  (translate (the (edge-center :right :front)) :rear (the sweepOffset))
+	:hidden? t
 	)
 	
 	(loft :type 'lofted-surface
@@ -86,6 +90,7 @@
   :computed-slots 
   (
   (center (make-point 0 0 0))
+  (orientation nil)
   (data-name (string-append (first (the points-data))
 							(second (the points-data))))
 
