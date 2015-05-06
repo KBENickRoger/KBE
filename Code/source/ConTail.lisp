@@ -7,11 +7,14 @@
    :description "")
   
   :input-slots
+  ((TaperHor :settable)
   ()
+  )
   
   
   :computed-slots
-  ()
+  ((SurfaceAreaHor ())
+  (SurfaceAreaVert))
   
   
   :objects
