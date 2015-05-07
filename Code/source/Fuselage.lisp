@@ -29,9 +29,10 @@
 
   :objects 
   ((fuselageNose
-    :type 'cylinder
+    :type 'cone
     :length (the lengthNose)
-    :radius (* 0.75 (half (the diameter)))
+    :radius-1 (* 0.75 (half (the diameter)))
+	:radius-2 (half (the diameter))
     :center (translate (the center)
 		       :rear (half (the lengthNose)))
     )
@@ -45,9 +46,10 @@
 	)
    
    (fuselageTail
-    :type 'cylinder
+    :type 'cone
     :length (the lengthTail)
-    :radius (half (half (the diameter)))
+	:radius-1 (half (the diameter))
+    :radius-2 (half (half (the diameter)))
     :center (translate (the center)
 		       :rear (+ (the lengthNose)(the lengthCenter)(half (the lengthTail))))
     )

@@ -4,6 +4,13 @@
 
 (in-package :gdl-user)
 
+;; angle manipulation
+
+; converts radians to degrees
+(defun radtodeg (r) (* 180.0 (/ r pi)))
+
+; converts degrees to radians
+(defun degtorad (d) (* pi (/ d 180.0)))
 
 ;; Input data reading functions
 
