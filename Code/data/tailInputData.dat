@@ -1,0 +1,7 @@
+; Tailsizing input data
+; EngineNum = 2..4
+; EnginePos: 1=wing, 2= fuselage, 3= mixed
+; Tailtype: 1=conventional, 2=cruciform, 3= tail, 4= C-tail, 5= H-Tail, 6=V-Tail
+EngineNum 2
+EnginePos 1
+TailType 3
