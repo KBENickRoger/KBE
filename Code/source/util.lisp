@@ -46,3 +46,21 @@
 (defun basicNumberReader (filename)
 	(mapcar 'parser (mapcan 'split (readStringData filename)))
 )
+
+;; Add headers to tailvolume data
+(defun make-headers (strings &aux (package "KEYWORD"))
+               (mapcar (lambda (name)
+                         (intern (string-upcase name) package))
+                       strings))
+;; MAKE-HEADERS
+
+(defparameter *headers* (make-headers '("name" "num" "pos" "tail" "volume"))) 
+
+;; Pair entry with header
+(defun read-csv-line (&key (headers *headers*) line)
+               (pairlis headers line))
+			   
+;; Same function as Basicdatareader only with predefined header and 5 data columns
+(defun advancedDataReader (filename)
+		(mapcar 'read-csv-line (&key (headers *headers*) (splitData dataList))
+				)
