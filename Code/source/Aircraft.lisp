@@ -81,8 +81,14 @@
    (""
     input :type 'InputData
               :parameters (the inputData))
-)
   
+  (""
+   tailSizing :type 'TailSizing
+	:input (the input)
+	:database (the aircraftDatabase)
+	)
+
+	)
   :functions
   ()
 

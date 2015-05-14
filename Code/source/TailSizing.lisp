@@ -14,20 +14,19 @@
   
   :computed-slots
   ( 
-  
-  (selection (select (where :engineNumber (the input engineNumber) :engineMounting (the input engineMounting) :tailType (the input tailType))))
+  (selection (select (where :engineNumber (the input engineNumber) :engineMounting (the input engineMounting) :tailType (the input tailType)) (the database)))
   
   
   ;Selection function to use only appropriate aircraft
   ;Still needs accounting for C, H or Vtail (no matching tails)
-  (tailVolHor (mapcan #'(if (and (:num = (the EngineNum)) (:pos = (the EnginePos)) (:tail = (the tailType))) (append :volume 'VolumelistH)) 'InputdataTailVolHor))
+  ;(tailVolHor (mapcan #'(if (and (:num = (the EngineNum)) (:pos = (the EnginePos)) (:tail = (the tailType))) (append :volume 'VolumelistH)) 'InputdataTailVolHor))
   
   ; Average tailvolume coefficient
-  ("Statistically based Horizontal Tail volume Coefficient"
-    tailVolHor (/ (sum-elements (the VolumelistH)) (:length (the VolumelistH)) ))
+  ;("Statistically based Horizontal Tail volume Coefficient"
+   ; tailVolHor (/ (sum-elements (the VolumelistH)) (:length (the VolumelistH)) ))
    
-   ("Statistically based Vertical Tail volume Coefficient"
-    tailVolVer (/ (sum-elements (the VolumelistV)) (:length (the VolumelistV)) ))
+  ; ("Statistically based Vertical Tail volume Coefficient"
+  ;  tailVolVer (/ (sum-elements (the VolumelistV)) (:length (the VolumelistV)) ))
 
   )
   
