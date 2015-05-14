@@ -1,7 +1,7 @@
 ; aircraftDatabase.dat
 ;
 ; Aircraft database with general information on jetliner aicraft. Used for tailsizing purposes
-; :manufacturer :type :engineNum :enginePos :tailType :tailVolHor :tailVolVer
+; :manufacturer :type :engineNumber :engineMounting :tailType :tailVolumeHorizontal :tailVolumeVertical
 ;
 Boeing 727-200	3	2	3	0.82 0.110
 Boeing 737-200	2	1	1	1.28 0.100

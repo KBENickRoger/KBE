@@ -1,0 +1,12 @@
+(in-package :gdl-user)
+
+(define-object pairlisTest ()
+:input-slots
+()
+
+:computed-slots
+((keys '(1 2 3))
+ (data '(4 5 6)))
+ 
+)
+

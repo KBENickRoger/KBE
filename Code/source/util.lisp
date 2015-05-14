@@ -39,6 +39,7 @@
  (let ((*read-eval* nil)) (with-input-from-string (stream string) (read stream)))
 )
 
+;; parseList - parses a list of strings using the parser function above
 (defun parseList (list)
 	(mapcar 'parser list)
 )
@@ -71,7 +72,13 @@
 		(mapcar 'read-csv-line (&key (headers *headers*) (splitData dataList))
 				))
 
+;; pairList - function that pares the strings in a list with a given list of keywords
+(defun pairWithKeyword (list)
+	(pairlis '(:manufacturer :type :engineNumber :engineMounting :tailType :tailVolumeHorizontal :tailVolumeVertical) list)
+)
+				
+				
 ;; databaseReader - made for reading in the aircraft database
 (defun databaseReader (fileName)
-	(mapcar 'parseList (splitData (readStringData fileName)))
+(mapcar 'pairWithKeyword (mapcar 'parseList (splitData (readStringData fileName))))
 )
