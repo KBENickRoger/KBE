@@ -1,8 +1,8 @@
-; Fuselage input file
+; Vertical tail aspect ratio input file
 ;
-Conventional 5
-Cruciform 5
-Ttail 5
-Ctail 5
-Htail 5
-Vtail 5
+Conventional 1.9
+Cruciform 1.2
+Ttail 1.2
+Ctail 1.9
+Htail 1.9
+Vtail 1.9
