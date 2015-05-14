@@ -4,7 +4,7 @@
 
 (in-package :gdl-user)
 
-;; angle manipulation
+;; --- angle manipulation ---
 
 ; converts radians to degrees
 (defun radtodeg (r) (* 180.0 (/ r pi)))
@@ -12,7 +12,9 @@
 ; converts degrees to radians
 (defun degtorad (d) (* pi (/ d 180.0)))
 
-;; Input data reading functions
+
+
+;; --- Input data reading functions ---
 
 ;; read string data - input file location - output list of strings read line by line from file
 (defun readStringData (fileName)
@@ -63,4 +65,8 @@
 ;; Same function as Basicdatareader only with predefined header and 5 data columns
 (defun advancedDataReader (filename)
 		(mapcar 'read-csv-line (&key (headers *headers*) (splitData dataList))
-				)
+				))
+
+;; databaseReader - made for reading in the aircraft database
+(defun databaseReader (fileName)
+	(readStringData fileName))
