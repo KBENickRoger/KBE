@@ -39,6 +39,10 @@
  (let ((*read-eval* nil)) (with-input-from-string (stream string) (read stream)))
 )
 
+(defun parseList (list)
+	(mapcar 'parser list)
+)
+
 ;; basicDataReader - input file location - output property list plist of data file 
 (defun basicDataReader (filename)
   (mapcan 'transData (splitData (readStringData filename)))
@@ -69,5 +73,5 @@
 
 ;; databaseReader - made for reading in the aircraft database
 (defun databaseReader (fileName)
-	(splitData (readStringData fileName))
+	(mapcar 'parseList (splitData (readStringData fileName)))
 )
