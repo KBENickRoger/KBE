@@ -28,6 +28,8 @@
   ; ("Statistically based Vertical Tail volume Coefficient"
   ;  tailVolVer (/ (sum-elements (the VolumelistV)) (:length (the VolumelistV)) ))
 
+  (tailVolumeHorizontal (/ (sumParameter :tailVolumeHorizontal (the selection)) (length (the selection))))
+  (tailVolumeVertical (/ (sumParameter :tailVolumeVertical (the selection)) (length (the selection))))
   )
   
   :objects
@@ -51,8 +53,8 @@
 		(if tailType (= (getf entry :tailType) tailType))))
 	)
 	
-	(defun sumVolume (list)
+	(defun sumParameter (parameter list)
 		(if (null list) 0 
-			(+ (getf :tailVolumeHorizontal (first list)) (sumVolume (rest list)))
+			(+ (getf (first list) parameter) (sumVolume (rest list)))
 		)
 	)
