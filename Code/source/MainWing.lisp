@@ -18,16 +18,33 @@
   
   
   :computed-slots
-  ((center (translate-along-vector (the rootPoint)
+  (("Centerplacement of box for wing"
+  center (translate-along-vector (the rootPoint)
 			(the (face-normal-vector :right))
 			(half (the span))))
-	(spanInner (* (the span)(the kinkPos)))
-	(spanOuter (- (the span)(the spanInner)))
-	(sweepLERad (degtorad (the sweepLE)))
-	(chordKink (- (the chordRoot)(* (the spanInner)(tan (the sweepLERad)))))
+	("Span of inboard wing (before kink)"
+	spanInner (* (the span)(the kinkPos)))
+	
+	("Span of outboard wing (after kink)"
+	spanOuter (- (the span)(the spanInner)))
+	
+	("LE sweep in radians"
+	sweepLERad (degtorad (the sweepLE)))
+	
+	("Chord at the kink"
+	chordKink (- (the chordRoot)(* (the spanInner)(tan (the sweepLERad)))))
+	
+	("Surface area of total wing"
+	Surface (+ (the innerWing Surface) (the outerWing Surface)) ))
+	
+	("c_mac of main wing"
+	Cmac (+ (* (the innerWing Cmac) (/ (the innerWing Surface) (the SurfaceTot)))
+				(* (the outerWing Cmac) (/ (the innerWing Surface) (the SurfaceTot)))))
+	
+	("spanwise position of c_mac"
+	YCmac (+ (* (the innerWing YCmac) (/ (the innerWing Surface) (the SurfaceTot)))
+				(* (+ (the spanInner) (the outerWing YCmac)) (/ (the innerWing Surface) (the SurfaceTot)))))
 	)
-  
-  
   :objects
   ((innerWing
 	:type 'WingTrunk

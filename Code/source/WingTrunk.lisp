@@ -36,9 +36,21 @@
 			(the (face-normal-vector :right))
 			(half (the span))))
 	(sweepOffset (* (the span)(tan (degtorad (the sweepLE)))))
+	
+  
+	("Trunk aerodynamic surface"
+	Surface (* (the span) (half (+ (the chordTip) (the chordRoot)))))
+	
+	("Trunk Cmac"
+	Cmac (* (the chordRoot) (/ 2 3) 
+			(/ (+ (the taper) (square (the taper)) 1) (+ 1 (the taper)))))
+	
+	("Trunk spanwise position of Cmac"
+	YCmac (/ (* (the Cmac) (the span)) (* (the chordRoot) (the taper)))
 	)
-  
-  
+	
+	
+	)
   :objects
   ((box
 	:type 'box
