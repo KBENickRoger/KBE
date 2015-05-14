@@ -21,13 +21,12 @@
   (inputDataFilePath3 (merge-pathnames (the inputDataTailVolVerfilename) (the dataFolder))
   )
   
-  (inputDataTail (basicDataReader (the inputDataFilePath1)))
-  (inputDataTailVolHor (basicDataReader (the inputDataFilePath2)))
-  (inputDataTailVolVer (basicDataReader (the inputDataFilePath3)))
-  
-  ;!!!!! A function to add the variable names in the plist with every a/c is still too be added.!!!!!!!!!!!!!!!!!!!
-  
+  (inputDataTail (advancedDataReader (the inputDataFilePath1)))
+  (inputDataTailVolHor (advancedDataReader (the inputDataFilePath2)))
+  (inputDataTailVolVer (advancedDataReader (the inputDataFilePath3)))
+    
   ;Selection function to use only appropriate aircraft
+  ;Still needs accounting for C, H or Vtail (no matching tails)
   (mapcar #'(if (and (:num = (the EngineNum)) (:pos = (the EnginePos)) (:tail = (the tailType))) (append :volume 'VolumelistH)) 'InputdataTailVolHor)
   
   ; Average tailvolume coefficient
