@@ -26,6 +26,8 @@
   (inputData (basicDataReader (the inputDataFilePath)))
   (aircraftDatabaseFilePath (merge-pathnames (the aircraftDatabaseFilename) (the dataFolder)))
   (aircraftDatabase (databaseReader (the aircraftDatabaseFilePath)))
+  (aircraftDatabase2 (mapcar 'pairWithKeyword (the aircraftDatabase)))
+  (aircraftDatabase3 (mapcar 'alist2plistWorking (the aircraftDatabase2)))
   )
   
   :objects

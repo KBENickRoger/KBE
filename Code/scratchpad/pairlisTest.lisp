@@ -2,42 +2,24 @@
 
 (define-object pairlisTest ()
 :input-slots
-()
+((dataFolder *dataFolder*)
+(aircraftDatabaseFilename "aircraftDatabase.dat"))
 
 :computed-slots
 ((keys '(:manufacturer :type :engineNumber :engineMounting :tailType :tailVolumeHorizontal :tailVolumeVertical))
- (data '("boeing" "bla" 3 2 3 0.82 0.110))
+ (data '(boeing bla 3 2 3 0.82 0.110))
+ (data2 (list '(boeing bla 3 2 3 0.82 0.110) '(airbus bloe 2 3 2 0.70 0.100)))
  (assocList (pairlis (the keys) (the data)))
  (propList (alist2plistWorking (the assocList)))
  (manufacturer (getf (the propList) :manufacturer))
+
+ (assocList2 (mapcar 'pairWithKeyword (the data2)))
+ (propList2 (mapcar 'alist2plistWorking (the assocList2)))
+
+ (aircraftDatabaseFilePath (merge-pathnames (the aircraftDatabaseFilename) (the dataFolder)))
+ (aircraftDatabase (databaseReader (the aircraftDatabaseFilePath)))
+ (aircraftDatabase2 (mapcar 'pairWithKeyword (the aircraftDatabase)))
+ (aircraftDatabase3 (mapcar 'alist2plistWorking (the aircraftDatabase2)))
 )
  
 )
-
-(defun alist2plistWorking (alist)
-  "Plist. Converts an assoc-list to a plist.
-:arguments (alist \"Assoc-List\"). Supports both alists
-with list syntax or dotted style notation. Examples:
-
-gdl-user> (alist2plist '((:foo . 1) (:bar . 2)))
-(:foo 1 :bar 2)
-
-gdl-user> (alist2plist '((:foo 1) (:bar 2)))
-(:foo 1 :bar 2)
-"
-
-  (when alist
-    (cons (first (first alist))
-          (cons
-       ;; test cdr list syntax (1 2)
-       ;; or dotted pair notation (1 . 2)
-       (let ((token (rest (first alist))))
-         (if (consp token)
-         ;; list syntax
-         (first token)
-         ;; dotted pair
-         token))
-       ;; recurse
-           (alist2plistWorking (rest alist))))))
-
-
