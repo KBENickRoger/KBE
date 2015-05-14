@@ -69,4 +69,5 @@
 
 ;; databaseReader - made for reading in the aircraft database
 (defun databaseReader (fileName)
-	(readStringData fileName))
+	(splitData (readStringData fileName))
+)
