@@ -24,8 +24,8 @@
   (
   (inputDataFilePath (merge-pathnames (the inputDataFilename) (the dataFolder)))
   (inputData (basicDataReader (the inputDataFilePath)))
-  (aircraftDatabaseFilePath (merge-pathnames (the aircraftDatabaseFilename)) (the dataFolder))
-  (aircraftDatabase (databaseReader (the aircraftDatabaseFilePath))))
+  (aircraftDatabaseFilePath (merge-pathnames (the aircraftDatabaseFilename) (the dataFolder)))
+  (aircraftDatabase (databaseReader (the aircraftDatabaseFilePath)))
   )
   
   :objects
