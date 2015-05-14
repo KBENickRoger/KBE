@@ -80,11 +80,11 @@
 				
 ;; databaseReader - made for reading in the aircraft database
 (defun databaseReader (fileName)
- (mapcar 'parseList (splitData (readStringData fileName)))
+ (mapcar 'alist2plistWorking (mapcar 'pairWithKeyword (mapcar 'parseList (splitData (readStringData fileName)))))
 )
 
 
-;; --- GENDL fixes ---
+;; --- GENDL bug fixes ---
 
 (defun alist2plistWorking (alist)
   "Plist. Converts an assoc-list to a plist.
