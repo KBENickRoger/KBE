@@ -18,7 +18,7 @@
   
   
   :computed-slots
-  (("Centerplacement of box for wing"
+  (("Center placement of box for wing"
   center (translate-along-vector (the rootPoint)
 			(the (face-normal-vector :right))
 			(half (the span))))
@@ -35,16 +35,16 @@
 	chordKink (- (the chordRoot)(* (the spanInner)(tan (the sweepLERad)))))
 	
 	("Surface area of total wing"
-	Surface (+ (the innerWing Surface) (the outerWing Surface)) )
+	surface (+ (the innerWing surface) (the outerWing surface)) )
 	
 	("c_mac of main wing"
-	Cmac (+ (* (the innerWing Cmac) (/ (the innerWing Surface) (the MainWing Surface)))
-			(* (the outerWing Cmac) (/ (the outerWing Surface) (the MainWing Surface))))
+	Cmac (+ (* (the innerWing Cmac) (/ (the innerWing Surface) (the Surface)))
+			(* (the outerWing Cmac) (/ (the outerWing Surface) (the Surface))))
 	)
 	
 	("spanwise position of c_mac"
-	YCmac (+ (* (the innerWing YCmac) (/ (the innerWing Surface) (the MainWing Surface)))
-			 (* (+ (the spanInner) (the outerWing YCmac)) (/ (the innerWing Surface) (the MainWing Surface)))))
+	YCmac (+ (* (the innerWing YCmac) (/ (the innerWing Surface) (the Surface)))
+			 (* (+ (the spanInner) (the outerWing YCmac)) (/ (the innerWing Surface) (the Surface)))))
 	)
 	
   :objects
