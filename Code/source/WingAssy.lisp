@@ -37,11 +37,27 @@
   
   :computed-slots
   ( 
-	(center (translate (the wingPositioning) :up (the wingVerticalShift)))
+	(center (translate (the wingPositioning) :up (the wingVerticalShift)
+											 :rear (the wingTranslateMAC))
+											 )
+											 
 	(chordTip (* (the taper)(the chordRoot)))
-)
-  
-  
+
+	("wing backward translation to quarter MAC"
+	wingTranslateMAC (- (+ (* 0.25 (the (wings 0) Cmac)) (* (the (wings 0) YCmac) (sin(the (wings 0) sweepLERad))) 
+							(half (the (wings 0) chordRoot)))))
+	
+	("Surface area main wing"
+	surface (sum-elements (the wings) (the-element surface)))
+	
+	("Aspect Ratio main wing"
+	aspectRatio (/ (the span) (the surface)))
+	
+	("The for dihedral corrected span"
+	actualSpan (/ (the span) (cos(degtorad (the dihedral))))
+	)
+	
+    )
   :objects
   (("base-object box om positie van vleugel te laten zien"
     assyBox 
@@ -54,11 +70,11 @@
 	)
    
    ("Wings!"
-    wing 
+    wings
 	:type 'MainWing
 	:sequence (:size 2)
 	:side (ecase (the-child index) (0 :right) (1 :left))
-	:span (half (the span))
+	:span (half (the actualSpan))
 	:chordRoot (the chordRoot)
 	:chordTip (the chordTip)
 	:kinkPos (the kinkPos)
