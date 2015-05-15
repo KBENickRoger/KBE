@@ -35,16 +35,18 @@
 	chordKink (- (the chordRoot)(* (the spanInner)(tan (the sweepLERad)))))
 	
 	("Surface area of total wing"
-	Surface (+ (the innerWing Surface) (the outerWing Surface)) ))
+	Surface (+ (the innerWing Surface) (the outerWing Surface)) )
 	
 	("c_mac of main wing"
-	Cmac (+ (* (the innerWing Cmac) (/ (the innerWing Surface) (the SurfaceTot)))
-				(* (the outerWing Cmac) (/ (the innerWing Surface) (the SurfaceTot)))))
+	Cmac (+ (* (the innerWing Cmac) (/ (the innerWing Surface) (the MainWing Surface)))
+			(* (the outerWing Cmac) (/ (the outerWing Surface) (the MainWing Surface))))
+	)
 	
 	("spanwise position of c_mac"
-	YCmac (+ (* (the innerWing YCmac) (/ (the innerWing Surface) (the SurfaceTot)))
-				(* (+ (the spanInner) (the outerWing YCmac)) (/ (the innerWing Surface) (the SurfaceTot)))))
+	YCmac (+ (* (the innerWing YCmac) (/ (the innerWing Surface) (the MainWing Surface)))
+			 (* (+ (the spanInner) (the outerWing YCmac)) (/ (the innerWing Surface) (the MainWing Surface)))))
 	)
+	
   :objects
   ((innerWing
 	:type 'WingTrunk

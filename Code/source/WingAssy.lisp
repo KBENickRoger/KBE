@@ -52,7 +52,7 @@
 	aspectRatio (/ (the WingAssy span) (the WingAssy Surface))) 
 	
 	("The for dihedral corrected span"
-	actualSpan (/ (the span) cos(the dihedral))
+	actualSpan (/ (the span) cos(the dihedral)))
   
     )
   :objects
