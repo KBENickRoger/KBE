@@ -1,0 +1,8 @@
+; Vertical tail aspect ratio input file
+;
+Conventional 1.9
+Cruciform 1.2
+Ttail 1.2
+Ctail 1.9
+Htail 1.9
+Vtail 1.9
