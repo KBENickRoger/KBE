@@ -16,6 +16,7 @@
   :input-slots
   ((dataFolder *dataFolder*)
    (inputDataFilename "inputData.dat")
+   (aircraftDatabaseFilename "aircraftDatabase.dat")
    (wingAirfoil "NACA_0012_xyz.dat")
   )
   
@@ -23,6 +24,8 @@
   (
   (inputDataFilePath (merge-pathnames (the inputDataFilename) (the dataFolder)))
   (inputData (basicDataReader (the inputDataFilePath)))
+  (aircraftDatabaseFilePath (merge-pathnames (the aircraftDatabaseFilename) (the dataFolder)))
+  (aircraftDatabase (databaseReader (the aircraftDatabaseFilePath)))
   )
   
   :objects
@@ -81,8 +84,14 @@
    (""
     input :type 'InputData
               :parameters (the inputData))
-)
   
+  (""
+   tailSizing :type 'TailSizing
+	:input (the input)
+	:database (the aircraftDatabase)
+	)
+
+	)
   :functions
   ()
 

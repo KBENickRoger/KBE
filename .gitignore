@@ -1,0 +1,3 @@
+*.fasl
+Code/bin/source/Aircraft.fasl
+Code/bin/source/util.fasl
