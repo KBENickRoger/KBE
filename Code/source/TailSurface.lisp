@@ -23,37 +23,53 @@
    taper nil)
    
    (""
-    endOfFuselage (make-point 0 0 0 ) )
+   dihedral 0)
+   
 	)
   
   
   :computed-slots
-  ((""
-    chordRoot (/ (the area) (* (the span) (+ 1 (the taper)))) )
+  (
+  
+    (""
+    span (sqrt (* (the area) (the AR))))
+	
+	(""
+	chordAverage (/ (the area) (the span)))
+  
+	(""
+    chordRoot (/ (* 2 (the chordAverage)) (+ 1 (the taper)))) 
    
    (""
     chordTip (* (the chordRoot) (the taper)))
    
    (""
-    rootCenter (translate (the endOfFuselage) :front (half (the chordRoot))) )
-   
-   (""
-    span (sqrt (* (the area) (the AR))))
+    rootCenter (translate (the center) :front (half (the chordRoot))) )
 )
   
   
   :objects
   (
-  ("" liftingSurface :type 'WingTrunk
+  (liftingSurface :type 'WingTrunk
+  :sequence (:size (if (the symmetry) 2 1))
+  :side (ecase (the-child index) (0 :right) (1 :left))
   :chordRoot (the chordRoot)
   :chordTip (the chordTip)
-  :span (the span)
+  :span (if (the symmetry) (half (the span)) (the span))
   :airfoil (the airfoil) 
   :rootPoint (the rootCenter)
   :sweepLE 20
+  :orientation (let* ((hinge (the (face-normal-vector (ecase (the-child side)
+	(:right :front)
+	(:left :rear)))))
+	(right (rotate-vector-d (the (face-normal-vector (the-child side)))
+	(the dihedral)
+	hinge)))
+	(alignment :right right
+				:top (cross-vectors hinge right)
+				:front (the (face-normal-vector :front))))
   )
   )
-  
   
   :functions
   ())

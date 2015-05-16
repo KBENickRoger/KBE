@@ -11,11 +11,14 @@
     surfaceHorizontal 1)
    
    (""
-    surfaceVertical 1))
-  
-  
+    surfaceVertical 1)
+	
+	(""
+	tailParameters nil)
+ )
+ 
   :computed-slots
-  ()
+()
   
   
   :objects
@@ -25,7 +28,6 @@
 	:area (the surfaceVertical)
 	:AR 1.9
 	:taper 0.3
-	:endOfFuselage (the center)
 	:orientation (alignment :top (the (face-normal-vector :left))
 			:rear (the (face-normal-vector :rear))
 			:right (the (face-normal-vector :top)))
@@ -37,7 +39,6 @@
 	:area (the surfaceVertical)
 	:AR 5
 	:taper 0.3
-	:endOfFuselage (the center)
 	)
   
   )
