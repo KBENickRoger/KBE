@@ -1,0 +1,10 @@
+; Sizing parameters for a conventional tail
+;
+; Horizontal tail plane parameters
+horizontalAR 5
+horizontalTaper 0.4
+;
+; Vertical tail plane parameters
+verticalAR 1.9
+verticalTaper 0.5
+

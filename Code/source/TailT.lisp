@@ -1,6 +1,6 @@
 (in-package :gdl-user)
 
-(define-object TailConventional (base-object)
+(define-object TailT (base-object)
   
   :documentation
   (:author "<name> (<username>@<organization>.com)"
@@ -37,6 +37,7 @@
 	:area (the surfaceVertical)
 	:AR (getf (the tailParameters) :horizontalAR)
 	:taper (getf (the tailParameters) :horizontalTaper)
+	:center (translate (the center) :up (the verticalTail span))
 	)
   
   )

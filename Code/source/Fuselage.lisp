@@ -18,7 +18,7 @@
     lengthNose 2)
 
    (""
-    lenghtTail 2)
+    lengthTail 2)
   )
   
   :computed-slots

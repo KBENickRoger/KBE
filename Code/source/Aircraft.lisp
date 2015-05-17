@@ -30,9 +30,17 @@
   
   :objects
   ((""
-    tail :type 'TailAssy
-	:tailType (the input tailType)
+    tail :type (ecase (the input tailType)
+					(1 'TailConventional)
+					(2 'TailT)
+					(3 'TailV))
 	:center (translate (the center) :rear (the fuselage lengthTotal))
+	:surfaceHorizontal 100
+	:surfaceVertical 100
+	:tailParameters (ecase (the input tailType)
+						(1 (the constants tailConventional))
+						(2 (the constants tailT))
+						(3 (the constants tailV)))
 	)
  
    (""
@@ -84,6 +92,13 @@
    (""
     input :type 'InputData
               :parameters (the inputData))
+			  
+	(""
+	constants :type 'ConstantData
+			  :tailConventional (basicDataReader (merge-pathnames "tailConventional.dat" (the dataFolder)))
+			  :tailT (basicDataReader (merge-pathnames "tailT.dat" (the dataFolder)))
+			  :tailV (basicDataReader (merge-pathnames "tailV.dat" (the dataFolder)))
+	)
   
   (""
    tailSizing :type 'TailSizing
