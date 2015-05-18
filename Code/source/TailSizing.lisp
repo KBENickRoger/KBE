@@ -32,8 +32,6 @@
   ; ("Statistically based Vertical Tail volume Coefficient"
   ;  tailVolVer (/ (sum-elements (the VolumelistV)) (:length (the VolumelistV)) ))
 
-  (tailVolumeHorizontal (/ (sumParameter :tailVolumeHorizontal (the selection)) (length (the selection))))
-  (tailVolumeVertical (/ (sumParameter :tailVolumeVertical (the selection)) (length (the selection))))
   (tailSurfaceHorizontal (/ (* (the tailVolumeHorizontal)(the wingSurface)(the mac)) (the tailArm)))
   (tailSurfacevertical (/ (* (the tailVolumeVertical)(the wingSurface)(the span)) (the tailArm)))
   )

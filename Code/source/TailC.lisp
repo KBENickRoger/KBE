@@ -23,44 +23,25 @@
   
   :objects
   ((""
-    leftTailUp :type 'TailSurface
+    leftTail :type 'TailSurface
 	:symmetry nil
-	:area (* 0.3 (the surfaceVertical))
+	:area (half (the surfaceVertical))
 	:AR (getf (the tailParameters) :verticalAR)
 	:taper (getf (the tailParameters) :verticalTaper)
 	:dihedral 90
-	:center (translate (the center) :left (half (the horizontalTail span)))
-	)
-	
-	(""
-    leftTailDown :type 'TailSurface
-	:symmetry nil
-	:area (* 0.2 (the surfaceVertical))
-	:AR (getf (the tailParameters) :verticalAR)
-	:taper (getf (the tailParameters) :verticalTaper)
-	:dihedral -90
 	:center (translate (the center) :left (half (the horizontalTail span)))
 	)
    
    (""
-    rightTailUp :type 'TailSurface
+    rightTail :type 'TailSurface
 	:symmetry nil
-	:area (* 0.3 (the surfaceVertical))
+	:area (half (the surfaceVertical))
 	:AR (getf (the tailParameters) :verticalAR)
 	:taper (getf (the tailParameters) :verticalTaper)
 	:dihedral 90
 	:center (translate (the center) :right (half (the horizontalTail span)))
 	)
-	
-	(""
-    rightTailDown :type 'TailSurface
-	:symmetry nil
-	:area (* 0.2 (the surfaceVertical))
-	:AR (getf (the tailParameters) :verticalAR)
-	:taper (getf (the tailParameters) :verticalTaper)
-	:dihedral -90
-	:center (translate (the center) :right (half (the horizontalTail span)))
-	)
+   
    
    (""
     horizontalTail :type 'TailSurface

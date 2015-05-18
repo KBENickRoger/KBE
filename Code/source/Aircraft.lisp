@@ -35,8 +35,8 @@
 					(2 'TailCruciform)
 					(3 'TailT)
 					(4 'TailV)
-					(5 'TailH)
-					(6 'TailC))
+					(5 'TailC)
+					(6 'TailH))
 	:center (translate (the center) :rear (the fuselage lengthTotal))
 	:surfaceHorizontal (the tailSizing tailSurfaceHorizontal)
 	:surfaceVertical (the tailSizing tailSurfaceVertical)
@@ -45,8 +45,8 @@
 						(2 (the constants tailCruciform))
 						(3 (the constants tailT))
 						(4 (the constants tailV))
-						(5 (the constants tailH))
-						(6 (the constants tailC)))
+						(5 (the constants tailC))
+						(6 (the constants tailH)))
 	)
  
    (""
