@@ -10,7 +10,10 @@
 
 ;; Tail parameters specific to configurations
 tailConventional
+tailCruciform
 tailT
 tailV
+tailH
+tailC
 )
 )

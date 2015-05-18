@@ -9,6 +9,10 @@
   :input-slots
   ((input)
    (database)
+   (tailArm)
+   (span)
+   (mac)
+   (wingSurface)
   )
   
   
@@ -30,6 +34,8 @@
 
   (tailVolumeHorizontal (/ (sumParameter :tailVolumeHorizontal (the selection)) (length (the selection))))
   (tailVolumeVertical (/ (sumParameter :tailVolumeVertical (the selection)) (length (the selection))))
+  (tailSurfaceHorizontal (/ (* (the tailVolumeHorizontal)(the wingSurface)(the mac)) (the tailArm)))
+  (tailSurfacevertical (/ (* (the tailVolumeVertical)(the wingSurface)(the span)) (the tailArm)))
   )
   
   :objects
@@ -55,6 +61,6 @@
 	
 	(defun sumParameter (parameter list)
 		(if (null list) 0 
-			(+ (getf (first list) parameter) (sumVolume (rest list)))
+			(+ (getf (first list) parameter) (sumParameter parameter (rest list)))
 		)
 	)

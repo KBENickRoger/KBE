@@ -1,6 +1,6 @@
 (in-package :gdl-user)
 
-(define-object TailConventional (base-object)
+(define-object TailH (base-object)
   
   :documentation
   (:author "<name> (<username>@<organization>.com)"
@@ -23,13 +23,25 @@
   
   :objects
   ((""
-    verticalTail :type 'TailSurface
+    leftTail :type 'TailSurface
 	:symmetry nil
-	:area (the surfaceVertical)
+	:area (half (the surfaceVertical))
 	:AR (getf (the tailParameters) :verticalAR)
 	:taper (getf (the tailParameters) :verticalTaper)
 	:dihedral 90
+	:center (translate (the center) :left (half (the horizontalTail span)))
 	)
+   
+   (""
+    rightTail :type 'TailSurface
+	:symmetry nil
+	:area (half (the surfaceVertical))
+	:AR (getf (the tailParameters) :verticalAR)
+	:taper (getf (the tailParameters) :verticalTaper)
+	:dihedral 90
+	:center (translate (the center) :right (half (the horizontalTail span)))
+	)
+   
    
    (""
     horizontalTail :type 'TailSurface

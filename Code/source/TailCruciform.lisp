@@ -1,6 +1,6 @@
 (in-package :gdl-user)
 
-(define-object TailConventional (base-object)
+(define-object TailCruciform (base-object)
   
   :documentation
   (:author "<name> (<username>@<organization>.com)"
@@ -18,7 +18,8 @@
  )
  
   :computed-slots
-()
+	((""
+	  horizontalPlacement (getf (the tailParameters) :horizontalPlacement)))
   
   
   :objects
@@ -37,6 +38,7 @@
 	:area (the surfaceHorizontal)
 	:AR (getf (the tailParameters) :horizontalAR)
 	:taper (getf (the tailParameters) :horizontalTaper)
+	:center (translate (the center) :up (* (the horizontalPlacement) (the verticalTail span)))
 	)
   
   )

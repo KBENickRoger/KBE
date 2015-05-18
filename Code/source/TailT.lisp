@@ -34,7 +34,7 @@
    (""
     horizontalTail :type 'TailSurface
 	:symmetry t
-	:area (the surfaceVertical)
+	:area (the surfaceHorizontal)
 	:AR (getf (the tailParameters) :horizontalAR)
 	:taper (getf (the tailParameters) :horizontalTaper)
 	:center (translate (the center) :up (the verticalTail span))

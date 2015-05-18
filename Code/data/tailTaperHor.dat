@@ -1,8 +1,0 @@
-; Horizontal tail taper input file
-;
-Conventional 0.4
-Cruciform 0.4
-Ttail 0.4
-Ctail 0.8
-Htail 0.8
-Vtail 0.4
