@@ -44,8 +44,8 @@
 	(chordTip (* (the taper)(the chordRoot)))
 
 	("wing backward translation to quarter MAC"
-	wingTranslateMAC (- (+ (* 0.25 (the (wings 0) Cmac)) (* (the (wings 0) YCmac) (sin(the (wings 0) sweepLERad))) 
-							(half (the (wings 0) chordRoot)))))
+	wingTranslateMAC (- (+ (* 0.25 (the (wings 0) Cmac)) (* (the (wings 0) YCmac) (sin(the (wings 0) sweepLERad)))) 
+							(half (the (wings 0) chordRoot))))
 	
 	("Surface area main wing"
 	surface (sum-elements (the wings) (the-element surface)))
