@@ -24,21 +24,33 @@
    divergence 15 :settable)
    
    (""
-   cross-section-percentages (list 0 0.5 0.9))
+   tail-cross-section-percentages (list 0 0.5 0.9))
+   
+   (""
+   nose-cross-section-percentages (list 0 0.5 1))
    
   (""
-  tailPoint (make-point 0 0 0))
+  center (make-point 0 0 0))
   )
   
   :computed-slots
   ((diameter (/ (the lengthTotal) (the finenessRatio)))
+  
    (lengthTotal (+ (the lengthCenter) (the lengthNose) (the lengthTail)))
    
-   (section-offset-length  (mapcar #'(lambda (x) (* x (the lengthTail))) (the cross-section-percentages)))
+   (tail-section-offset-length  (mapcar #'(lambda (x) (* x (the lengthTail))) (the tail-cross-section-percentages)))
 
-	(section-radii (mapcar #'(lambda (z) (* (half (the diameter)) (- 1 z))) (the cross-section-percentages)))
+	(tail-section-radii (mapcar #'(lambda (z) (* (half (the diameter)) (- 1 z))) (the tail-cross-section-percentages)))
 
-	(section-offset-divergence (mapcar #'(lambda (y1) (* (sin(the divergenceRAD)) y1)) (the section-offset-length)))
+	(tail-section-offset-divergence (mapcar #'(lambda (y1) (* (sin(the divergenceRAD)) y1)) (the taile-section-offset-length)))
+	
+	(nose-section-offset-length  (mapcar #'(lambda (x) (* (the nose-loft-length) x)) (the nose-cross-section-percentages)))
+
+	(nose-section-radii (mapcar #'(lambda (z) (+ (half (the diameter)) (* x (half (the diameter))))) (the nose-cross-section-percentages)))
+	
+	(nose-Radius (/ (the diameter) 4))
+	
+	(nose-loft-length (- (the lengthNose) (the nose-Radius)))
 
 	(divergenceRAD (DEGREES-TO-RADIANS (the divergence)))
   )
@@ -64,26 +76,52 @@
    
    (fuselageTail 
     :type 'merged-solid
-	:brep (the loft brep)
+	:brep (the loftTail brep)
 	:other-brep ()
 	:make-manifold? t
 	:hidden? t)
- 
+	
+	(fuselageNose 
+    :type 'merged-solid
+	:brep (the loftNose brep)
+	:other-brep ()
+	:make-manifold? t
+	:hidden? t)
+	
+	(fuselageNoseDome
+	:type 'spherical-cap
+	:axis-length (the nose-Radius)
+	:cap-thickness (nil)
+	:closed? t
 
-	(section-curves 
+	(tail-section-curves 
 	:type 'arc-curve
-	:sequence (:size (length (the section-offset-length)))
-	:center (translate (the tailPoint)
-			:rear (+ (the lengthNose) (the lengthCenter) (nth (the-child index) (the section-offset-length)))
-			:down (- (first (the section-radii)) (nth (the-child index) (the section-radii)))
-			:up (nth (the-child index) (the section-offset-divergence)))
+	:sequence (:size (length (the tail-section-offset-length)))
+	:center (translate (the center)
+			:rear (+ (the lengthNose) (the lengthCenter) (nth (the-child index) (the tail-section-offset-length)))
+			:down (- (first (the tail-section-radii)) (nth (the-child index) (the tail-section-radii)))
+			:up (nth (the-child index) (the tail-section-offset-divergence)))
 	:radius (nth (the-child index) (the section-radii))
 	:orientation (alignment :top (the (face-normal-vector :front)))
 	:hidden? t)
+	
+	(nose-section-curves 
+	:type 'arc-curve
+	:sequence (:size (length (the nose-section-offset-length)))
+	:center (translate (the center)
+			:rear (+ (the nose-Radius) (nth (the-child index) (the nose-section-offset-length)))
+			:down (- (first (the nose-section-radii)) (nth (the-child index) (the nose-section-radii)))
+	:radius (nth (the-child index) (the nose-section-radii))
+	:orientation (alignment :top (the (face-normal-vector :front)))
+	:hidden? t)
 
-	(loft :type 'lofted-surface
+	(loftTail :type 'lofted-surface
 	:end-caps-on-brep? t
-	:curves (list-elements (the section-curves)))
+	:curves (list-elements (the tail-section-curves)))
+	
+	(loftnose :type 'lofted-surface
+	:end-caps-on-brep? t
+	:curves (list-elements (the nose-section-curves)))
 	
     )
 
