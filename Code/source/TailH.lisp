@@ -29,7 +29,7 @@
 	:AR (getf (the tailParameters) :verticalAR)
 	:taper (getf (the tailParameters) :verticalTaper)
 	:dihedral 90
-	:center (translate (the center) :left (half (the horizontalTail span)))
+	:center (translate (the center) :left (half (the horizontalTail span)):rear (the horizontalTail sweepOffset))
 	)
 	
 	(""
@@ -39,7 +39,7 @@
 	:AR (getf (the tailParameters) :verticalAR)
 	:taper (getf (the tailParameters) :verticalTaper)
 	:dihedral -90
-	:center (translate (the center) :left (half (the horizontalTail span)))
+	:center (translate (the center) :left (half (the horizontalTail span)):rear (the horizontalTail sweepOffset))
 	)
    
    (""
@@ -49,7 +49,7 @@
 	:AR (getf (the tailParameters) :verticalAR)
 	:taper (getf (the tailParameters) :verticalTaper)
 	:dihedral 90
-	:center (translate (the center) :right (half (the horizontalTail span)))
+	:center (translate (the center) :right (half (the horizontalTail span)):rear (the horizontalTail sweepOffset))
 	)
 	
 	(""
@@ -59,7 +59,7 @@
 	:AR (getf (the tailParameters) :verticalAR)
 	:taper (getf (the tailParameters) :verticalTaper)
 	:dihedral -90
-	:center (translate (the center) :right (half (the horizontalTail span)))
+	:center (translate (the center) :right (half (the horizontalTail span)):rear (the horizontalTail sweepOffset))
 	)
    
    (""

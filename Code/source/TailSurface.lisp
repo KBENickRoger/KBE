@@ -45,6 +45,9 @@
    
    (""
     rootCenter (translate (the center) :front (half (the chordRoot))) )
+	
+	(""
+	sweepOffset (the (liftingSurface 0) sweepOffset))
 )
   
   
