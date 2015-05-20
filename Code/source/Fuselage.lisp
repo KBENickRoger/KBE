@@ -15,7 +15,7 @@
     lengthCenter 8)
 	
    (""
-    lengthNose 2)
+    lengthNose 2 :settable)
 
    (""
     lengthTail 2 :settable)
@@ -42,11 +42,11 @@
 
 	(tail-section-radii (mapcar #'(lambda (z) (* (half (the diameter)) (- 1 z))) (the tail-cross-section-percentages)))
 
-	(tail-section-offset-divergence (mapcar #'(lambda (y1) (* (sin(the divergenceRAD)) y1)) (the taile-section-offset-length)))
+	(tail-section-offset-divergence (mapcar #'(lambda (y1) (* (sin(the divergenceRAD)) y1)) (the tail-section-offset-length)))
 	
 	(nose-section-offset-length  (mapcar #'(lambda (x) (* (the nose-loft-length) x)) (the nose-cross-section-percentages)))
 
-	(nose-section-radii (mapcar #'(lambda (z) (+ (half (the diameter)) (* x (half (the diameter))))) (the nose-cross-section-percentages)))
+	(nose-section-radii (mapcar #'(lambda (x) (+ (/ (the diameter) 4) (* x (/ (the diameter) 4)))) (the nose-cross-section-percentages)))
 	
 	(nose-Radius (/ (the diameter) 4))
 	
@@ -57,16 +57,16 @@
   
 
   :objects 
-  ((fuselageNose
-    :type 'cone
-    :length (the lengthNose)
-    :radius-1 (* 0.75 (half (the diameter)))
-	:radius-2 (half (the diameter))
-    :center (translate (the center)
-		       :rear (half (the lengthNose)))
-    )
+;  ((fuselageNose
+   ; :type 'cone
+   ; :length (the lengthNose)
+   ; :radius-1 (* 0.75 (half (the diameter)))
+	;:radius-2 (half (the diameter))
+  ;  :center (translate (the center)
+;		       :rear (half (the lengthNose)))
+   ; )
    
-   (fuselageCenter 	
+   ((fuselageCenter 	
     :type 'cylinder
     :length (the lengthCenter)
     :radius (half (the diameter))
@@ -88,11 +88,11 @@
 	:make-manifold? t
 	:hidden? t)
 	
-	(fuselageNoseDome
-	:type 'spherical-cap
-	:axis-length (the nose-Radius)
-	:cap-thickness (nil)
-	:closed? t
+	;(fuselageNoseDome
+	;:type 'spherical-cap
+	;:axis-length (the nose-Radius)
+	;:cap-thickness (nil)
+	;:closed? t)
 
 	(tail-section-curves 
 	:type 'arc-curve
@@ -101,7 +101,7 @@
 			:rear (+ (the lengthNose) (the lengthCenter) (nth (the-child index) (the tail-section-offset-length)))
 			:down (- (first (the tail-section-radii)) (nth (the-child index) (the tail-section-radii)))
 			:up (nth (the-child index) (the tail-section-offset-divergence)))
-	:radius (nth (the-child index) (the section-radii))
+	:radius (nth (the-child index) (the tail-section-radii))
 	:orientation (alignment :top (the (face-normal-vector :front)))
 	:hidden? t)
 	
@@ -110,7 +110,7 @@
 	:sequence (:size (length (the nose-section-offset-length)))
 	:center (translate (the center)
 			:rear (+ (the nose-Radius) (nth (the-child index) (the nose-section-offset-length)))
-			:down (- (first (the nose-section-radii)) (nth (the-child index) (the nose-section-radii)))
+			:down (- (half (the diameter)) (nth (the-child index) (the nose-section-radii))))
 	:radius (nth (the-child index) (the nose-section-radii))
 	:orientation (alignment :top (the (face-normal-vector :front)))
 	:hidden? t)
