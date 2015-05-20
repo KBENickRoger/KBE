@@ -1,0 +1,11 @@
+; Sizing parameters for a cruciform tail
+;
+; Horizontal tail plane parameters
+horizontalAR 5
+horizontalTaper 0.4
+horizontalPlacement 0.5
+;
+; Vertical tail plane parameters
+verticalAR 1.2
+verticalTaper 0.5
+

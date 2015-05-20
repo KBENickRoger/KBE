@@ -7,7 +7,7 @@
 )
 
 
-(define-object Aircraft ()
+(define-object Aircraft (base-object)
   
   :documentation
   (:author "Nick&Roger"
@@ -30,7 +30,24 @@
   
   :objects
   ((""
-    tail :type 'TailAssy)
+    tail :type (ecase (the input tailType)
+					(1 'TailConventional)
+					(2 'TailCruciform)
+					(3 'TailT)
+					(4 'TailV)
+					(5 'TailC)
+					(6 'TailH))
+	:center (translate (the center) :rear (the fuselage lengthTotal))
+	:surfaceHorizontal (the tailSizing tailSurfaceHorizontal)
+	:surfaceVertical (the tailSizing tailSurfaceVertical)
+	:tailParameters (ecase (the input tailType)
+						(1 (the constants tailConventional))
+						(2 (the constants tailCruciform))
+						(3 (the constants tailT))
+						(4 (the constants tailV))
+						(5 (the constants tailC))
+						(6 (the constants tailH)))
+	)
  
    (""
     fuselage 
@@ -81,11 +98,25 @@
    (""
     input :type 'InputData
               :parameters (the inputData))
+			  
+	(""
+	constants :type 'ConstantData
+			  :tailConventional (basicDataReader (merge-pathnames "tailConventional.dat" (the dataFolder)))
+			  :tailCruciform(basicDataReader (merge-pathnames "tailCruciform.dat" (the dataFolder)))
+			  :tailT (basicDataReader (merge-pathnames "tailT.dat" (the dataFolder)))
+			  :tailV (basicDataReader (merge-pathnames "tailV.dat" (the dataFolder)))
+			  :tailH (basicDataReader (merge-pathnames "tailH.dat" (the dataFolder)))
+			  :tailC (basicDataReader (merge-pathnames "tailC.dat" (the dataFolder)))
+	)
   
   (""
    tailSizing :type 'TailSizing
 	:input (the input)
 	:database (the aircraftDatabase)
+	:tailArm (- (the fuselage lengthTotal) (get-y (the wing center)))
+	:span (the wing span)
+	:mac (the wing Cmac)
+	:wingSurface (the wing surface)
 	)
 
 	)

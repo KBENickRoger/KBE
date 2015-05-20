@@ -42,6 +42,8 @@
 											 )
 											 
 	(chordTip (* (the taper)(the chordRoot)))
+	
+	(Cmac (the (wings 0) Cmac))
 
 	("wing backward translation to quarter MAC"
 	wingTranslateMAC (- (+ (* 0.25 (the (wings 0) Cmac)) (* (the (wings 0) YCmac) (sin(the (wings 0) sweepLERad)))) 
