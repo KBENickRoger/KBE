@@ -20,7 +20,7 @@ fuselageLengthNose 10
 fuselageLengthTail 20
 ;
 ; Engine parameters
-engineMounting 1
+engineMounting 2
 engineNumber 4
 engineDiameter 3
 engineLength 5
