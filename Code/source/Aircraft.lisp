@@ -26,6 +26,11 @@
   (inputData (basicDataReader (the inputDataFilePath)))
   (aircraftDatabaseFilePath (merge-pathnames (the aircraftDatabaseFilename) (the dataFolder)))
   (aircraftDatabase (databaseReader (the aircraftDatabaseFilePath)))
+  
+  (""
+  offsetSpan (ecase (the input engineMounting)
+				( 1 (/ (- (the wing span) (the fuselage diameter)) (+ 2 (the engines engineNumber)))) 
+				( 2 (the input engineDiameter))))
   )
   
   :objects
@@ -66,14 +71,12 @@
 				( 1 (the wing center)) 
 				( 2 (the fuselage fuselageTail center)))
 	:offsetSweep (ecase (the input engineMounting)
-				( 1 (* (sin(degrees-to-radians (the WingAssy dihedral))) (the offsetSweep))) 
+				( 1 (* (sin(degrees-to-radians (the input wingSweepLE))) (the offsetSpan))) 
 				( 2 0 ))
-	:offsetSpan (ecase (the input engineMounting)
-				( 1 (/ (- (the wing span) (the fuselage diameter)) (+ 2 (the engines engineNumber)))) 
-				( 2 (the input engineDiameter)))
+	:offsetSpan (the offsetSpan)
 	:offsetFuselage (half (the fuselage diameter))
 	:offsetDihedral (ecase (the input engineMounting)
-					( 1 (* (sin(degrees-to-radians (the WingAssy dihedral))) (the offsetSpan)))
+					( 1 (* (sin(degrees-to-radians (the input wingDihedral))) (the offsetSpan)))
 					( 2 0 ))
 	:length (the input engineLength)
 	:diameter (the input engineDiameter)
