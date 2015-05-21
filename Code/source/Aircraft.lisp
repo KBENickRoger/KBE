@@ -31,6 +31,11 @@
   offsetSpan (ecase (the input engineMounting)
 				( 1 (/ (- (the wing span) (the fuselage diameter)) (+ 2 (the engines engineNumber)))) 
 				( 2 (the input engineDiameter))))
+				
+  ;(tailcenter (+ (the input fuselageLengthNose) (the input fuselageLengthCenter)))
+  
+  (""
+  fuselageTailCenterPoint (make-point 0 (+ (the input fuselageLengthNose) (the input fuselageLengthCenter)) 0))
   )
   
   :objects
@@ -69,7 +74,7 @@
 	:engineNumber (the input engineNumber)
 	:position (ecase (the input engineMounting) 
 				( 1 (the wing center)) 
-				( 2 (the fuselage fuselageTail center)))
+				( 2 (the fuselageTailCenterPoint)))
 	:offsetSweep (ecase (the input engineMounting)
 				( 1 (* (sin(degrees-to-radians (the input wingSweepLE))) (the offsetSpan))) 
 				( 2 0 ))
@@ -80,6 +85,9 @@
 					( 2 0 ))
 	:length (the input engineLength)
 	:diameter (the input engineDiameter)
+	:offsetWingFront (ecase (the input engineMounting)
+				   ( 1 (half (the input wingChordRoot)))
+	 			   ( 2 0 ))
 	)
    
    (""
