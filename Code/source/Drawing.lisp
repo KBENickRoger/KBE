@@ -1,6 +1,6 @@
 (in-package :gdl-user)
 
-(define-object Aircraft-drawing (base-drawing)
+(define-object Aircraft-tridrawing (base-drawing)
 
 :hidden-objects ((Aircraft :type 'Aircraft))
 
@@ -11,25 +11,30 @@
 								(the Aircraft engines)
 								(the Aircraft wing)
 								(the Aircraft tail))
-			:length (half (the length))
-			:width (half (the width))
-			:center (translate (the center)
-								:rear (half (the-child length))
-								:right (half (the-child width)))
+			:length (the length)
+			:width (the width)
+			:center (the center)
 			:projection-vector (getf *standard-views* :trimetric)
 			)
 
-(front-view :type 'base-view
+)
+)
+
+(define-object Aircraft-viewdrawing (base-drawing)
+
+:hidden-objects ((Aircraft :type 'Aircraft))
+
+:objects
+((front-view :type 'base-view
 			:border-box? t
 			:object-roots (list (the Aircraft fuselage) 
 								(the Aircraft engines)
 								(the Aircraft wing)
 								(the Aircraft tail))
-			:length (half (the length))
-		:width (half (the width))
+			:length (half (half (the length)))
+			:width	(the width)
 			:center (translate (the center)
-								:rear (half (the-child length))
-								:left (half (the-child width)))
+								:rear (* 3 (half (the-child length))))
 			:projection-vector (getf *standard-views* :front)
 			)
 			
@@ -40,10 +45,8 @@
 								(the Aircraft wing)
 								(the Aircraft tail))
 			:length (half (the length))
-			:width (half (the width))
-			:center (translate (the center)
-								:front (half (the-child length))
-								:left (half (the-child width)))
+			:width (the width)
+			:center (the center)
 			:projection-vector (getf *standard-views* :top)
 			)
 
@@ -53,15 +56,12 @@
 								(the Aircraft engines)
 								(the Aircraft wing)
 								(the Aircraft tail))
-			:length (half (the length))
-			:width (half (the width))
+			:length (half (half (the length)))
+			:width (the width)
 			:center (translate (the center)
-								:front (half (the-child length))
-								:right (half (the-child width)))
+								:front (* 3 (half (the-child length))))
 			:projection-vector (getf *standard-views* :right)
 			)
-
-
 )
 
 ;:functions
