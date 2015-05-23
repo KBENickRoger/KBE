@@ -1,11 +1,5 @@
 (in-package :gdl-user)
 
-(defparameter *outputFolder* (merge-pathnames "../output/"
-					     (make-pathname :name nil
-							    :type nil
-							    :defaults excl:*source-pathname*))
-)
-
 (define-object Aircraft-tridrawing (base-drawing)
 
 :input-slots
