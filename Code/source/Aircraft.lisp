@@ -17,7 +17,8 @@
   ((dataFolder *dataFolder*)
    (inputDataFilename "inputData.dat")
    (aircraftDatabaseFilename "aircraftDatabase.dat")
-   (wingAirfoil "NACA_0012_xyz.dat")
+   (wingAirfoil "whitcomb_cst.dat")
+   (tailAirfoil "naca0012_cst.dat")
   )
   
   :computed-slots
@@ -57,6 +58,7 @@
 						(4 (the constants tailV))
 						(5 (the constants tailC))
 						(6 (the constants tailH)))
+	:airfoil (the tailAirfoil)
 	)
  
    (""

@@ -15,6 +15,9 @@
 	
 	(""
 	tailParameters nil)
+	
+		(""
+	airfoil "naca0012_cst.dat")
  )
  
   :computed-slots
@@ -34,6 +37,7 @@
 	:AR (getf (the tailParameters) :AR)
 	:taper (getf (the tailParameters) :Taper)
 	:dihedral (the dihedral)
+	:airfoil (the airfoil)
 	)
   
   )
