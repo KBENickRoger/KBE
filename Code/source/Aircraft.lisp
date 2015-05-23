@@ -27,13 +27,12 @@
   (aircraftDatabaseFilePath (merge-pathnames (the aircraftDatabaseFilename) (the dataFolder)))
   (aircraftDatabase (databaseReader (the aircraftDatabaseFilePath)))
   
+  
   (""
   offsetSpan (ecase (the input engineMounting)
 				( 1 (/ (- (the wing span) (the fuselage diameter)) (+ 2 (the engines engineNumber)))) 
 				( 2 (the input engineDiameter))))
 				
-  ;(tailcenter (+ (the input fuselageLengthNose) (the input fuselageLengthCenter)))
-  
   (""
   fuselageTailCenterPoint (make-point 0 (+ (the input fuselageLengthNose) (the input fuselageLengthCenter)) 0))
   )
@@ -79,6 +78,9 @@
 				( 1 (* (sin(degrees-to-radians (the input wingSweepLE))) (the offsetSpan))) 
 				( 2 0 ))
 	:offsetSpan (the offsetSpan)
+	:offsetEngineDiameter (ecase (the input engineMounting)
+							( 1 0)
+							( 2 (- (half (the input engineDiameter)))))
 	:offsetFuselage (half (the fuselage diameter))
 	:offsetDihedral (ecase (the input engineMounting)
 					( 1 (* (sin(degrees-to-radians (the input wingDihedral))) (the offsetSpan)))
@@ -87,6 +89,9 @@
 	:diameter (the input engineDiameter)
 	:offsetWingFront (ecase (the input engineMounting)
 				   ( 1 (half (the input wingChordRoot)))
+	 			   ( 2 0 ))
+	:offsetWingBottom (ecase (the input engineMounting)
+				   ( 1 (* 0.75 (the input engineDiameter)))
 	 			   ( 2 0 ))
 	)
    
@@ -132,6 +137,7 @@
 	:mac (the wing Cmac)
 	:wingSurface (the wing surface)
 	)
+	
 
 	)
   :functions

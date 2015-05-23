@@ -14,29 +14,31 @@
 :hidden-objects ((Aircraft :type 'Aircraft)
 
 				 (text-block :type 'Aircraft-text-block
+							 :margins (twice (twice (the text-view left-margin)))
 							 :width (the text-view width)
 							 :length (the text-view length)
-							 :Fuselage-length nil
-							 :Fuselage-slenderness-ratio nil
-							 :Wing-Span nil
-							 :Wing-Sweep nil
-							 :Wing-Taper nil
-							 :Wing-Surface-Area nil
-							 :Engine-number nil
-							 :EnginePos nil
+							 :Fuselage-length 0 ;(+ (the input fuselageLengthCenter) (the input fuselageLengthNose) (the input fuselageLengthTail))
+							 :Fuselage-slenderness-ratio 0 ;(the input Fuselage-slenderness-ratio)
+							 :Wing-Span (the Aircraft wingAirfoil)
+							 :Wing-Sweep 0 ; (the wing sweepLE)
+							 :Wing-Taper 0 ; (the wing taper)
+							 :Wing-C_mac 0 ;(the wing Cmac)
+							 :Wing-Surface-Area 0 ;(the wing surface)
+							 :Engine-number 0 ;(the engines engineNumber)
+							 :EnginePos 0 ; (ecase (the input engineMounting)
+										; ( 1 "Wing-podded")
+										; ( 2 "Fuselage-podded")))
 							 ))
-
+ 
 :objects
 ((text-view :type 'base-view
-			:left-margin
-			:right-margin
 			:border-box? t
 			:objects (list (the text-block))
 			:length (half (the length))
 			:width (the width)
 			:projection-vector (getf *standard-views* :top)
 			:center (translate (the center) 
-								:rear (half (the-child length))))
+								:front (half (the-child length))))
 
 (tri-view :type 'base-view
 			:border-box? t
@@ -44,17 +46,14 @@
 								(the Aircraft engines)
 								(the Aircraft wing)
 								(the Aircraft tail))
-			:length (the length)
+			:length (half (the length))
 			:width (the width)
 			:center (translate (the center)
-								:front (half (the-child length)))
+								:rear (half (the-child length)))
 			:projection-vector (getf *standard-views* :trimetric)
-			)
+			)			
 
-
- ()			
-)
-)
+))
 
 (define-object Aircraft-viewdrawing (base-drawing)
 
@@ -116,40 +115,19 @@
 (define-object Aircraft-text-block (typeset-block)
 
 :input-slots
-(Fuselage-length Fuselage-slenderness-ratio Wing-Span Wing-Sweep Wing-Taper Wing-Surface-Area Engine-number EnginePos)
+((Fuselage-length Fuselage-slenderness-ratio Wing-Span Wing-Sweep Wing-Taper Wing-C_mac Wing-Surface-Area Engine-number EnginePos))
 
 :functions
-((content
- ()
- (tt:compile-text(:font "Calibri" :font-size 12.0)
- (tt:vspace 100)
- (tt:paragraph () "Aircraft Data")
- (tt:table (:col-widths (list 220 (- (the width) 220)))
- (dolist (slot (list :Fuselage-length 
-					 :Fuselage-slenderness-ratio
-					 :Wing-Span
-					 :Wing-Sweep
-					 :Wing-Taper
-					 :Wing-Surface-Area
-					 :Engine-number
-					 :EnginePos))
-		(tt:row ()
-		  (tt:cell (:background-color "#1E1E1E") (tt:put-string (format nil "~a" (string-capitalize slot))))
-		  (tt:cell ()
-		  (tt:paragraph (:h-align :center) (tt:put-string (format nil "~a" (the (evaluate slot)))))))))))))
+ ((content
+    ()
+    (tt:compile-text (:font "Helvetica" :font-size 12.0)
+      (tt:vspace 100)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      (tt:paragraph () "Aircraft Data")
+      (let ((width (- (the width) (the margins))))
+	(tt:table (:col-widths (list (* 2/3 width) (* 1/3 width)))
+	  (dolist (slot (list :Fuselage-length :Fuselage-slenderness-ratio :Wing-Span :Wing-Sweep :Wing-Taper :Wing-C_mac :Wing-Surface-Area :Engine-number :EnginePos))
+	    (tt:row ()
+	      (tt:cell (:background-color "#FFFFFF") (tt:put-string (format nil "~a" (string-capitalize slot))))
+	      (tt:cell () 
+		(tt:paragraph (:h-align :center) (tt:put-string (format nil "~a" (the (evaluate slot))))))))))))))
