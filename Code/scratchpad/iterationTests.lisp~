@@ -1,0 +1,13 @@
+(in-package :gdl-user)
+
+(define-object iterationTests ()
+
+:input-slots
+(x1 '(1 2 3 4 5))
+
+:computed-slots
+(x2 (iterate:iter (iterate:for x in (the x1))
+		  (iterate:collect (* x 2)))
+)
+
+)
