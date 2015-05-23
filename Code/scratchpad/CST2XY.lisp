@@ -14,17 +14,19 @@
 (define-object CSTconverter ()
 
 :input-slots
-(Au Al)
-
+((Au '(0 1 2 3 4 5 6))
+ (Al '(0 1 2 3 4 5 6))
+ (nPoints 100)
+ )
+ 
 :computed-slots
 ((nu (- (length (the Au)) 1))
  (nl (- (length (the Al)) 1))
+ (xCoordinates (iterate:iter (iterate:for i from 0 to (the nPoints))
+							 (collect (* i (/ 1 (the nPoints))))))
  )
  
- 
-
-)
-
+ )
 
 (defun CST2XYupper (nu nl)
 
