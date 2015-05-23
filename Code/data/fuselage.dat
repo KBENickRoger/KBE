@@ -1,13 +1,13 @@
 ;fuselage input file
-;percentage length	percentage fuselage diameter
-0 10
-10 80
-20 100
-30 100
-40 100
-50 100
-60 100
-70 95
-80 75
-90 45
-100 10
+;percentages total radius	
+0.1
+0.8
+1
+1
+1
+1
+1
+0.95
+0.75
+0.45
+0.10
