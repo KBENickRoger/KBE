@@ -7,7 +7,7 @@
    :description "")
   
   :input-slots
-  (engineNumber position offsetSweep offsetDihedral offsetSpan offsetWingFront offsetFuselage length diameter)
+  (engineNumber position offsetSweep offsetDihedral offsetSpan offsetWingFront offsetWingBottom offsetEngineDiameter offsetFuselage length diameter)
   
   
   :computed-slots
@@ -21,10 +21,10 @@
 	:length (half (the length))
 	:radius (half (the diameter))
 	:center (translate (the position)
-				:left (+ (the offsetFuselage)(* (+ (the-child index) 1) (the offsetSpan)))
+				:left (+ (the offsetFuselage) (* (+ (the-child index) 1) (the offsetSpan)) (the offsetEngineDiameter))
 				:rear (* (the offsetSweep) (+ (the-child index) 1)) 
 				:front (the offsetWingFront)
-				:down (* (the diameter) 0.75)
+				:down (the offsetWingBottom)
 				:up (* (+ (the-child index) 1) (the offsetDihedral))))
 				
 	
@@ -35,10 +35,10 @@
 	:radius-1 (half (the diameter))
 	:radius-2 (half (half (the diameter)))
 	:center (translate (the position)
-				:left (+ (the offsetFuselage)(* (+ (the-child index) 1) (the offsetSpan)))
+				:left (+ (the offsetFuselage) (* (+ (the-child index) 1) (the offsetSpan)) (the offsetEngineDiameter))
 				:rear (+ (half (the length)) (* (the offsetSweep) (+ (the-child index) 1)) )
 				:front (the offsetWingFront)
-				:down (* (the diameter) 0.75)
+				:down (the offsetWingBottom)
 				:up   (* (+ (the-child index) 1) (the offsetDihedral))))
 		
 	(rightEnginesCyl
@@ -47,10 +47,10 @@
 	:length (half (the length))
 	:radius (half (the diameter))
 	:center (translate (the position)
-			   :right (+ (the offsetFuselage)(* (+ (the-child index) 1) (the offsetSpan)))
+			   :right (+ (the offsetFuselage) (* (+ (the-child index) 1) (the offsetSpan)) (the offsetEngineDiameter))
 			   :rear (* (the offsetSweep) (+ (the-child index) 1))
 			   :front (the offsetWingFront)
-			   :down (* (the diameter) 0.75)
+			   :down (the offsetWingBottom)
 			   :up (* (+ (the-child index) 1) (the offsetDihedral))))			   
   
 	(rightEnginesCone
@@ -60,10 +60,10 @@
 	:radius-1 (half (the diameter))
 	:radius-2 (half (half (the diameter)))
 	:center (translate (the position)
-			   :right (+ (the offsetFuselage)(* (+ (the-child index) 1) (the offsetSpan)))
+			   :right (+ (the offsetFuselage) (* (+ (the-child index) 1) (the offsetSpan)) (the offsetEngineDiameter))
 			   :rear (+ (half (the length)) (* (the offsetSweep) (+ (the-child index) 1)) )
 			   :front (the offsetWingFront)
-				:down (* (the diameter) 0.75)
+				:down (the offsetWingBottom)
 				:up (* (+ (the-child index) 1) (the offsetDihedral))))
 	)
   
