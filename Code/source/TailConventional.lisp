@@ -33,6 +33,7 @@
 	:taper (getf (the tailParameters) :verticalTaper)
 	:dihedral 90
 	:airfoil (the airfoil)
+	:MACHidden? nil
 	)
    
    (""
@@ -42,6 +43,7 @@
 	:AR (getf (the tailParameters) :horizontalAR)
 	:taper (getf (the tailParameters) :horizontalTaper)
 	:airfoil (the airfoil)
+	:MACHidden? nil
 	)
   
   )

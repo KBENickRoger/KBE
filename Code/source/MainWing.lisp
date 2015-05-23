@@ -14,7 +14,8 @@
 	(kinkPos 0.3)
 	(rootPoint (make-point 0 0 0))
 	(sweepLE 10)
-	(airfoil))
+	(airfoil)
+	(dataFolder *dataFolder*))
   
   
   :computed-slots
@@ -72,9 +73,23 @@
 	:sweepLE (the sweepLE)
 	)
 	
+	(MAC
+	:type 'MAC
+	:airfoil (the airfoil)
+	:Cmac (the Cmac)
+	:orientation (the orientation)
+	:center (translate (the center)
+						:left (half (the span))
+						:right (the YCmac)
+						:rear (* (tan (the sweepLERad)) (the YCmac)) 
+						:front (half (the chordRoot)))
+	
+	)
 	)
   
   
   :functions
-  ())
+  ()
+  
+  )
 

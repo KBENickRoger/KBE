@@ -22,6 +22,7 @@
   (dataFolder *dataFolder*)
   (rootPoint)
   (sweepLE)
+  (MACHidden? t)
    )
   
   
@@ -46,7 +47,7 @@
 	)
 	
 	("Trunk spanwise position of Cmac"
-	YCmac (/ (* (the Cmac) (the span)) (* (the chordRoot) (the taper)))
+	YCmac (* (the span) (/ (- (the chordRoot) (the Cmac)) (- (the chordRoot) (the chordTip))))
 	)
 	
 	)
@@ -88,7 +89,24 @@
 	(loft :type 'lofted-surface
 	:end-caps-on-brep? t
 	:curves (list (the root-profile) (the tip-profile)))
-	)  
+	
+
+	(MAC :type 'boxed-curve
+	:curve-in (the profile)
+	:orientation (alignment :top (the (face-normal-vector :right))
+			:rear (the (face-normal-vector :top))
+			:right (the (face-normal-vector :rear)))
+	:scale-y (the Cmac)
+	:scale-x (/ (the Cmac) (the profile chord))
+	:center (translate (the rootPoint)
+						:right (the YCmac)
+						:rear (* (tan (degtorad (the sweepLE))) (the YCmac)) 
+						:front (half (the chordRoot)))
+	:hidden? (the MACHidden?)
+	:display-controls (list :color :orange)
+	)
+	
+	)
   
   :functions
   ()
