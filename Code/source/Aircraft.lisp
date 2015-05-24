@@ -20,19 +20,23 @@
   
   :input-slots
   ((dataFolder *dataFolder*)
+   (outputFolder *outputFolder*)
    (inputDataFilename "inputData.dat")
    (aircraftDatabaseFilename "aircraftDatabase.dat")
    (wingAirfoil "whitcomb_cst.dat")
    (tailAirfoil "naca0012_cst.dat")
+   (outputQ3D? nil :settable)
   )
   
   :computed-slots
   (
+  
   (inputDataFilePath (merge-pathnames (the inputDataFilename) (the dataFolder)))
   (inputData (basicDataReader (the inputDataFilePath)))
   (aircraftDatabaseFilePath (merge-pathnames (the aircraftDatabaseFilename) (the dataFolder)))
   (aircraftDatabase (databaseReader (the aircraftDatabaseFilePath)))
   
+  (outputQ3D (when (the outputQ3D?) (the Q3DWriter Q3D_writer))) 
   
   (""
   offsetSpan (ecase (the input engineMounting)
@@ -123,7 +127,8 @@
 
    (""
     input :type 'InputData
-              :parameters (the inputData))
+              :parameters (the inputData)
+			  :cruiseCondition (basicDataReader (merge-pathnames "cruiseCondition.dat" (the dataFolder))))
 			  
 	(""
 	constants :type 'ConstantData
@@ -144,9 +149,18 @@
 	:mac (the wing Cmac)
 	:wingSurface (the wing surface)
 	)
+
+   (""
+    Q3DWriter 
+    :type 'outputQ3D
+    :wing (the wing (wings 0))
+	:wingAssy (the wing)
+	:condition (the input cruiseCondition)
+    )
+
+)
 	
 
-	)
   :functions
   ()
 
