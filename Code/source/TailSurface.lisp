@@ -17,13 +17,15 @@
     AR nil )
    
    (""
-    airfoil "NACA_0012_xyz.dat" )
+    airfoil "naca0012_cst.dat")
    
    (""
    taper nil)
    
    (""
    dihedral 0)
+   
+   (MACHidden? t)
    
 	)
   
@@ -71,7 +73,9 @@
 	(alignment :right right
 				:top (cross-vectors hinge right)
 				:front (the (face-normal-vector :front))))
+	:MACHidden? (the MACHidden?)
   )
+    
   )
   
   :functions

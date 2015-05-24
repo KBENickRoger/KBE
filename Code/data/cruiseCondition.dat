@@ -1,0 +1,19 @@
+; cruise conditions input file
+;
+; cruise velocity [m/s] 
+V 100
+;
+; air density [kg/m^3]
+rho 1.225
+;
+; altitude [m]
+altitude 10000
+;
+; mach number []
+mach 0.8
+;
+; design weight [N]
+weight 10000
+;
+; Viscous in Q3D? 1 = yes 0 = no
+viscous 1

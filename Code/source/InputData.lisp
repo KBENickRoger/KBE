@@ -27,5 +27,10 @@ engineMounting
 engineNumber
 engineDiameter
 engineLength
+
+;; Cruise conditions
+cruiseCondition
+
+
 )
 )

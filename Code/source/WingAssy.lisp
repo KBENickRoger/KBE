@@ -44,10 +44,12 @@
 	(chordTip (* (the taper)(the chordRoot)))
 	
 	(Cmac (the (wings 0) Cmac))
+	(YCmac (the (wings 0) YCmac))
+	(sweepLERad (degtorad (the sweepLE)))
 
 	("wing backward translation to quarter MAC"
-	wingTranslateMAC (- (+ (* 0.25 (the (wings 0) Cmac)) (* (the (wings 0) YCmac) (sin(the (wings 0) sweepLERad)))) 
-							(half (the (wings 0) chordRoot))))
+	wingTranslateMAC (- (+ (* 0.25 (the Cmac)) (* (the YCmac) (sin(the (wings 0) sweepLERad)))) 
+							(half (the chordRoot))))
 	
 	("Surface area main wing"
 	surface (sum-elements (the wings) (the-element surface)))
@@ -96,10 +98,16 @@
 	(alignment :right right
 				:top (cross-vectors hinge right)
 				:front (the (face-normal-vector :front)))))
-)
+				
+	
+				
+ )
   
   
   :functions
-  ())
+  ()
+  
+  
+  )
 
 
