@@ -158,6 +158,23 @@
 	:condition (the input cruiseCondition)
     )
 
+	
+	(""
+	AeroGradients
+	:type 'Aerodynamics
+	:condition (the input cruiseCondition)
+	:tailType (the input tailType)
+	:span (the wing span)
+	:wingArea (the wing surface)
+	:sweepLE (the wing sweepLE)
+	:rootChord (the wing chordRoot)
+	:tipChord (the wing chordTip)
+	:tailLength (sqrt(+ (expt (the tailSizing tailArm) 2)
+							(expt (- (get-z (the tail center)) (get-z (the wing center))) 2)))
+	:tailVLength (- (get-z (the tail center)) (get-z (the wing center)))
+	:fuselageRadius (half (the fuselage diameter))
+	:AR (the wing aspectRatio)
+	)
 )
 	
 
