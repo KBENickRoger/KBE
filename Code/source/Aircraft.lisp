@@ -127,7 +127,8 @@
 
    (""
     input :type 'InputData
-              :parameters (the inputData))
+              :parameters (the inputData)
+			  :cruiseCondition (basicDataReader (merge-pathnames "cruiseCondition.dat" (the dataFolder))))
 			  
 	(""
 	constants :type 'ConstantData
@@ -153,6 +154,8 @@
     Q3DWriter 
     :type 'outputQ3D
     :wing (the wing (wings 0))
+	:wingAssy (the wing)
+	:condition (the input cruiseCondition)
     )
 
 )
