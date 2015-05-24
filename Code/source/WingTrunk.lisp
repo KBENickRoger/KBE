@@ -106,6 +106,23 @@
 	:display-controls (list :color :orange)
 	)
 	
+	(intersectionSurface 
+	:type 'rectangular-surface
+	:center (the center)
+	:orientation (alignment :right (the (face-normal-vector :top))
+							:top (rotate-vector-d (the (face-normal-vector :right)) (the sweepLE) (the (face-normal-vector :top))))
+	:length (* 2 (the chordRoot))
+	:width (the chordRoot))
+	
+	(intersection :type 'brep-intersect
+    :brep (the loft brep)
+    :other-brep (the intersectionSurface brep))
+	
+	(extractedCurve 
+	:type 'boxed-curve
+	:curve-in (the intersection (edges 0))
+	:orientation nil)
+	
 	)
   
   :functions
