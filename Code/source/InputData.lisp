@@ -19,9 +19,8 @@ tailType
 
 ;; Fuselage parameters 
 finenessRatio
-fuselageLengthCenter
-fuselageLengthNose
-fuselageLengthTail
+fuselageLengthTotal
+divergence
 
 ;; Propulsion system
 engineMounting

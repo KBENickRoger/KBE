@@ -16,8 +16,8 @@ tailType 1
 ; Fuselage parameters
 finenessRatio 8
 fuselageLengthTotal 80
-tailDivergence 15
-
+divergence 15
+;
 ; Engine parameters
 engineMounting 1
 engineNumber 4
