@@ -15,10 +15,9 @@ tailType 1
 ;
 ; Fuselage parameters
 finenessRatio 8
-fuselageLengthCenter 50
-fuselageLengthNose 10
-fuselageLengthTail 20
-;
+fuselageLengthTotal 80
+tailDivergence 15
+
 ; Engine parameters
 engineMounting 1
 engineNumber 4

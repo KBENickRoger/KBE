@@ -27,16 +27,13 @@
   (aircraftDatabaseFilePath (merge-pathnames (the aircraftDatabaseFilename) (the dataFolder)))
   (aircraftDatabase (databaseReader (the aircraftDatabaseFilePath)))
   
+  (fuselageTailCenterPoint (make-point 0 (+ (the fuselage lengthCenter) (the fuselage lengthNose)) 0))
   
   (""
   offsetSpan (ecase (the input engineMounting)
 				( 1 (/ (- (the wing span) (the fuselage diameter)) (+ 2 (the engines engineNumber)))) 
 				( 2 (the input engineDiameter))))
-				
-  (""
-  fuselageTailCenterPoint (make-point 0 (+ (the input fuselageLengthNose) (the input fuselageLengthCenter)) 0))
   )
-  
   :objects
   ((""
     tail :type (ecase (the input tailType)
@@ -46,7 +43,7 @@
 					(4 'TailV)
 					(5 'TailC)
 					(6 'TailH))
-	:center (translate (the center) :rear (the fuselage lengthTotal))
+	:center (translate (the center) :rear (the input fuselageLengthTotal))
 	:surfaceHorizontal (the tailSizing tailSurfaceHorizontal)
 	:surfaceVertical (the tailSizing tailSurfaceVertical)
 	:tailParameters (ecase (the input tailType)
@@ -62,9 +59,8 @@
     fuselage 
 	:type 'Fuselage
 	:finenessRatio (the input finenessRatio)
-	:lengthCenter (the input fuselageLengthCenter)
-	:lengthNose	(the input fuselageLengthNose)
-	:lengthTail (the input fuselageLengthTail)
+	:lengthTotal (the input fuselageLengthTotal)
+	:divergence (the input divergence)
 	)
 		
    (""
@@ -108,7 +104,7 @@
 								(2 0)
 								(3 (+ 0 (half (the fuselage diameter)))))
     :wingPositioning (ecase (the input engineMounting)
-						(1 (the fuselage fuselageCenter center)) 
+						(1 (make-point 0 (+ (the fuselage lengthNose) (* 0.5 (the fuselage lengthCenter))) 0)) 
 						(2 (make-point 0 (+ (the fuselage lengthNose) (* 0.6 (the fuselage lengthCenter))) 0)))
 	:airfoil(the wingAirfoil)
 	:sweepLE (the input wingSweepLE)
