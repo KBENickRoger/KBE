@@ -36,11 +36,10 @@
   (aircraftDatabaseFilePath (merge-pathnames (the aircraftDatabaseFilename) (the dataFolder)))
   (aircraftDatabase (databaseReader (the aircraftDatabaseFilePath)))
   
-<<<<<<< HEAD
   (fuselageTailCenterPoint (make-point 0 (+ (the fuselage lengthCenter) (the fuselage lengthNose)) 0))
-=======
+
   (outputQ3D (when (the outputQ3D?) (the Q3DWriter Q3D_writer))) 
->>>>>>> origin/master
+
   
   (""
   offsetSpan (ecase (the input engineMounting)
