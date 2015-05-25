@@ -27,6 +27,17 @@
    
    (MACHidden? t)
    
+   (horizontalSweepLE)
+   
+   (tailSurfaceType)
+   
+   (""
+   Vh_V nil)
+   
+   (Eta 0.95)
+   
+   (mach nil)
+   
 	)
   
   
@@ -50,7 +61,20 @@
 	
 	(""
 	sweepOffset (the (liftingSurface 0) sweepOffset))
-)
+	
+	("Lift gradient horizontal tailSurface"
+	 CLalpha (ecase (the tailSurfaceType)
+				(1 (/ (* 2 pi (the AR)) (+ 2 (sqrt(+ 4 (* (expt (/ (* (the AR) (the BetaH)) (the Eta)) 2)) (+ 1 (/ (expt (tan (the wingSweep05)) 2) (expt (the BetaH) 2)))))) ) )
+				(2 nil)))
+				
+	 ("Prandtl-Glauert correction at tail"
+	BetaH (ecase (the tailSurfaceType)
+				(1 (sqrt(- 1 (expt (* (the Vh_V) (the mach)) 2))))
+				(2 nil)))
+	 
+	 ("sweep horizontal tail at half chord"
+	 Sweep05 (asin (/ (+ (- (the chordTip) (the chordRoot)) (* (the span) (sin (degrees-to-radians (horizontalSweepLE))))) (the span))))
+	 )
   
   
   :objects
@@ -63,7 +87,9 @@
   :span (if (the symmetry) (half (the span)) (the span))
   :airfoil (the airfoil) 
   :rootPoint (the rootCenter)
-  :sweepLE 20
+  :sweepLE (ecase (the tailSurfaceType)
+				(1 (horizontalSweepLE))
+				(2 37))
   :orientation (let* ((hinge (the (face-normal-vector (ecase (the-child side)
 	(:right :front)
 	(:left :rear)))))

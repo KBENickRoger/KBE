@@ -7,33 +7,22 @@
    :description "Aerodynamics gradients capability")
   
   :input-slots
-  ((condition tailType span wingArea sweepLE rootChord tipChord tailLength tailVLength fuselageRadius AR)
+  ((Mach Vh_V span wingArea sweepLE rootChord tipChord tailLength tailVLength fuselageRadius AR)
   (Eta 0.95))
   
   :computed-slots
   (	
   (sweepLERAD (degrees-to-radians (the sweepLE)))
-  
-  (Mach (getf (the condition) :mach))
-  
+   
 	("Prandtl-Glauert correction"
-    Beta (sqrt(- 1 (expt (the Mach) 2)))) 
+    Beta (sqrt(- 1 (expt (the Mach) 2))))
    
    ("Lift-Gradient wing"
     CLalpha (/ (* 2 pi (the AR)) (+ 2 (sqrt(+ 4 (* (expt (/ (* (the AR) (the Beta)) (the Eta)) 2)) (+ 1 (/ (expt (tan (the wingSweep05)) 2) (expt (the Beta) 2)))))) ) )
    
    ("Lift gradient with fuselage"
     CLalphaWF (+ (* (the CLalpha) (+ 1 (* 2.15 (/ (twice (the fuselageRadius)) (the span)))) (/ (the wingAreaNet) (the wingArea))) (half (* pi (/ (expt (twice (the fuselageRadius)) 2) (the wingArea)))))) 
-   
-   ("Velocity deficiency at tail"
-    Vh_V (ecase (the tailType)
-				( 1 0.86) 
-				( 2 0.95) 
-				( 3 1) 
-				( 4 0.85) 
-				( 5 0.85) 
-				( 6 0.85)))
-   
+    
    ("Downwash gradient at tail"
     dEpsdAlph (* (/ (the Keps) (the Keps0)) (the dEpsdAlph2) (/ (the CLalpha) (* pi (the AR)))) )
 	

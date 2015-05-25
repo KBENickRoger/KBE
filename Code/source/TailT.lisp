@@ -16,8 +16,13 @@
 	(""
 	tailParameters nil)
 	
+	(horizontalSweepLE)
+	
 		(""
 	airfoil "naca0012_cst.dat")
+	
+	(mach)
+	
  )
  
   :computed-slots
@@ -33,6 +38,7 @@
 	:taper (getf (the tailParameters) :verticalTaper)
 	:dihedral 90
 	:airfoil (the airfoil)
+	:tailSurfaceType 2
 	)
    
    (""
@@ -43,6 +49,10 @@
 	:taper (getf (the tailParameters) :horizontalTaper)
 	:center (translate (the center) :up (the verticalTail span))
 	:airfoil (the airfoil)
+	:horizontalSweepLE (the horizontalSweepLE)
+	:tailSurfaceType 1
+	:Vh_V (getf (the tailParameters) :Vh_V)
+	:mach (the mach)
 	)
   
   )

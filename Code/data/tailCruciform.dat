@@ -8,4 +8,6 @@ horizontalPlacement 0.5
 ; Vertical tail plane parameters
 verticalAR 1.2
 verticalTaper 0.5
+;
+Vh_V 0.95
 

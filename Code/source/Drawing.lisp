@@ -3,9 +3,11 @@
 (define-object Aircraft-tridrawing (base-drawing)
 
 :input-slots
-((outputFolder *outputFolder*))
+((outputFolder *outputFolder*)
+;input(fuselage engines wing tail)
+)
 
-:hidden-objects ((Aircraft :type 'Aircraft)
+:hidden-objects ( ;(Aircraft :type 'Aircraft)
 
 				 (text-block :type 'Aircraft-text-block
 							 :margins (twice (twice (the text-view left-margin)))
@@ -36,10 +38,10 @@
 
 (tri-view :type 'base-view
 			:border-box? t
-			:object-roots (list (the Aircraft fuselage) 
-								(the Aircraft engines)
-								(the Aircraft wing)
-								(the Aircraft tail))
+			:object-roots (list (the fuselage) 
+								(the engines)
+								(the wing)
+								(the tail))
 			:length (half (the length))
 			:width (the width)
 			:center (translate (the center)

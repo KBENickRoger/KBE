@@ -7,4 +7,6 @@ horizontalTaper 0.4
 ; Vertical tail plane parameters
 verticalAR 1.2
 verticalTaper 0.5
+;
+Vh_V 1
 

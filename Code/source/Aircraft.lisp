@@ -39,7 +39,10 @@
   (fuselageTailCenterPoint (make-point 0 (+ (the fuselage lengthCenter) (the fuselage lengthNose)) 0))
 
   (outputQ3D (when (the outputQ3D?) (the Q3DWriter Q3D_writer))) 
+  
+  (ACy (get-y (the wing center)))
 
+  (horizontalSweepLE (+ 10 (the input wingSweepLE)))
   
   (""
   offsetSpan (ecase (the input engineMounting)
@@ -68,6 +71,8 @@
 						(5 (the constants tailC))
 						(6 (the constants tailH)))
 	:airfoil (the tailAirfoil)
+	:horizontalSweepLE (the horizontalSweepLE)
+	:mach (getf (the input cruiseCondition) :mach)
 	)
  
    (""
@@ -104,6 +109,7 @@
 	:offsetWingBottom (ecase (the input engineMounting)
 				   ( 1 (* 0.75 (the input engineDiameter)))
 	 			   ( 2 0 ))
+	:ACy (the ACy)
 	)
    
    (""
@@ -162,8 +168,7 @@
 	(""
 	AeroGradients
 	:type 'Aerodynamics
-	:condition (the input cruiseCondition)
-	:tailType (the input tailType)
+	:Vh_V (getf (the tail tailParameters) :Vh_V)
 	:span (the wing span)
 	:wingArea (the wing surface)
 	:sweepLE (the wing sweepLE)
@@ -174,7 +179,38 @@
 	:tailVLength (- (get-z (the tail center)) (get-z (the wing center)))
 	:fuselageRadius (half (the fuselage diameter))
 	:AR (the wing aspectRatio)
+	:Mach (getf (the input cruiseCondition) :mach)
 	)
+	
+;	(""
+;	Locations 
+;	:type 'Locations
+;	:dEpsdAlph (the AeroGradients dEpsdAlph)
+;	:CLalphaWF (the AeroGradients CLalphaWF)
+;	:CLalpha (the AeroGradients CLalpha)
+;	:Vh_V (the AeroGradients Vh_V)
+;	:wingArea (the wing surface)
+;	:tailArea (the tailSizing tailSurfaceHorizontal)
+;	:tailArm (the tailSizing tailArm)
+;	:wingCmac (the wing Cmac)
+;	:tailCmac (the tail Cmac)
+;	:wingTaper (the wing taper)
+;	:tailTaper (the tail taper)
+;	:wingSpan (the wing span)
+;	:tailSpan (the tail span)
+;	:wingSweepLE (the wing sweepLE)
+;	:tailSweepLE (the tail sweepLE)
+;	:fuselageRadius (half (the fuselage diameter))
+;	:spanNet (the AeroGradients spanNet)
+;	:wingCenter (the wing center)
+;	:Kn (ecase (the input engineMounting)
+;				(1 (- 4))
+;				(2 (- 2.5)))
+;	:Bn (the input engineDiameter)
+;	:l_n (ecase (the input engineMounting)
+;				( 1 (+ (the engines l_n) (half (the input engineLength))))
+;				( 2 (- (the engines l_n) (half (the input engineLength))))
+;	)
 )
 	
 
