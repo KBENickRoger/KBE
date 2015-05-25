@@ -58,7 +58,7 @@
 
 :functions
 (
-(ouput_PDF!
+(ouput_PDF ()
 	(with-format (pdf (merge-pathnames "Aircraft-main.pdf" (the outputFolder))
 							:page-length (the page-length) :page-width (the page-width)
 	(write-the cad-output))))
@@ -115,7 +115,7 @@
 
 :functions
 (
-(ouput_PDF!
+(ouput_PDF ()
 	(with-format (pdf (merge-pathnames "Aircraft-views.pdf" (the outputFolder))
 							:page-length (the page-length) :page-width (the page-width)
 	(write-the cad-output))))

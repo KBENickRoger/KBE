@@ -38,8 +38,8 @@
   (fuselageTailCenterPoint (make-point 0 (+ (the fuselage lengthCenter) (the fuselage lengthNose)) 0))
 
   (output_Q3D? (the Q3DWriter Q3D_writer))
-  (output_PDF_main? (the drawingMain output_PDF!))
-  (output_PDF_views? (the drawingViews output_PDF!))
+  (output_PDF_main? (the drawingMain output_PDF))
+  (output_PDF_views? (the drawingViews output_PDF))
   
   ("longitudinal location of Wing AC"
   ACy (get-y (the wing center)))
