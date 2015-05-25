@@ -88,7 +88,7 @@
   :airfoil (the airfoil) 
   :rootPoint (the rootCenter)
   :sweepLE (ecase (the tailSurfaceType)
-				(1 (horizontalSweepLE))
+				(1 (the horizontalSweepLE))
 				(2 37))
   :orientation (let* ((hinge (the (face-normal-vector (ecase (the-child side)
 	(:right :front)

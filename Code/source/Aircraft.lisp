@@ -41,9 +41,11 @@
   (output_PDF_main? (the drawingMain output_PDF!))
   (output_PDF_views? (the drawingViews output_PDF!))
   
-  (ACy (get-y (the wing center)))
+  ("longitudinal location of Wing AC"
+  ACy (get-y (the wing center)))
 
-  (horizontalSweepLE (+ 10 (the input wingSweepLE)))
+  ("Sweep of horizontal tailplane"
+  horizontalSweepLE (+ 10 (the input wingSweepLE)))
   
   (""
   offsetSpan (ecase (the input engineMounting)
@@ -166,13 +168,13 @@
     )
 
 	
-	(""
+	("Capability to evaluate Lift gradient, downwash gradient and lift gradient with fuselage"
 	AeroGradients
 	:type 'Aerodynamics
 	:Vh_V (getf (the tail tailParameters) :Vh_V)
 	:span (the wing span)
 	:wingArea (the wing surface)
-	:sweepLE (the wing sweepLE)
+	:sweepLE (the input wingSweepLE)
 	:rootChord (the wing chordRoot)
 	:tipChord (the wing chordTip)
 	:tailLength (sqrt(+ (expt (the tailSizing tailArm) 2)

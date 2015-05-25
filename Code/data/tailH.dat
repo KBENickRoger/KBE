@@ -7,4 +7,7 @@ horizontalTaper 0.8
 ; Vertical tail plane parameters
 verticalAR 1.9
 verticalTaper 0.5
+;
+;Velocity deficiency at tail
+Vh_V 0.86
 

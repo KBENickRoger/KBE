@@ -7,7 +7,7 @@
    :description "Aerodynamics gradients capability")
   
   :input-slots
-  ((Mach Vh_V span wingArea sweepLE rootChord tipChord tailLength tailVLength fuselageRadius AR)
+  ((Mach) (Vh_V span wingArea sweepLE rootChord tipChord tailLength tailVLength fuselageRadius AR)
   (Eta 0.95))
   
   :computed-slots
