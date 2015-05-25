@@ -64,7 +64,7 @@
 	
 	("Lift gradient horizontal tailSurface"
 	 CLalpha (ecase (the tailSurfaceType)
-				(1 (/ (* 2 pi (the AR)) (+ 2 (sqrt(+ 4 (* (expt (/ (* (the AR) (the BetaH)) (the Eta)) 2)) (+ 1 (/ (expt (tan (the wingSweep05)) 2) (expt (the BetaH) 2)))))) ) )
+				(1 (/ (* 2 pi (the AR)) (+ 2 (sqrt(+ 4 (* (expt (/ (* (the AR) (the BetaH)) (the Eta)) 2)) (+ 1 (/ (expt (tan (the Sweep05)) 2) (expt (the BetaH) 2)))))) ) )
 				(2 nil)))
 				
 	 ("Prandtl-Glauert correction at tail"
@@ -73,7 +73,7 @@
 				(2 nil)))
 	 
 	 ("sweep horizontal tail at half chord"
-	 Sweep05 (asin (/ (+ (- (the chordTip) (the chordRoot)) (* (the span) (sin (degrees-to-radians (horizontalSweepLE))))) (the span))))
+	 Sweep05 (asin (/ (+ (- (the chordTip) (the chordRoot)) (* (the span) (sin (degrees-to-radians (the horizontalSweepLE))))) (the span))))
 	 )
   
   
