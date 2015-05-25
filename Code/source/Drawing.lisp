@@ -3,19 +3,23 @@
 (define-object Aircraft-tridrawing (base-drawing)
 
 :input-slots
-((outputFolder *outputFolder*)
-;input(fuselage engines wing tail)
+(
+ (outputFolder *outputFolder*)
+ (fuselage) 
+ (engines) 
+ (wing) 
+ (tail)
 )
 
-:hidden-objects ( ;(Aircraft :type 'Aircraft)
-
+:hidden-objects 
+(
 				 (text-block :type 'Aircraft-text-block
 							 :margins (twice (twice (the text-view left-margin)))
 							 :width (the text-view width)
 							 :length (the text-view length)
 							 :Fuselage-length 0 ;(+ (the input fuselageLengthCenter) (the input fuselageLengthNose) (the input fuselageLengthTail))
 							 :Fuselage-slenderness-ratio 0 ;(the input Fuselage-slenderness-ratio)
-							 :Wing-Span (the Aircraft wingAirfoil)
+							 :Wing-Span (the wing span)
 							 :Wing-Sweep 0 ; (the wing sweepLE)
 							 :Wing-Taper 0 ; (the wing taper)
 							 :Wing-C_mac 0 ;(the wing Cmac)
@@ -24,10 +28,12 @@
 							 :EnginePos 0 ; (ecase (the input engineMounting)
 										; ( 1 "Wing-podded")
 										; ( 2 "Fuselage-podded")))
-							 ))
+							 )
+)
  
 :objects
-((text-view :type 'base-view
+(
+(text-view :type 'base-view
 			:border-box? t
 			:objects (list (the text-block))
 			:length (half (the length))
@@ -48,20 +54,38 @@
 								:rear (half (the-child length)))
 			:projection-vector (getf *standard-views* :trimetric)
 			)			
+)
 
-))
+:functions
+(
+(ouput_PDF!
+	(with-format (pdf (merge-pathnames "Aircraft-main.pdf" (the outputFolder))
+							:page-length (the page-length) :page-width (the page-width)
+	(write-the cad-output))))
+)
+
+)
 
 (define-object Aircraft-viewdrawing (base-drawing)
 
-:hidden-objects ((Aircraft :type 'Aircraft))
+:input-slots
+(
+ (outputFolder *outputFolder*)
+ (fuselage) 
+ (engines) 
+ (wing) 
+ (tail)
+)
+
+:computed-slots
+(
+(objectList (list (the fuselage) (the engines) (the wing) (the tail)))
+)
 
 :objects
 ((front-view :type 'base-view
 			:border-box? t
-			:object-roots (list (the Aircraft fuselage) 
-								(the Aircraft engines)
-								(the Aircraft wing)
-								(the Aircraft tail))
+			:object-roots (the objectList)
 			:length (half (half (the length)))
 			:width	(the width)
 			:center (translate (the center)
@@ -71,10 +95,7 @@
 			
 (top-view :type 'base-view
 			:border-box? t
-			:object-roots (list (the Aircraft fuselage) 
-								(the Aircraft engines)
-								(the Aircraft wing)
-								(the Aircraft tail))
+			:object-roots (the objectList)
 			:length (half (the length))
 			:width (the width)
 			:center (the center)
@@ -83,10 +104,7 @@
 
 (side-view :type 'base-view
 			:border-box? t
-			:object-roots (list (the Aircraft fuselage) 
-								(the Aircraft engines)
-								(the Aircraft wing)
-								(the Aircraft tail))
+			:object-roots (the objectList)
 			:length (half (half (the length)))
 			:width (the width)
 			:center (translate (the center)
@@ -96,17 +114,15 @@
 )
 
 :functions
-((write-drawing
-	()
-	(with-format (pdf (merge-pathnames "Aircraft-drawing.pdf" (the outputFolder))
-						:page-length (the page-length) :page-width (the page-width)
+(
+(ouput_PDF!
+	(with-format (pdf (merge-pathnames "Aircraft-views.pdf" (the outputFolder))
+							:page-length (the page-length) :page-width (the page-width)
 	(write-the cad-output))))
-	
- (write-step
-	()
-	(with-format (step (merge-pathnames "Aircraft3D.stp" (the outputFolder))
-	(write-the cad-output-tree))))
-))
+)
+
+)
+ 
 
 (define-object Aircraft-text-block (typeset-block)
 

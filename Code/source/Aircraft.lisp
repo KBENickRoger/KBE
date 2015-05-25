@@ -25,7 +25,6 @@
    (aircraftDatabaseFilename "aircraftDatabase.dat")
    (wingAirfoil "whitcomb_cst.dat")
    (tailAirfoil "naca0012_cst.dat")
-   (outputQ3D? nil :settable)
   )
   
   :computed-slots
@@ -38,7 +37,9 @@
   
   (fuselageTailCenterPoint (make-point 0 (+ (the fuselage lengthCenter) (the fuselage lengthNose)) 0))
 
-  (outputQ3D (when (the outputQ3D?) (the Q3DWriter Q3D_writer))) 
+  (output_Q3D? (the Q3DWriter Q3D_writer))
+  (output_PDF_main? (the drawingMain output_PDF!))
+  (output_PDF_views? (the drawingViews output_PDF!))
   
   (ACy (get-y (the wing center)))
 
@@ -211,12 +212,34 @@
 ;				( 1 (+ (the engines l_n) (half (the input engineLength))))
 ;				( 2 (- (the engines l_n) (half (the input engineLength))))
 ;	)
+
+	(drawingMain 
+	:type 'Aircraft-tridrawing
+	:fuselage (the fuselage)
+	:engines (the engines)
+	:wing (the wing)
+	:tail (the tail)
+	
+	)
+
+	(drawingViews
+	:type 'Aircraft-viewdrawing
+	:fuselage (the fuselage)
+	:engines (the engines)
+	:wing (the wing)
+	:tail (the tail)
+	)
 )
 	
 
   :functions
-  ()
+  (  )
 
 )
 
+;(write-step
+;	()
+;	(with-format (step (merge-pathnames "Aircraft3D.stp" (the outputFolder))
+;	(write-the cad-output-tree))))
+;))
 
