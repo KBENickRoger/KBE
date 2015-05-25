@@ -38,8 +38,9 @@
   (fuselageTailCenterPoint (make-point 0 (+ (the fuselage lengthCenter) (the fuselage lengthNose)) 0))
 
   (output_Q3D? (the Q3DWriter Q3D_writer) )
-  (output_PDF_main? (the drawingMain output_writer))
-  (output_PDF_views? (the drawingViews output_writer))
+  (output_PDF_main? (the drawingMain outputPDF!))
+  (output_PDF_views? (the drawingViews outputPDF!))
+  (output_STEP? (the (outputSTEP!)))
   
   ("longitudinal location of Wing AC"
   ACy (get-y (the wing center)))
@@ -216,7 +217,7 @@
 ;	)
 
 	(drawingMain 
-	:type 'Aircraft-tridrawing
+	:type 'Drawing-main
 	:fuselage (the fuselage)
 	:engines (the engines)
 	:wing (the wing)
@@ -225,7 +226,7 @@
 	)
 
 	(drawingViews
-	:type 'Aircraft-viewdrawing
+	:type 'Drawing-views
 	:fuselage (the fuselage)
 	:engines (the engines)
 	:wing (the wing)
@@ -235,13 +236,14 @@
 	
 
   :functions
-  (  )
-
+  ((outputSTEP!
+	()
+	(with-format (step (merge-pathnames "Aircraft3D.stp" (the outputFolder)))
+	(write-the cad-output-tree)))
+	)
 )
 
-;(write-step
-;	()
-;	(with-format (step (merge-pathnames "Aircraft3D.stp" (the outputFolder))
-;	(write-the cad-output-tree))))
-;))
+
+
+
 

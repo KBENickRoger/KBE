@@ -1,6 +1,6 @@
 (in-package :gdl-user)
 
-(define-object Aircraft-tridrawing (base-drawing)
+(define-object Drawing-main (base-drawing)
 
 :input-slots
 (
@@ -9,6 +9,11 @@
  (engines) 
  (wing) 
  (tail)
+)
+
+:computed-slots
+(
+(outputPDF! (the (output!)))
 )
 
 :hidden-objects 
@@ -40,7 +45,8 @@
 			:width (the width)
 			:projection-vector (getf *standard-views* :top)
 			:center (translate (the center) 
-								:front (half (the-child length))))
+								:front (half (the-child length)))
+)
 
 (tri-view :type 'base-view
 			:border-box? t
@@ -53,81 +59,36 @@
 			:center (translate (the center)
 								:rear (half (the-child length)))
 			:projection-vector (getf *standard-views* :trimetric)
-			)			
+)	
 )
 
 :functions
-(
-(ouput_writer
+((output! 
   ()
-	(with-format (pdf (merge-pathnames "Aircraft-main.pdf" (the outputFolder))
-							:page-length (the page-length) :page-width (the page-width))
-	(write-the cad-output)))
-)
+  (with-format (pdf (merge-pathnames "Drawing-main.pdf" (the outputFolder))
+		    :page-length (the page-length) :page-width (the page-width))
+    (write-the cad-output)))))
 
-)
-(define-object Aircraft-viewdrawing (base-drawing)
 
-:input-slots
-(
- (outputFolder *outputFolder*)
- (fuselage) 
- (engines) 
- (wing) 
- (tail)
-)
-
-:computed-slots
-(
-(objectList (list (the fuselage) (the engines) (the wing) (the tail)))
-)
-
-:objects
-((front-view :type 'base-view
-			:border-box? t
-			:object-roots (the objectList)
-			:length (half (half (the length)))
-			:width	(the width)
-			:center (translate (the center)
-								:rear (* 3 (half (the-child length))))
-			:projection-vector (getf *standard-views* :front)
-			)
-			
-(top-view :type 'base-view
-			:border-box? t
-			:object-roots (the objectList)
-			:length (half (the length))
-			:width (the width)
-			:center (the center)
-			:projection-vector (getf *standard-views* :top)
-			)
-
-(side-view :type 'base-view
-			:border-box? t
-			:object-roots (the objectList)
-			:length (half (half (the length)))
-			:width (the width)
-			:center (translate (the center)
-								:front (* 3 (half (the-child length))))
-			:projection-vector (getf *standard-views* :right)
-			)
-)
-
-:functions
-((ouput_writer
- ()
-	(with-format (pdf (merge-pathnames "Aircraft-views.pdf" (the outputFolder))
-							:page-length (the page-length) :page-width (the page-width))
-	(write-the cad-output)))
-)
-)
 (define-object Aircraft-text-block (typeset-block)
 
 :input-slots
-((Fuselage-length Fuselage-slenderness-ratio Wing-Span Wing-Sweep Wing-Taper Wing-C_mac Wing-Surface-Area Engine-number EnginePos))
+((margins)
+ (width)
+ (length)
+ (Fuselage-length) 
+ (Fuselage-slenderness-ratio) 
+ (Wing-Span) 
+ (Wing-Sweep) 
+ (Wing-Taper) 
+ (Wing-C_mac) 
+ (Wing-Surface-Area) 
+ (Engine-number) 
+ (EnginePos))
 
 :functions
- ((content
+ (
+ (content
     ()
     (tt:compile-text (:font "Helvetica" :font-size 12.0)
       (tt:vspace 100)
@@ -139,4 +100,7 @@
 	    (tt:row ()
 	      (tt:cell (:background-color "#FFFFFF") (tt:put-string (format nil "~a" (string-capitalize slot))))
 	      (tt:cell () 
-		(tt:paragraph (:h-align :center) (tt:put-string (format nil "~a" (the (evaluate slot))))))))))))))
+		(tt:paragraph (:h-align :center) (tt:put-string (format nil "~a" (the (evaluate slot))))))))))))
+)
+
+)
