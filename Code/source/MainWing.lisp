@@ -15,6 +15,7 @@
 	(rootPoint (make-point 0 0 0))
 	(sweepLE 10)
 	(airfoil)
+	(dihedral)
 	(dataFolder *dataFolder*))
   
   
@@ -58,6 +59,7 @@
 	:rootPoint (the rootPoint)
 	:airfoil (the airfoil)
 	:sweepLE (the sweepLE)
+	:dihedral (the dihedral)
 	)
 			
 	(outerWing
@@ -71,6 +73,7 @@
 			:rear (half (the innerWing sweepOffset)))
 	:airfoil (the airfoil)
 	:sweepLE (the sweepLE)
+	:dihedral (the dihedral)
 	)
 	
 	(MAC
@@ -85,9 +88,6 @@
 						:front (half (the chordRoot)))
 	
 	)
-	
-
-	
 	
 	)
   

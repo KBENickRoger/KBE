@@ -12,6 +12,12 @@
 							    :defaults excl:*source-pathname*))
 )
 
+(defparameter *xfoil-folder* (merge-pathnames "../source/Xfoil/"
+					     (make-pathname :name nil
+							    :type nil
+							    :defaults excl:*source-pathname*))
+)
+
 (define-object Aircraft (base-object)
   
   :documentation

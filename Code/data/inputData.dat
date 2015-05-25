@@ -5,7 +5,7 @@ wingSpan 100
 wingChordRoot 10 
 wingKinkPos 0.3
 wingTaper 0.5
-wingDihedral 5
+wingDihedral 3
 wingConfiguration 1
 wingAirfoil NACA_0012_xyz.dat
 wingSweepLE 10
