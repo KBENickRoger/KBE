@@ -7,7 +7,8 @@
    :description "")
   
   :input-slots
-  ((""
+  (
+	(""
     symmetry nil )
    
    (""
@@ -25,20 +26,27 @@
    (""
    dihedral 0)
    
-   (MACHidden? t)
-   
-   (horizontalSweepLE)
-   
-   (tailSurfaceType 1)
+   (""
+   MACHidden? t)
    
    (""
-   Vh_V)
+   horizontalSweepLE)
    
-   (Eta 0.95)
+   (""
+   tailSurfaceType 1)
    
-   (mach)
+   (""
+   Vh_V 1)
    
-	)
+   (""
+   Eta 0.95)
+   
+   (""
+   mach 1)
+   
+   (""
+   weightParams nil)
+   )
   
   
   :computed-slots
@@ -77,9 +85,19 @@
 	 
 	 ("Tail weight calculator"
 	 weight (ecase (the tailSurfaceType)
-			 (1 (the (WHorizontal)))
-			 (2 (the (WVertical)))))
+			 (1 (lb2kg (the (WHorizontal))))
+			 (2 (lb2kg (the (WVertical))))))
 	 
+	 ;; get the weight params out of the list for easier reading later
+	 (FW (getf (the weightParams) :FW))
+	 (Wdg (getf (the weightParams) :Wdg))
+	 (Nz (getf (the weightParams) :Nz))
+	 (Lt (getf (the weightParams) :Lt))
+	 (ky (getf (the weightParams) :ky))
+	 (kz (getf (the weightParams) :kz))
+	 (se_sh (getf (the weightParams) :se_sh))
+	 (Ht_Hv (getf (the weightParams) :Ht_Hv))
+	 (wingSweepQCrad (asin (/ (+ (half (- (the chordTip) (the chordRoot))) (* (the span) (sin (degrees-to-radians (ecase (the tailSurfaceType) (1 (the horizontalSweepLE))(2 37)))))) (the span))))
 	 )
   
   
@@ -113,16 +131,34 @@
   :functions
   (
   (WHorizontal ()
-  (* 0.0379 1)
-  
+  (* 			0.0379 1 	
+				(expt (+ 1 (/ (the FW) (m2ft (the span)))) -0.25) 
+				(expt (the Wdg) 0.639) 
+				(expt (the Nz) 0.1) 
+				(expt (sqm2sqft (the area)) 0.75)
+				(expt (the Lt) -1)
+				(expt (the ky) 0.704)
+				(expt (cos (the wingSweepQCrad)) -1)
+				(expt (the AR) 0.166)
+				(expt (+ 1 (the se_sh)) 0.1))
   )
   
   (WVertical ()
+  (*			0.0026
+				(expt (+ 1 (the Ht_Hv)) 0.225)
+				(expt (the Wdg) 0.556)
+				(expt (the Nz) 0.536)
+				(expt (the Lt) -0.5)
+				(expt (sqm2sqft (the area)) 0.5)
+				(expt (the AR) 0.35)
+				(expt (the (liftingSurface 0) profile max-thickness) -0.5))
   
   )
   
   )
   
-  
-  
   )
+  
+  
+  
+  

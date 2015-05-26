@@ -18,11 +18,18 @@
 ; convert meter to ft
 (defun m2ft (m) (* 3.28 m))
 
+; convert m^2 to ft^2
+(defun sqm2sqft (sqm) (* 10.7639104 sqm))
+
 ; convert kg to lb
 (defun kg2lb (kg) (* 2.2 kg))
 
+; convert lb to kg
+(defun lb2kg (lb) (/ lb 2.2))
+
 ; convert from lbf to N
 (defun lbf2N (lbf) (* 4.448222 lbf)) 
+
 
 
 ;; --- Input data reading functions ---

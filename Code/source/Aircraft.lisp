@@ -59,7 +59,12 @@
   offsetSpan (ecase (the input engineMounting)
 				( 1 (/ (- (the wing span) (the fuselage diameter)) (+ 2 (the engines engineNumber)))) 
 				( 2 (the input engineDiameter))))
+				
+	;Extracting the weight from the tail
+	("Weight tail [kg]" 
+	weightTail (the tail weight))
   )
+  
   :objects
   (
   ("Tail generating object. Creates tail through tailType-->tailSurface-->wingTrunk"
@@ -89,10 +94,10 @@
 					:FW (m2ft (case (the input tailType) (2 0) (3 0) (otherwise (* 0.1 (the fuselage diameter)))))
 					:Wdg (kg2lb(getf (the input cruiseCondition) :weight))
 					:Nz (* 1.5 (getf (the input cruiseCondition) :limitLoad))
-					:Lt (- (the fuselage lengthTotal) (get-y (the wing center)))
-					:ky (* 0.3 (- (the fuselage lengthTotal) (get-y (the wing center))))
-					:kz (- (the fuselage lengthTotal) (get-y (the wing center)))
-					:de_dh 0.3
+					:Lt (m2ft (- (the fuselage lengthTotal) (get-y (the wing center))))
+					:ky (m2ft (* 0.3 (- (the fuselage lengthTotal) (get-y (the wing center)))))
+					:kz (m2ft (- (the fuselage lengthTotal) (get-y (the wing center))))
+					:se_sh 0.3
 					:Ht_Hv (case (the input tailType) (2 1) (case 3 1) (otherwise 0))
 					)
 	)
