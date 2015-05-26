@@ -2,16 +2,15 @@
 ;
 ; Wing parameters
 wingSpan 100
-wingChordRoot 10 
-wingKinkPos 0.3
-wingTaper 0.5
+wingChordRoot 11 
+wingKinkPos 0.35
+wingTaper 0.4
 wingDihedral 5
 wingConfiguration 1
-wingAirfoil NACA_0012_xyz.dat
-wingSweepLE 10
+wingSweepLE 15
 ;
 ; Tail parameters
-tailType 1
+tailType 5
 ;
 ; Fuselage parameters
 finenessRatio 8

@@ -9,11 +9,12 @@
  (engines) 
  (wing) 
  (tail)
+ (ACCG)
 )
 
 :computed-slots
 (
-(objectList (list (the fuselage) (the engines) (the wing) (the tail)))
+(objectList (list (the fuselage) (the engines) (the wing) (the tail) (ACCG)))
 (outputPDF! (the (output!)))  
 )
 

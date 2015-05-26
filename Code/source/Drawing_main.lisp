@@ -9,6 +9,7 @@
  (engines) 
  (wing) 
  (tail)
+ (ACCG)
 )
 
 :computed-slots
@@ -54,7 +55,8 @@
 			:object-roots (list (the fuselage) 
 								(the engines)
 								(the wing)
-								(the tail))
+								(the tail)
+								(ACCG))
 			:length (half (the length))
 			:width (the width)
 			:center (translate (the center)

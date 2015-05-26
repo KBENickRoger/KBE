@@ -245,6 +245,7 @@
 	:engines (the engines)
 	:wing (the wing)
 	:tail (the tail)
+	:ACCG (the ACCG)
 	
 	)
 
@@ -256,6 +257,7 @@
 	:engines (the engines)
 	:wing (the wing)
 	:tail (the tail)
+	:ACCG (the ACCG)
 	)
 	
 	("Output writer for Q3D file"
