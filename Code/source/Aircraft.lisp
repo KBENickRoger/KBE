@@ -263,20 +263,17 @@
 	
 	("Input pdf generator"
 	InputPDF
-;	:hidden? t
+	:hidden? t
 	:type 'InputPDF
 	:input (the input)
 	)
 	
 	("Output pdf generator"
 	OutputPDF
-;	:hidden? t
+	:hidden? t
 	:type 'OutputPDF
-	:fuselage (the fuselage)
-	:engines (the engines)
 	:wing (the wing)
 	:tail (the tail)
-	:input (the input)
 	:Locations (the Locations)
 	:AeroGradients (the AeroGradients)
 	)

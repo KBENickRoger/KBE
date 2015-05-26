@@ -67,7 +67,8 @@
 			:length (the length)
 			:width (the width)
 			:projection-vector (getf *standard-views* :top)
-			:center (the center))
+			:center (the center)
+			:hidden? t)
 )
 
 :functions

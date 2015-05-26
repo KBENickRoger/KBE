@@ -51,6 +51,8 @@
 
 	(lengthNose (* (the lengthTotal) 0.2))
 	
+	(lengthTail (* (the lengthTotal) 0.3))
+	
   )
   
 

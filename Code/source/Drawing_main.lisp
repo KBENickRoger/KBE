@@ -23,19 +23,19 @@
 							 :width (the text-view width)
 							 :length (the text-view length)
 							 :inputList (list 
-							 :Fuselage-length 10 ;(+ (the input fuselageLengthCenter) (the input fuselageLengthNose) (the input fuselageLengthTail))
-							 :Fuselage-slenderness-ratio 0 ;(the input Fuselage-slenderness-ratio)
+							 :Fuselage-length (+ (the fuselage lengthCenter) (the fuselage lengthNose) (the fuselage lengthTail))
+							 :Fuselage-slenderness-ratio (the input finenessRatio)
 							 :Wing-Span (the wing span)
-							 :Wing-Sweep 0 ; (the wing sweepLE)
-							 :Wing-Taper 0 ; (the wing taper)
-							 :Wing-C_mac 0 ;(the wing Cmac)
-							 :Wing-Surface-Area 0 ;(the wing surface)
-							 :Engine-number 0 ;(the engines engineNumber)
-							 :EnginePos 0 ; (ecase (the input engineMounting)
-										; ( 1 "Wing-podded")
-										; ( 2 "Fuselage-podded")))
+							 :Wing-Sweep (the wing sweepLE)
+							 :Wing-Taper (the wing taper)
+							 :Wing-C_mac (the wing Cmac)
+							 :Wing-Surface-Area (the wing surface)
+							 :Engine-number (the engines engineNumber)
+							 :EnginePos (ecase (the input engineMounting)
+										( 1 "Wing-podded")
+										( 2 "Fuselage-podded")))
 							 ))
-)
+
  
 :objects
 (
