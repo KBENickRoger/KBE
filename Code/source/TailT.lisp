@@ -8,9 +8,8 @@
 
   :computed-slots
 	(
-	(""
-	horizontalPlacement 1
-	)
+	(horizontalPlacement 1)
+	(horizontalBack (the verticalTail chordTip))
 	)
   
  )
