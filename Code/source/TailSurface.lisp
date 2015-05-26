@@ -74,6 +74,12 @@
 	 
 	 ("sweep horizontal tail at half chord"
 	 Sweep05 (asin (/ (+ (- (the chordTip) (the chordRoot)) (* (the span) (sin (degrees-to-radians (the horizontalSweepLE))))) (the span))))
+	 
+	 ("Tail weight calculator"
+	 weight (ecase (the tailSurfaceType)
+			 (1 (the (WHorizontal)))
+			 (2 (the (WVertical)))))
+	 
 	 )
   
   
@@ -105,4 +111,18 @@
   )
   
   :functions
-  ())
+  (
+  (WHorizontal ()
+  (* 0.0379 1)
+  
+  )
+  
+  (WVertical ()
+  
+  )
+  
+  )
+  
+  
+  
+  )

@@ -13,6 +13,17 @@
 (defun degtorad (d) (* pi (/ d 180.0)))
 
 
+;; --- IS vs imperial conversion ---
+
+; convert meter to ft
+(defun m2ft (m) (* 3.28 m))
+
+; convert kg to lb
+(defun kg2lb (kg) (* 2.2 kg))
+
+; convert from lbf to N
+(defun lbf2N (lbf) (* 4.448222 lbf)) 
+
 
 ;; --- Input data reading functions ---
 

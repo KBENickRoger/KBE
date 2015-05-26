@@ -78,6 +78,16 @@
 	:airfoil (the tailAirfoil)
 	:horizontalSweepLE (the horizontalSweepLE)
 	:mach (getf (the input cruiseCondition) :mach)
+	:weightParams (list 
+					:FW (m2ft (case (the input tailType) (2 0) (3 0) (otherwise (* 0.1 (the fuselage diameter)))))
+					:Wdg (kg2lb(getf (the input cruiseCondition) :weight))
+					:Nz (* 1.5 (getf (the input cruiseCondition) :limitLoad))
+					:Lt (- (the fuselage lengthTotal) (get-y (the wing center)))
+					:ky (* 0.3 (- (the fuselage lengthTotal) (get-y (the wing center))))
+					:kz (- (the fuselage lengthTotal) (get-y (the wing center)))
+					:de_dh 0.3
+					:Ht_Hv (case (the input tailType) (2 1) (case 3 1) (otherwise 0))
+					)
 	)
  
    (""
