@@ -1,37 +1,21 @@
 (in-package :gdl-user)
 
-(define-object TailT (base-object)
+(define-object TailT (tailGeneral)
   
   :documentation
   (:author "<name> (<username>@<organization>.com)"
    :description "")
-  
-  :input-slots
-  ((""
-    surfaceHorizontal 1)
-   
-   (""
-    surfaceVertical 1)
-	
-	(""
-	tailParameters nil)
-	
-	(horizontalSweepLE)
-	
-		(""
-	airfoil "naca0012_cst.dat")
-	
-	(mach)
-	
- )
- 
+
   :computed-slots
-((CLalpha (the horizontalTail CLalpha))
-  (taper (the horizontalTail taper)))
+  (
+  (CLalpha (the horizontalTail CLalpha))
+  (taper (the horizontalTail taper))
+  )
   
   
   :objects
-  ((""
+  (
+  (""
     verticalTail :type 'TailSurface
 	:symmetry nil
 	:area (the surfaceVertical)

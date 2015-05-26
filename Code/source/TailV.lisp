@@ -1,28 +1,10 @@
 (in-package :gdl-user)
 
-(define-object TailV (base-object)
+(define-object TailV (tailGeneral)
   
   :documentation
   (:author "<name> (<username>@<organization>.com)"
    :description "")
-  
-  :input-slots
-  ((""
-    surfaceHorizontal 1)
-   
-   (""
-    surfaceVertical 1)
-	
-	(""
-	tailParameters nil)
-	
-	(mach)
-	
-	(""
-	airfoil "naca0012_cst.dat")
-	
-	(horizontalSweepLE)
- )
  
   :computed-slots
 ((surfaceTotal (+ (the surfaceHorizontal) (the surfaceVertical)))
