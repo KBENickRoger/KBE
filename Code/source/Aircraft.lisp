@@ -16,9 +16,10 @@
   
   :documentation
   (:author "Nick&Roger"
-   :description "-")
+   :description "Master object of KBE Assignment")
   
   :input-slots
+  ; Input files
   ((dataFolder *dataFolder*)
    (outputFolder *outputFolder*)
    (inputDataFilename "inputData.dat")
@@ -30,18 +31,21 @@
   
   :computed-slots
   (
-  
+  ; Reading in data and writing to variables
   (inputDataFilePath (merge-pathnames (the inputDataFilename) (the dataFolder)))
   (inputData (basicDataReader (the inputDataFilePath)))
   (aircraftDatabaseFilePath (merge-pathnames (the aircraftDatabaseFilename) (the dataFolder)))
   (aircraftDatabase (databaseReader (the aircraftDatabaseFilePath)))
-  
-  (fuselageTailCenterPoint (make-point 0 (+ (the fuselage lengthCenter) (the fuselage lengthNose)) 0))
 
+  ;Output functions
   (output_Q3D? (the Q3DWriter Q3D_writer) )
   (output_PDF_main? (the drawingMain outputPDF!))
   (output_PDF_views? (the drawingViews outputPDF!))
   (output_STEP? (the (outputSTEP!)))
+
+  ;Calculations required for inputs into objects
+  ("Attachment point engines"
+  fuselageTailCenterPoint (make-point 0 (+ (the fuselage lengthCenter) (the fuselage lengthNose)) 0))  
   
   ("longitudinal location of Wing AC"
   ACy (get-y (the wing center)))
@@ -49,13 +53,14 @@
   ("Sweep of horizontal tailplane"
   horizontalSweepLE (+ 10 (the input wingSweepLE)))
   
-  (""
+  ("Spanwise offset of engines"
   offsetSpan (ecase (the input engineMounting)
 				( 1 (/ (- (the wing span) (the fuselage diameter)) (+ 2 (the engines engineNumber)))) 
 				( 2 (the input engineDiameter))))
   )
   :objects
-  ((""
+  (
+  ("Tail generating object. Creates tail through tailType-->tailSurface-->wingTrunk"
     tail :type (ecase (the input tailType)
 					(1 'TailConventional)
 					(2 'TailCruciform)
@@ -80,7 +85,7 @@
 	:mach (getf (the input cruiseCondition) :mach)
 	)
  
-   (""
+   ("Fuselage generating object. Creates object with section curves with certain percentages of total diameter and then lofting througth them"
     fuselage 
 	:type 'Fuselage
 	:finenessRatio (the input finenessRatio)
@@ -88,7 +93,7 @@
 	:divergence (the input divergence)
 	)
 		
-   (""
+   ("Engine generating object. Uses object flow engines-->leftEngines/rightEngines --> engine"
     engines 
 	:type 'EngineAssy
 	:engineNumber (the input engineNumber)
@@ -117,7 +122,7 @@
 	:ACy (the ACy)
 	)
    
-   (""
+   ("Wing generating object. Object flow: Wing -->wingAssy-->mainWing-->wingTrunk"
     wing 
     :type 'WingAssy
     :span (the input wingSpan)
@@ -136,12 +141,12 @@
 	:sweepLE (the input wingSweepLE)
    )
 
-   (""
+   ("Input objects from input files"
     input :type 'InputData
               :parameters (the inputData)
 			  :cruiseCondition (basicDataReader (merge-pathnames "cruiseCondition.dat" (the dataFolder))))
 			  
-	(""
+	("Input object for constant data like taper or aspectRatio for different tailtypes"
 	constants :type 'ConstantData
 			  :parameters (basicDataReader (merge-pathnames (the constantDataFilename) (the dataFolder)))
 			  :tailConventional (basicDataReader (merge-pathnames "tailConventional.dat" (the dataFolder)))
@@ -152,7 +157,7 @@
 			  :tailC (basicDataReader (merge-pathnames "tailC.dat" (the dataFolder)))
 	)
   
-  (""
+  ("Tool used for sizing Surface area of horizontal and vertical tail. Uses aircraft database for tail Volumes"
    tailSizing :type 'TailSizing
 	:input (the input)
 	:database (the aircraftDatabase)
@@ -162,7 +167,7 @@
 	:wingSurface (the wing surface)
 	)
 
-   (""
+   ("Output writer for Q3D file"
     Q3DWriter 
     :type 'outputQ3D
     :wing (the wing (wings 0))
@@ -188,7 +193,7 @@
 	:Mach (getf (the input cruiseCondition) :mach)
 	)
 	
-	(""
+	("Capability module to calculate Aerodynamic center and most aft allowed cg-point"
 	Locations 
 	:type 'Locations
 	:dEpsdAlph (the AeroGradients dEpsdAlph)

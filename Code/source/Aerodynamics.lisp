@@ -13,7 +13,9 @@
   
   :computed-slots
   (	
-  (sweepLERAD (degrees-to-radians (the sweepLE)))
+  
+  ("Leading edge sweep in radians"
+  sweepLERAD (degrees-to-radians (the sweepLE)))
    
 	("Prandtl-Glauert correction"
     Beta (sqrt(- 1 (expt (the Mach) 2))))
@@ -51,7 +53,7 @@
 	("distance tail from wing (not taillength)"
 	tailRDistance (half (* (the tailLength) (the span))))
 	
-	(""
+	("Vertical distance of tail"
 	tailVDistance (half (* (the tailVLength) (the span))))
    
    ("Half Chord wing sweep"
