@@ -27,7 +27,6 @@
 							:Wing_Taper (the input wingTaper)
 							:Wing_Dihedral (the input wingDihedral)
 							:Wing_Configuration (the input wingConfiguration)
-							:Wing_Airfoil (the input wingAirfoil)
 							:Wing_SweepLE (the input wingSweepLE)
 							:Tail-Input " "
 							:Tail-type (ecase (the input tailType)
@@ -58,7 +57,7 @@
 							 ))
 							 
 
-		)
+)
 		
 :objects
 (
@@ -68,12 +67,15 @@
 			:width (the width)
 			:projection-vector (getf *standard-views* :top)
 			:center (the center)
-			:hidden? t)
+)
 )
 
 :functions
-((output! 
+(
+(output! 
   ()
   (with-format (pdf (merge-pathnames "Input.pdf" (the outputFolder))
 		    :page-length (the page-length) :page-width (the page-width))
-    (write-the cad-output)))))
+    (write-the cad-output)))
+)
+)

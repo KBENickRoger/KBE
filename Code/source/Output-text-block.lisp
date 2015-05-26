@@ -25,5 +25,5 @@
 	    (tt:row ()
 	      (tt:cell (:background-color "#FFFFFF") (tt:put-string (format nil "~a" (string-capitalize slot))))
 	      (tt:cell () 
-		(tt:paragraph (:h-align :center) (tt:put-string (format nil "~3a" (getf (the inputList) slot)))))))))))
+		(tt:paragraph (:h-align :center) (tt:put-string (format nil "~3$" (getf (the inputList) slot)))))))))))
 		))

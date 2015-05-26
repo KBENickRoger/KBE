@@ -11,7 +11,6 @@ wingKinkPos
 wingTaper 
 wingDihedral
 wingConfiguration
-wingAirfoil
 wingSweepLE
 
 ;; Tail parameters
