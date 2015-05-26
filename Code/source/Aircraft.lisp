@@ -223,7 +223,8 @@
 ;	:centerCG
 ;	:centerAC)
 	
-	(drawingMain 
+	(drawingMain
+	:hidden? t
 	:type 'Drawing-main
 	:fuselage (the fuselage)
 	:engines (the engines)
@@ -233,6 +234,7 @@
 	)
 
 	(drawingViews
+	:hidden? t
 	:type 'Drawing-views
 	:fuselage (the fuselage)
 	:engines (the engines)
