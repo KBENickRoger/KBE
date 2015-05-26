@@ -201,8 +201,7 @@
 	:wingCmac (the wing Cmac)
 	:wingTaper (the wing taper)
 	:tailTaper (the tail horizontalTail taper)
-	:wingSpan (the wing span)
-	:tailSpan (the tail horizontalTail span)
+	:span (the wing span)
 	:wingSweepLE (the wing sweepLE)
 	:fuselageRadius (half (the fuselage diameter))
 	:spanNet (the AeroGradients spanNet)
@@ -218,10 +217,10 @@
 	:tipChord (the wing chordTip)
 	)
 
-;	(ACCG
-;	:type 'ACCG
-;	:centerCG
-;	:centerAC)
+	(ACCG
+	:type 'ACCG
+	:centerCG (make-point 0 (the Locations Xcg) 0)
+	:centerAC (make-point 0 (the Locations XacTot) 0))
 	
 	(drawingMain
 	:hidden? t
