@@ -26,8 +26,8 @@
  )
  
   :computed-slots
-()
-  
+((CLalpha (the horizontalTail CLalpha))
+  (taper (the horizontalTail taper)))
   
   :objects
   ((""
