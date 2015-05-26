@@ -22,6 +22,7 @@
   ((dataFolder *dataFolder*)
    (outputFolder *outputFolder*)
    (inputDataFilename "inputData.dat")
+   (constantDataFilename "constantData.dat")
    (aircraftDatabaseFilename "aircraftDatabase.dat")
    (wingAirfoil "whitcomb_cst.dat")
    (tailAirfoil "naca0012_cst.dat")
@@ -142,6 +143,7 @@
 			  
 	(""
 	constants :type 'ConstantData
+			  :parameters (basicDataReader (merge-pathnames (the constantDataFilename) (the dataFolder)))
 			  :tailConventional (basicDataReader (merge-pathnames "tailConventional.dat" (the dataFolder)))
 			  :tailCruciform(basicDataReader (merge-pathnames "tailCruciform.dat" (the dataFolder)))
 			  :tailT (basicDataReader (merge-pathnames "tailT.dat" (the dataFolder)))

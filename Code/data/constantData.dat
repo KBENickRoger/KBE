@@ -1,0 +1,7 @@
+; Constants input file
+;
+; Mainly concerns various settings of the sizing tools
+;
+; Tail volumes to use in case no matching aircraft can be found in the database
+tailVolumeHorizontalStandard 0.6
+tailVolumeVerticalStandard 0.06
