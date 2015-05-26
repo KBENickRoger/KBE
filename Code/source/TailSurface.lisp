@@ -85,8 +85,8 @@
 	 
 	 ("Tail weight calculator"
 	 weight (ecase (the tailSurfaceType)
-			 (1 (the (WHorizontal)))
-			 (2 (the (WVertical)))))
+			 (1 (lb2kg (the (WHorizontal))))
+			 (2 (lb2kg (the (WVertical))))))
 	 
 	 ;; get the weight params out of the list for easier reading later
 	 (FW (getf (the weightParams) :FW))
@@ -132,10 +132,10 @@
   (
   (WHorizontal ()
   (* 			0.0379 1 	
-				(expt (+ 1 (/ (the FW) (the span))) -0.25) 
+				(expt (+ 1 (/ (the FW) (m2ft (the span)))) -0.25) 
 				(expt (the Wdg) 0.639) 
 				(expt (the Nz) 0.1) 
-				(expt (the area) 0.75)
+				(expt (sqm2sqft (the area)) 0.75)
 				(expt (the Lt) -1)
 				(expt (the ky) 0.704)
 				(expt (cos (the wingSweepQCrad)) -1)
@@ -149,7 +149,7 @@
 				(expt (the Wdg) 0.556)
 				(expt (the Nz) 0.536)
 				(expt (the Lt) -0.5)
-				(expt (the area) 0.5)
+				(expt (sqm2sqft (the area)) 0.5)
 				(expt (the AR) 0.35)
 				(expt (the (liftingSurface 0) profile max-thickness) -0.5))
   
