@@ -24,6 +24,7 @@
 	:airfoil (the airfoil)
 	:tailSurfaceType 2
 	:MACHidden? nil
+	:weightParams (the weightParams)
 	)
    
    (""
@@ -38,6 +39,7 @@
 	:MACHidden? nil
 	:Vh_V (getf (the tailParameters) :Vh_V)
 	:mach (the mach)
+	:weightParams (the weightParams)
 	)
   
   )
