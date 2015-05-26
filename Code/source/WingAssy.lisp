@@ -55,7 +55,7 @@
 	surface (sum-elements (the wings) (the-element surface)))
 	
 	("Aspect Ratio main wing"
-	aspectRatio (/ (the span) (the surface)))
+	aspectRatio (/ (expt (the span) 2) (the surface)))
 	
 	("The for dihedral corrected span"
 	actualSpan (/ (the span) (cos(degtorad (the dihedral))))

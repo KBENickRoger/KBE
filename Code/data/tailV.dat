@@ -3,5 +3,7 @@
 ; Horizontal tail plane parameters
 AR 5
 Taper 0.4
+;
+Vh_V 1
 
 

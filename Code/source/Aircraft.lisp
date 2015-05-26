@@ -22,10 +22,10 @@
   ((dataFolder *dataFolder*)
    (outputFolder *outputFolder*)
    (inputDataFilename "inputData.dat")
+   (constantDataFilename "constantData.dat")
    (aircraftDatabaseFilename "aircraftDatabase.dat")
    (wingAirfoil "whitcomb_cst.dat")
    (tailAirfoil "naca0012_cst.dat")
-   (outputQ3D? nil :settable)
   )
   
   :computed-slots
@@ -38,8 +38,16 @@
   
   (fuselageTailCenterPoint (make-point 0 (+ (the fuselage lengthCenter) (the fuselage lengthNose)) 0))
 
-  (outputQ3D (when (the outputQ3D?) (the Q3DWriter Q3D_writer))) 
+  (output_Q3D? (the Q3DWriter Q3D_writer) )
+  (output_PDF_main? (the drawingMain outputPDF!))
+  (output_PDF_views? (the drawingViews outputPDF!))
+  (output_STEP? (the (outputSTEP!)))
+  
+  ("longitudinal location of Wing AC"
+  ACy (get-y (the wing center)))
 
+  ("Sweep of horizontal tailplane"
+  horizontalSweepLE (+ 10 (the input wingSweepLE)))
   
   (""
   offsetSpan (ecase (the input engineMounting)
@@ -68,6 +76,8 @@
 						(5 (the constants tailC))
 						(6 (the constants tailH)))
 	:airfoil (the tailAirfoil)
+	:horizontalSweepLE (the horizontalSweepLE)
+	:mach (getf (the input cruiseCondition) :mach)
 	)
  
    (""
@@ -104,6 +114,7 @@
 	:offsetWingBottom (ecase (the input engineMounting)
 				   ( 1 (* 0.75 (the input engineDiameter)))
 	 			   ( 2 0 ))
+	:ACy (the ACy)
 	)
    
    (""
@@ -132,6 +143,7 @@
 			  
 	(""
 	constants :type 'ConstantData
+			  :parameters (basicDataReader (merge-pathnames (the constantDataFilename) (the dataFolder)))
 			  :tailConventional (basicDataReader (merge-pathnames "tailConventional.dat" (the dataFolder)))
 			  :tailCruciform(basicDataReader (merge-pathnames "tailCruciform.dat" (the dataFolder)))
 			  :tailT (basicDataReader (merge-pathnames "tailT.dat" (the dataFolder)))
@@ -158,12 +170,90 @@
 	:condition (the input cruiseCondition)
     )
 
+	
+	("Capability to evaluate Lift gradient, downwash gradient and lift gradient with fuselage"
+	AeroGradients
+	:type 'Aerodynamics
+	:Vh_V (getf (the tail tailParameters) :Vh_V)
+	:span (the wing span)
+	:wingArea (the wing surface)
+	:sweepLE (the input wingSweepLE)
+	:rootChord (the wing chordRoot)
+	:tipChord (the wing chordTip)
+	:tailLength (sqrt(+ (expt (the tailSizing tailArm) 2)
+							(expt (- (get-z (the tail center)) (get-z (the wing center))) 2)))
+	:tailVLength (- (get-z (the tail center)) (get-z (the wing center)))
+	:fuselageRadius (half (the fuselage diameter))
+	:AR (the wing aspectRatio)
+	:Mach (getf (the input cruiseCondition) :mach)
+	)
+	
+	(""
+	Locations 
+	:type 'Locations
+	:dEpsdAlph (the AeroGradients dEpsdAlph)
+	:XacW (the ACy)
+	:CLalphaWF (the AeroGradients CLalphaWF)
+	:CLalpha (the AeroGradients CLalpha)
+	:tailCLalpha (the tail horizontalTail CLalpha)
+	:Vh_V (getf (the tail tailParameters) :Vh_V)
+	:wingArea (the wing surface)
+	:tailArea (the tailSizing tailSurfaceHorizontal)
+	:tailArm (the tailSizing tailArm)
+	:wingCmac (the wing Cmac)
+	:wingTaper (the wing taper)
+	:tailTaper (the tail horizontalTail taper)
+	:span (the wing span)
+	:wingSweepLE (the wing sweepLE)
+	:fuselageRadius (half (the fuselage diameter))
+	:spanNet (the AeroGradients spanNet)
+	:wingCenter (the wing center)
+	:Kn (ecase (the input engineMounting)
+				(1 (- 4))
+				(2 (- 2.5)))
+	:Bn (the input engineDiameter)
+	:l_n (ecase (the input engineMounting)
+				( 1 (+ (the engines l_n) (* (the input engineNumber) (half (the input engineLength)))))
+				( 2 (- (the engines l_n) (* (the input engineNumber) (half (the input engineLength))))))
+	:rootChord (the wing chordRoot)
+	:tipChord (the wing chordTip)
+	)
+
+	(ACCG
+	:type 'ACCG
+	:centerCG (make-point 0 (the Locations Xcg) 0)
+	:centerAC (make-point 0 (the Locations XacTot) 0))
+	
+	(drawingMain
+	:hidden? t
+	:type 'Drawing-main
+	:fuselage (the fuselage)
+	:engines (the engines)
+	:wing (the wing)
+	:tail (the tail)
+	
+	)
+
+	(drawingViews
+	:hidden? t
+	:type 'Drawing-views
+	:fuselage (the fuselage)
+	:engines (the engines)
+	:wing (the wing)
+	:tail (the tail)
+	)
 )
 	
 
   :functions
-  ()
-
+  ((outputSTEP!
+	()
+	(with-format (step (merge-pathnames "Aircraft3D.stp" (the outputFolder)))
+	(write-the cad-output-tree)))
+	)
 )
+
+
+
 
 

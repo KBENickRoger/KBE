@@ -16,6 +16,8 @@
 	(""
 	tailParameters nil)
 	
+	(mach)
+	
 		(""
 	airfoil "naca0012_cst.dat")
  )
