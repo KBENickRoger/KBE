@@ -22,7 +22,8 @@
 							 :margins (twice (twice (the text-view left-margin)))
 							 :width (the text-view width)
 							 :length (the text-view length)
-							 :Fuselage-length 0 ;(+ (the input fuselageLengthCenter) (the input fuselageLengthNose) (the input fuselageLengthTail))
+							 :inputList (list 
+							 :Fuselage-length 10 ;(+ (the input fuselageLengthCenter) (the input fuselageLengthNose) (the input fuselageLengthTail))
 							 :Fuselage-slenderness-ratio 0 ;(the input Fuselage-slenderness-ratio)
 							 :Wing-Span (the wing span)
 							 :Wing-Sweep 0 ; (the wing sweepLE)
@@ -33,7 +34,7 @@
 							 :EnginePos 0 ; (ecase (the input engineMounting)
 										; ( 1 "Wing-podded")
 										; ( 2 "Fuselage-podded")))
-							 )
+							 ))
 )
  
 :objects
@@ -76,15 +77,10 @@
 ((margins)
  (width)
  (length)
- (Fuselage-length) 
- (Fuselage-slenderness-ratio) 
- (Wing-Span) 
- (Wing-Sweep) 
- (Wing-Taper) 
- (Wing-C_mac) 
- (Wing-Surface-Area) 
- (Engine-number) 
- (EnginePos))
+ (inputList))
+
+:computed-slots
+((keys (plist-keys (the inputList))))
 
 :functions
  (
@@ -96,11 +92,11 @@
       (tt:paragraph () "Aircraft Data")
       (let ((width (- (the width) (the margins))))
 	(tt:table (:col-widths (list (* 2/3 width) (* 1/3 width)))
-	  (dolist (slot (list :Fuselage-length :Fuselage-slenderness-ratio :Wing-Span :Wing-Sweep :Wing-Taper :Wing-C_mac :Wing-Surface-Area :Engine-number :EnginePos))
+	  (dolist (slot (the keys))
 	    (tt:row ()
 	      (tt:cell (:background-color "#FFFFFF") (tt:put-string (format nil "~a" (string-capitalize slot))))
 	      (tt:cell () 
-		(tt:paragraph (:h-align :center) (tt:put-string (format nil "~a" (the (evaluate slot))))))))))))
+		(tt:paragraph (:h-align :center) (tt:put-string (format nil "~a" (getf (the inputList) slot)))))))))))
 )
 
 )
