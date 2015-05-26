@@ -2,23 +2,38 @@
 
 (define-object locations ()
 :input-slots
-((dEpsdAlph	CLalphaWF CLalpha Vh_V wingArea	wingHArea tailArm wingCmac tailCmac	
-wingTaper tailTaper	wingSpan tailSpan wingSweepLE tailSweepLE fuselageRadius wingCenter Kn spanNet
-l_n)
-
-(stabilityMargin 0.05))
+((dEpsdAlph)
+	(CLalphaWF)
+	(CLalpha)
+	(tailCLalpha)
+	(Vh_V) 
+	(wingHArea)
+	(tailArm)
+	(wingCmac)	
+	(wingTaper)
+	(tailTaper)
+	(wingSpan)
+	(tailSpan)
+	(wingSweepLE)
+	(fuselageRadius)
+	(wingCenter)
+	(Kn)
+	(Bn)
+	(spanNet)
+	(l_n)
+	(rootChord)
+	(tipChord)
 	
-:computed-slots
-(
-(""
-wingSweepQCRad (asin (/ (half (+ (- (the tipChord) (the rootChord))) (* (the span) (sin (the sweepLERAD)))) (the span))) )
+	)
 
-(""
-tailSweepQCRad)
+:computed-slots
+((""
+wingSweepQCrad (asin (/ (+ (half (- (the tipChord) (the rootChord))) (* (the span) (sin (degrees-to-radians (the wingSweepLE))))) (the span))))
 
 ("Length of fuselage in front of wing"
-fuselageLenghtForward (+ (get-y (the wingCenter)) (half (the rootChord)) (- (* (the fuselageRadius) (sin (the wingSweepLE))))))
+fuselageLenghtForward (+ (get-y (the wingCenter)) (half (the rootChord)) (- (* (the fuselageRadius) (sin (degrees-to-radians (the wingSweepLE)))))))
 
+(stabilityMargin (* 0.05 (the wingCmac)))
 
 (""
 chordGeometric (/ (the wingArea) (the wingSpan)))
@@ -32,7 +47,7 @@ Xcg (+ (the Xac)
 			(- (the stabilityMargin))))
 
 (""
-Xac (+ (the XacWF) (the XacNac) (the XacT)))
+Xac (+ (the XacWF) (the XacNac)))  ;(the XacT)
 
 (""
 XacWF (* (the wingCmac) (+ (/ (the XacW) (the wingCmac)) 
@@ -44,10 +59,10 @@ XacWF (* (the wingCmac) (+ (/ (the XacW) (the wingCmac))
 								)
 
 (""
-XacNac (/ (* (the Kn) (expt (the Bn) 2) (the l_nR)) (* (the wingArea) (the wingCmac) (the CLalphaWF))))
+XacNac (/ (* (the Kn) (expt (the Bn) 2) (the l_n)) (* (the wingArea) (the wingCmac) (the CLalphaWF))))
 
-(""
-XacT)
+;(""
+;XacT)
 
 
 )

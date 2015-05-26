@@ -186,36 +186,43 @@
 	:Mach (getf (the input cruiseCondition) :mach)
 	)
 	
-;	(""
-;	Locations 
-;	:type 'Locations
-;	:dEpsdAlph (the AeroGradients dEpsdAlph)
-;	:CLalphaWF (the AeroGradients CLalphaWF)
-;	:CLalpha (the AeroGradients CLalpha)
-;	:Vh_V (the AeroGradients Vh_V)
-;	:wingArea (the wing surface)
-;	:tailArea (the tailSizing tailSurfaceHorizontal)
-;	:tailArm (the tailSizing tailArm)
-;	:wingCmac (the wing Cmac)
-;	:tailCmac (the tail Cmac)
-;	:wingTaper (the wing taper)
-;	:tailTaper (the tail taper)
-;	:wingSpan (the wing span)
-;	:tailSpan (the tail span)
-;	:wingSweepLE (the wing sweepLE)
-;	:tailSweepLE (the tail sweepLE)
-;	:fuselageRadius (half (the fuselage diameter))
-;	:spanNet (the AeroGradients spanNet)
-;	:wingCenter (the wing center)
-;	:Kn (ecase (the input engineMounting)
-;				(1 (- 4))
-;				(2 (- 2.5)))
-;	:Bn (the input engineDiameter)
-;	:l_n (ecase (the input engineMounting)
-;				( 1 (+ (the engines l_n) (half (the input engineLength))))
-;				( 2 (- (the engines l_n) (half (the input engineLength))))
-;	)
+	(""
+	Locations 
+	:type 'Locations
+	:dEpsdAlph (the AeroGradients dEpsdAlph)
+	:XacW (the ACy)
+	:CLalphaWF (the AeroGradients CLalphaWF)
+	:CLalpha (the AeroGradients CLalpha)
+	:tailCLalpha (the tail horizontalTail CLalpha)
+	:Vh_V (getf (the tail tailParameters) :Vh_V)
+	:wingArea (the wing surface)
+	:tailArea (the tailSizing tailSurfaceHorizontal)
+	:tailArm (the tailSizing tailArm)
+	:wingCmac (the wing Cmac)
+	:wingTaper (the wing taper)
+	:tailTaper (the tail horizontalTail taper)
+	:wingSpan (the wing span)
+	:tailSpan (the tail horizontalTail span)
+	:wingSweepLE (the wing sweepLE)
+	:fuselageRadius (half (the fuselage diameter))
+	:spanNet (the AeroGradients spanNet)
+	:wingCenter (the wing center)
+	:Kn (ecase (the input engineMounting)
+				(1 (- 4))
+				(2 (- 2.5)))
+	:Bn (the input engineDiameter)
+	:l_n (ecase (the input engineMounting)
+				( 1 (+ (the engines l_n) (* (the input engineNumber) (half (the input engineLength)))))
+				( 2 (- (the engines l_n) (* (the input engineNumber) (half (the input engineLength))))))
+	:rootChord (the wing chordRoot)
+	:tipChord (the wing chordTip)
+	)
 
+;	(ACCG
+;	:type 'ACCG
+;	:centerCG
+;	:centerAC)
+	
 	(drawingMain 
 	:type 'Drawing-main
 	:fuselage (the fuselage)
