@@ -14,7 +14,7 @@
 
 :computed-slots
 (
-(objectList (list (the fuselage) (the engines) (the wing) (the tail) (ACCG)))
+(objectList (list (the fuselage) (the engines) (the wing) (the tail) (the ACCG)))
 (outputPDF! (the (output!)))  
 )
 

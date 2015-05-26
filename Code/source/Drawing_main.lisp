@@ -56,7 +56,7 @@
 								(the engines)
 								(the wing)
 								(the tail)
-								(ACCG))
+								(the ACCG))
 			:length (half (the length))
 			:width (the width)
 			:center (translate (the center)
