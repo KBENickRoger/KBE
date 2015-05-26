@@ -26,7 +26,8 @@
  )
  
   :computed-slots
-()
+((CLalpha (the horizontalTail CLalpha))
+  (taper (the horizontalTail taper)))
   
   
   :objects
@@ -85,10 +86,11 @@
 	:AR (getf (the tailParameters) :horizontalAR)
 	:taper (getf (the tailParameters) :horizontalTaper)
 	:airfoil (the airfoil)
-	:horizontalSweepLE (horizontalSweepLE)
+	:horizontalSweepLE (the horizontalSweepLE)
 	:tailSurfaceType 1
 	:Vh_V (getf (the tailParameters) :Vh_V)
 	:mach (the mach)
+	:MACHidden? nil
 	)
   
   )
