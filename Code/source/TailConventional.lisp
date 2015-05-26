@@ -7,10 +7,11 @@
    :description "")
   
   :input-slots
-  ((""
+  (	
+	(""
     surfaceHorizontal 1)
    
-   (""
+	(""
     surfaceVertical 1)
 	
 	(""
@@ -19,15 +20,20 @@
 	(""
 	airfoil "naca0012_cst.dat")
 	
-	(horizontalSweepLE)
+	(""
+	horizontalSweepLE)
 	
-	(mach)
+	(""
+	mach)
 	
- )
+	(""
+	weightParams)
+)
  
   :computed-slots
-()
-  
+((CLalpha (the horizontalTail CLalpha))
+  (taper (the horizontalTail taper))
+  (wing (the aircraftRef wing)))
   
   :objects
   ((""

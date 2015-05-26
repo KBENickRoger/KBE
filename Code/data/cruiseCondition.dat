@@ -15,5 +15,9 @@ mach 0.8
 ; design weight [N]
 weight 10000
 ;
+; Limit load factor
+limitLoad 2
+;
 ; Viscous in Q3D? 1 = yes 0 = no
 viscous 1
+; 
