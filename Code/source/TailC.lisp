@@ -1,32 +1,17 @@
 (in-package :gdl-user)
 
-(define-object TailC (base-object)
+(define-object TailC (tailGeneral)
   
   :documentation
   (:author "<name> (<username>@<organization>.com)"
    :description "")
-  
-  :input-slots
-  ((""
-    surfaceHorizontal 1)
-   
-   (""
-    surfaceVertical 1)
-	
-	(""
-	tailParameters nil)
-	
-	(horizontalSweepLE)
-	
-		(""
-	airfoil "naca0012_cst.dat")
-	
-	(mach)
- )
  
   :computed-slots
-((CLalpha (the horizontalTail CLalpha))
-  (taper (the horizontalTail taper)))
+ (
+  (CLalpha (the horizontalTail CLalpha))
+  (taper (the horizontalTail taper))
+  (weight (+ (the leftTail weight) (the rightTail weight) (the horizontalTail weight)))
+  )
   
   
   :objects
@@ -42,6 +27,7 @@
 	:airfoil (the airfoil)
 	:tailSurfaceType 2
 	:MACHidden? nil
+	:weightParams (the weightParams)
 	)
    
    (""
@@ -56,6 +42,7 @@
 	:airfoil (the airfoil)
 	:tailSurfaceType 2
 	:MACHidden? nil
+	:weightParams (the weightParams)
 	)
    
    
@@ -71,6 +58,7 @@
 	:Vh_V (getf (the tailParameters) :Vh_V)
 	:mach (the mach)
 	:MACHidden? nil
+	:weightParams (the weightParams)
 	)
   
   )
