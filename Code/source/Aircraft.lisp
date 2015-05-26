@@ -42,6 +42,8 @@
   (output_PDF_main? (the drawingMain outputPDF!))
   (output_PDF_views? (the drawingViews outputPDF!))
   (output_STEP? (the (outputSTEP!)))
+  (output_PDF_input (the InputPDF outputPDF!))
+  (output_PDF_output (the OutputPDF outputPDF!))
 
   ;Calculations required for inputs into objects
   ("Attachment point engines"
@@ -166,15 +168,6 @@
 	:mac (the wing Cmac)
 	:wingSurface (the wing surface)
 	)
-
-   ("Output writer for Q3D file"
-    Q3DWriter 
-    :type 'outputQ3D
-    :wing (the wing (wings 0))
-	:wingAssy (the wing)
-	:condition (the input cruiseCondition)
-    )
-
 	
 	("Capability to evaluate Lift gradient, downwash gradient and lift gradient with fuselage"
 	AeroGradients
@@ -229,7 +222,8 @@
 	:centerCG (make-point 0 (the Locations Xcg) 0)
 	:centerAC (make-point 0 (the Locations XacTot) 0))
 	
-	(drawingMain
+	("Drawing of Trimetric view with small table of basic parameters"
+	drawingMain
 	:hidden? t
 	:type 'Drawing-main
 	:fuselage (the fuselage)
@@ -239,13 +233,42 @@
 	
 	)
 
-	(drawingViews
+	("Drawings of front, top, and side views"
+	drawingViews
 	:hidden? t
 	:type 'Drawing-views
 	:fuselage (the fuselage)
 	:engines (the engines)
 	:wing (the wing)
 	:tail (the tail)
+	)
+	
+	("Output writer for Q3D file"
+    Q3DWriter 
+    :type 'outputQ3D
+    :wing (the wing (wings 0))
+	:wingAssy (the wing)
+	:condition (the input cruiseCondition)
+    )
+	
+	("Input pdf generator"
+	InputPDF
+;	:hidden? t
+	:type 'InputPDF
+	:input (the input)
+	)
+	
+	("Output pdf generator"
+	OutputPDF
+;	:hidden? t
+	:type 'OutputPDF
+	:fuselage (the fuselage)
+	:engines (the engines)
+	:wing (the wing)
+	:tail (the tail)
+	:input (the input)
+	:Locations (the Locations)
+	:AeroGradients (the AeroGradients)
 	)
 )
 	
