@@ -57,7 +57,12 @@
   offsetSpan (ecase (the input engineMounting)
 				( 1 (/ (- (the wing span) (the fuselage diameter)) (+ 2 (the engines engineNumber)))) 
 				( 2 (the input engineDiameter))))
+				
+	;Extracting the weight from the tail
+	("Weight tail [kg]" 
+	weightTail (the tail weight))
   )
+  
   :objects
   (
   ("Tail generating object. Creates tail through tailType-->tailSurface-->wingTrunk"

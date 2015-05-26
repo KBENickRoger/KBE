@@ -7,8 +7,11 @@
    :description "")
  
   :computed-slots
-((CLalpha (the horizontalTail CLalpha))
-  (taper (the horizontalTail taper)))
+ (
+  (CLalpha (the horizontalTail CLalpha))
+  (taper (the horizontalTail taper))
+  (weight (+ (the leftTailUp weight) (the leftTailDown weight) (the rightTailUp weight) (the rightTailDown weight) (the horizontalTail weight)))
+  )
   
   
   :objects
@@ -22,6 +25,7 @@
 	:center (translate (the center) :left (half (the horizontalTail span)):rear (the horizontalTail sweepOffset))
 	:airfoil (the airfoil)
 	:tailSurfaceType 2
+	:weightParams (the weightParams)
 	)
 	
 	(""
@@ -34,6 +38,7 @@
 	:center (translate (the center) :left (half (the horizontalTail span)):rear (the horizontalTail sweepOffset))
 	:airfoil (the airfoil)
 	:tailSurfaceType 2
+	:weightParams (the weightParams)
 	)
    
    (""
@@ -46,6 +51,7 @@
 	:center (translate (the center) :right (half (the horizontalTail span)):rear (the horizontalTail sweepOffset))
 	:airfoil (the airfoil)
 	:tailSurfaceType 2
+	:weightParams (the weightParams)
 	)
 	
 	(""
@@ -58,6 +64,7 @@
 	:center (translate (the center) :right (half (the horizontalTail span)):rear (the horizontalTail sweepOffset))
 	:airfoil (the airfoil)
 	:tailSurfaceType 2
+	:weightParams (the weightParams)
 	)
    
    (""
@@ -72,6 +79,7 @@
 	:Vh_V (getf (the tailParameters) :Vh_V)
 	:mach (the mach)
 	:MACHidden? nil
+	:weightParams (the weightParams)
 	)
   
   )

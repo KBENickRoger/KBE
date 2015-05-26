@@ -8,8 +8,10 @@
  
   :computed-slots
   (
+  (horizontalPlacement 0)
   (CLalpha (the horizontalTail CLalpha))
   (taper (the horizontalTail taper))
+  (weight (+ (the verticalTail weight) (the horizontalTail weight)))
   )
   
   :objects
@@ -33,6 +35,7 @@
 	:area (the surfaceHorizontal)
 	:AR (getf (the tailParameters) :horizontalAR)
 	:taper (getf (the tailParameters) :horizontalTaper)
+	:center (translate (the center) :up (* (the horizontalPlacement) (the verticalTail span)))
 	:airfoil (the airfoil)
 	:horizontalSweepLE (the horizontalSweepLE)
 	:tailSurfaceType 1
