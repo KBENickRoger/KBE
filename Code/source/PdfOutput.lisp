@@ -9,6 +9,7 @@
  (tail)
  (Locations)
  (AeroGradients)
+ (tailWeight)
 )
 
 :computed-slots
@@ -36,8 +37,8 @@
 							 :Tailparameters " "
 							 :Tailsurface_Horizontal_Tail (the tailSizing tailSurfaceHorizontal)
 							 :Tailsurface_Vertical_Tail (the tailSizing tailSurfaceVertical)
-							 :Weight ""
-							 ;:Tail_Weight 
+							 :Weight " "
+							 :Tail_Weight (the tailWeight) 
 							 ))
 )
 :objects
@@ -48,7 +49,7 @@
 			:width (the width)
 			:projection-vector (getf *standard-views* :top)
 			:center (the center) 
-			:hidden? t)
+)
 )			
 							 
 :functions

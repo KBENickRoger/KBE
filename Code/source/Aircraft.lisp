@@ -42,8 +42,8 @@
   (output_PDF_main? (the drawingMain outputPDF!))
   (output_PDF_views? (the drawingViews outputPDF!))
   (output_STEP? (the (outputSTEP!)))
-  (output_PDF_input (the InputPDF outputPDF!))
-  (output_PDF_output (the OutputPDF outputPDF!))
+  (output_PDF_input? (the InputPDF outputPDF!))
+  (output_PDF_output? (the OutputPDF outputPDF!))
 
   ;Calculations required for inputs into objects
   ("Attachment point engines"
@@ -62,7 +62,7 @@
 				
 	;Extracting the weight from the tail
 	("Weight tail [kg]" 
-	weightTail (the tail weight))
+	tailWeight (the tail weight))
   )
   
   :objects
@@ -262,6 +262,7 @@
 	
 	("Output writer for Q3D file"
     Q3DWriter 
+	:hidden? t
     :type 'outputQ3D
     :wing (the wing (wings 0))
 	:wingAssy (the wing)
@@ -283,6 +284,7 @@
 	:tail (the tail)
 	:Locations (the Locations)
 	:AeroGradients (the AeroGradients)
+	:tailWeight (the tailWeight)
 	)
 )
 	

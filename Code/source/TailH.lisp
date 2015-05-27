@@ -18,7 +18,7 @@
   ((""
     leftTailUp :type 'TailSurface
 	:symmetry nil
-	:area (* 0.3 (the surfaceVertical))
+	:area (* 0.25 (the surfaceVertical))
 	:AR (getf (the tailParameters) :verticalAR)
 	:taper (getf (the tailParameters) :verticalTaper)
 	:dihedral 90
@@ -31,7 +31,7 @@
 	(""
     leftTailDown :type 'TailSurface
 	:symmetry nil
-	:area (* 0.2 (the surfaceVertical))
+	:area (* 0.25 (the surfaceVertical))
 	:AR (getf (the tailParameters) :verticalAR)
 	:taper (getf (the tailParameters) :verticalTaper)
 	:dihedral -90
@@ -44,7 +44,7 @@
    (""
     rightTailUp :type 'TailSurface
 	:symmetry nil
-	:area (* 0.3 (the surfaceVertical))
+	:area (* 0.25 (the surfaceVertical))
 	:AR (getf (the tailParameters) :verticalAR)
 	:taper (getf (the tailParameters) :verticalTaper)
 	:dihedral 90
@@ -57,7 +57,7 @@
 	(""
     rightTailDown :type 'TailSurface
 	:symmetry nil
-	:area (* 0.2 (the surfaceVertical))
+	:area (* 0.25 (the surfaceVertical))
 	:AR (getf (the tailParameters) :verticalAR)
 	:taper (getf (the tailParameters) :verticalTaper)
 	:dihedral -90

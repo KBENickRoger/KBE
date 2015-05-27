@@ -9,7 +9,7 @@
   :computed-slots
 	(
 	(horizontalPlacement 1)
-	(horizontalBack (the verticalTail chordTip))
+	(horizontalBack (- (the verticalTail sweepOffset) (the verticalTail chordTip)))
 	)
   
  )
