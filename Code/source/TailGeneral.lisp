@@ -9,19 +9,19 @@
   :input-slots
   (	
 	(""
-    surfaceHorizontal 10)
+    surfaceHorizontal 10 :settable)
    
 	(""
-    surfaceVertical 10)
+    surfaceVertical 10 :settable)
 	
 	(""
 	tailParameters nil)
 	
 	(""
-	airfoil "naca0012_cst.dat")
+	airfoil "naca0012_cst.dat" :settable)
 	
 	(""
-	horizontalSweepLE 5)
+	horizontalSweepLE 5 :settable)
 	
 	(""
 	mach 1.0)

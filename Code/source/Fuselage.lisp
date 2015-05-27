@@ -1,14 +1,5 @@
 (in-package :gdl-user)
 
-;to do:
-; Test in current form
-; Build in divergence
-; Build in noseoffset
-; Recreate FuselageCenter
-; Rewrite input.dat with fuselagelength and computed slots nose and tail.
-;
-;
-
 (define-object Fuselage (base-object)
   
   :documentation
@@ -17,21 +8,23 @@
   
   :input-slots
   (
-  (""
+  ("dataFolder for inputs"
   dataFolder *dataFolder*)
   
-  (""
+  ("Inpud data file"
   inputFuselageFileName "fuselage.dat" )
   
-   (""
-   divergence)
+   ("Divergence angle of the tail section"
+   divergence 15 :settable)
    
-   (""
+   ("Definition of the offset-percentages"
    section-offset-percentages (list 0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1))
   
-  (lengthTotal)
+  ("Total length of the fuselage"
+  lengthTotal 100 :settable)
   
- (finenessRatio)
+ ("Fineness ratio"
+ finenessRatio 8 :settable)
   
   )
   

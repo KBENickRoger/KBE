@@ -8,19 +8,19 @@
   
   :input-slots
   (("Total wingspan in [m]"
-    span 10)
+    span 10 :settable)
    
    ("Position of the kink in the wing [%]"
-    kinkPos 0.3)
+    kinkPos 0.3 :settable)
    
    ("Length of the chord at the root of the wing [m]"
-    chordRoot 2)
+    chordRoot 2 :settable)
    
    ("Taper ratio []"
-    taper 0.5)
+    taper 0.5 :settable)
    
    ("Dihedral angle []"
-    dihedral 5)
+    dihedral 5 :settable)
    
    (wingVerticalShift 0)
    
@@ -28,10 +28,10 @@
     wingPositioning (make-point 0 0 0))
 	
 	(""
-	airfoil)
+	airfoil :settable)
 	
 	(""
-	sweepLE)
+	sweepLE :settable)
 )
   
   

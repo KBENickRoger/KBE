@@ -7,7 +7,18 @@
    :description "")
   
   :input-slots
-  (engineNumber position offsetSweep offsetDihedral offsetSpan offsetWingFront offsetWingBottom offsetEngineDiameter offsetFuselage length diameter ACy)
+  ((engineNumber 2 :settable) 
+    (position) 
+    (offsetSweep 1 :settable) 
+	(offsetDihedral 1 :settable) 
+	(offsetSpan 1 :settable) 
+	(offsetWingFront 1 :settable) 
+	(offsetWingBottom 1 :settable) 
+	(offsetEngineDiameter 1 :settable) 
+	(offsetFuselage 1 :settable) 
+	(length 1 :settable) 
+	(diameter 3 :settable) 
+	(ACy))
   
   
   :computed-slots
