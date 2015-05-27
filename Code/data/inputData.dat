@@ -10,7 +10,7 @@ wingConfiguration 1
 wingSweepLE 15
 ;
 ; Tail parameters
-tailType 6
+tailType 5
 ;
 ; Fuselage parameters
 finenessRatio 8
